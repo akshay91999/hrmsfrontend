@@ -9,23 +9,33 @@ import { useState } from "react";
 import Calender from "../Components/Calender";
 import Btn from "../Components/Btn";
 import { Typography } from "@mui/material";
-import {useForm,Form} from "../Components/useForm";
+import useForm from "../Components/useForm";
+
 
 const initialFvalues={
-    employeeid:'',
-    employeetype:'',
-    durationfrom:new Date(),
-    durationto:new Date(),
-    designation:'',
-    annualsalary:'',
+    employeeid :'',
+    employeetype :'',
+    durationfrom :new Date(),
+    durationto :new Date(),
+    designation :'',
+    annualsalary  :'',
 }
 
 function Expdtl() {
-
-    const{
-        values,
-        handleInputChange
-    }=useForm(initialFvalues)
+    // const [values,setValues]=useState(initialFvalues)
+    // const handleInputChange=(e)=>{
+    //   const{ name,value }=e.target
+    //   console.log(values)
+    //   setValues({
+    //     ...values,
+    //     [name] : value
+    //   })
+    // }
+     const{values,setValues,handleInputChange}=useForm(initialFvalues)
+    // const{
+    //     values,
+    //     handleInputChange
+    // }=useForm(initialFvalues)
 
    
 
@@ -41,7 +51,7 @@ function Expdtl() {
 
   return (
     <>
-      <Form>
+      <form>
       <Box
         component="form"
         noValidate
@@ -130,7 +140,7 @@ function Expdtl() {
           <Btn text="Remove" click={removeNew} />
         </Box>
       </Box>
-      </Form>
+      </form>
      
       {open ? <Expdtl /> : null}
     </>
