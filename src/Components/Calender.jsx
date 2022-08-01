@@ -1,7 +1,7 @@
 import React from 'react'
 import TextField from '@mui/material/TextField';
 
-function Calender({text,name,value,onChange}) {
+function Calender({text,name,value,onChange,error=null}) {
     
   return (
     <>
@@ -28,6 +28,7 @@ function Calender({text,name,value,onChange}) {
         name={name}
         value={value}
         onChange={onChange}
+        {...(error && {error:true,helperText:error})}
         InputLabelProps={{
           shrink: true,
         }}

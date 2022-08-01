@@ -17,7 +17,7 @@ const CssTextField = styled(TextField)({
     },
   });
 function Textfield(props) {
-  const {label,id,name,value,onChange}=props
+  const {label,id,name,value,onChange,error=null}=props
     return(
         <div>
            <CssTextField required size="small" 
@@ -26,8 +26,7 @@ function Textfield(props) {
              name={name} 
              value={value}
             onChange={onChange}
-            error
-            helperText="validation"
+            {...(error && {error:true , helperText:error})}
             />
         </div>
     );

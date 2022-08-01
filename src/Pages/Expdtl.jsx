@@ -10,19 +10,19 @@ import Calender from "../Components/Calender";
 import Btn from "../Components/Btn";
 import { Typography } from "@mui/material";
 import useForm from "../Components/useForm";
-
+import {FormHelperText} from "@mui/material";
 const initialFvalues = {
   employeeid: "",
   employeetype: "",
-  durationfrom: new Date(),
-  durationto: new Date(),
+  durationfrom: "",
+  durationto: "",
   designation: "",
   annualsalary: "",
 };
 
 function Expdtl() {
- 
-  const { values, setValues,handleInputChange } = useForm(initialFvalues);
+  const { values, errors, setErrors, handleInputChange } =
+    useForm(initialFvalues);
 
   const [open, setOpen] = useState(false);
   const addNew = () => {
@@ -33,12 +33,24 @@ function Expdtl() {
     setOpen(false);
   };
 
-  const handleSubmit=()=>{
-    console.log("successfully submited")
-  }
+  const validate = () => {
+    let temp = {};
+    temp.employeeid = values.employeeid ? "" : "employeeid is required";
+    temp.employeetype = values.employeetype ? "" : "employeetype is required";
+    temp.durationfrom = values.durationfrom ? "" : "duration from is required";
+    temp.durationto = values.durationto ? "" : "duration to is required";
+    setErrors({ ...temp });
+    return Object.values(temp).every((x) => x === "");
+  };
+
+  const handlesubmit = () => {
+    if (validate()) {
+      window.alert("successfully submited");
+    }
+  };
   return (
     <>
-      <form >
+      <form>
         <Box
           component="form"
           noValidate
@@ -56,8 +68,9 @@ function Expdtl() {
             name="employeeid"
             value={values.employeeid}
             onChange={handleInputChange}
+            error={errors.employeeid}
           />
-          <FormControl
+          <FormControl 
             sx={{
               // mt: 1,
               // mb: 1,
@@ -75,6 +88,7 @@ function Expdtl() {
               },
             }}
             size="small"
+            {...(errors.employeetype && {error:true})}
           >
             <InputLabel id="demo-select-small">Employee Type</InputLabel>
             <Select
@@ -84,6 +98,7 @@ function Expdtl() {
               label="employee type"
               name="employeetype"
               onChange={handleInputChange}
+              
             >
               <MenuItem value="">
                 <em>None</em>
@@ -91,9 +106,11 @@ function Expdtl() {
               <MenuItem value={"pt"}>Part time</MenuItem>
               <MenuItem value={"ft"}>Full time</MenuItem>
             </Select>
+            {errors.employeetype &&<FormHelperText>{errors.employeetype}</FormHelperText>}
+
           </FormControl>
-          <Calender text="Duration From" />
-          <Calender text="Duration To" />
+          <Calender text="Duration From" name="durationfrom" value={values.durationfrom} onChange={handleInputChange} error={errors.durationfrom}/>
+          <Calender text="Duration To" name="durationto" value={values.durationto} onChange={handleInputChange} error={errors.durationto} />
           {/* </Box> */}
           <Textfield
             label="Designation"
@@ -132,7 +149,7 @@ function Expdtl() {
             <input type="file" />
           </Box>
           <Box sx={{ pt: "2%" }}>
-            <Btn text="Save"/>
+            <Btn text="Save" click={handlesubmit} />
           </Box>
         </Box>
         <Box
