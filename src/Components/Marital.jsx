@@ -1,9 +1,8 @@
 import React from "react"
 import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
-import Textfeild from "./Textfield";
+import Textfeild from "./Reusablecomponents/Textfield";
 function Marital(props) {
-    const {values,onChange}=props
     return (
         <div>
             <FormControl>

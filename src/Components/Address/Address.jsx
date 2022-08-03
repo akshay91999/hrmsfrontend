@@ -1,9 +1,9 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import Btn from "../Btn";
+import Btn from "../Reusablecomponents/Btn";
 import Typography from "@mui/material/Typography";
-import Textfeild from "../Textfield";
-import useForm from "../useForm";
+import Textfeild from "../Reusablecomponents/Textfield";
+import useForm from "../Validation/useForm";
 const initialFvalues = {
   adrress: "",
   state: "",

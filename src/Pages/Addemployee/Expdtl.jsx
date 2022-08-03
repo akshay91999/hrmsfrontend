@@ -1,15 +1,15 @@
 import React from "react";
-import Textfield from "../Components/Textfield";
+import Textfield from "../../Components/Reusablecomponents/Textfield";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
-import Calender from "../Components/Calender";
-import Btn from "../Components/Btn";
+import Calender from "../../Components/Reusablecomponents/Calender";
+import Btn from "../../Components/Reusablecomponents/Btn";
 import { Typography } from "@mui/material";
-import useForm from "../Components/useForm";
+import useForm from "../../Components/Validation/useForm";
 import {FormHelperText} from "@mui/material";
 const initialFvalues = {
   employeeid: "",
@@ -97,8 +97,7 @@ function Expdtl() {
               value={values.employeetype}
               label="employee type"
               name="employeetype"
-              onChange={handleInputChange}
-              
+              onChange={handleInputChange}  
             >
               <MenuItem value="">
                 <em>None</em>

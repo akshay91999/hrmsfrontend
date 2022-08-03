@@ -1,6 +1,6 @@
 
 import './App.css';
-import MiniDrawer from './Components/MiniDrawer';
+import MiniDrawer from './Components/Drawer_and_Appbar/MiniDrawer';
 import {BrowserRouter} from 'react-router-dom' 
 
 

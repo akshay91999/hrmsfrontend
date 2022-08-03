@@ -1,5 +1,4 @@
-import React ,{ Component }from 'react'
-import {Button } from '@mui/material'
+import React from 'react'
 import Typography from '@mui/material/Typography';
 function Upload(props) {
     
@@ -9,11 +8,10 @@ function Upload(props) {
             <legend><Typography variant="h6" gutterBottom component="div">
              {props.text} 
             </Typography></legend>
-         <Button component="label">
-        {" "}
-        Upload a file
-        <input type="file"/>
-      </Button>
+        
+        Upload a file:
+        <input type="file" style={{marginLeft:'1%'}}/>
+      
       </fieldset>
         // </div>
       );

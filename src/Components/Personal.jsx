@@ -8,10 +8,10 @@ import FormLabel from '@mui/material/FormLabel';
 import Typography from '@mui/material/Typography';
 import Marital from "./Marital";
 import { useState } from "react";
-import Textfield from './Textfield';
-import Calender from './Calender';
-import Btn from './Btn';
-import useForm from './useForm';
+import Textfield from './Reusablecomponents/Textfield';
+import Calender from './Reusablecomponents/Calender';
+import Btn from './Reusablecomponents/Btn';
+import useForm from './Validation/useForm';
 
 
 const initialFvalues={
@@ -48,7 +48,7 @@ function Personal() {
         setOpen(false);
     };
     
-
+    const regex = /\S+@\S+\.\S+/
     const validate = () => {
         let temp={}
         temp.firstname=values.firstname?"":"firstname is required"
@@ -56,7 +56,8 @@ function Personal() {
         temp.dob=values.dob?"":"dob is required"
         temp.nationality=values.nationality?"":"nationality is required"
         temp.contactnumber=values.contactnumber.length> 9?"":"contactnumber requires minimum 9 numbers"
-        temp.emailid=(/$^|.+@.+..+/).test(values.emailid)?"":"email is not valid"
+        temp.emailid=regex.test(values.emailid)?"":"email is not valid"
+        temp.altemailid=regex.test(values.emailid)?"":"email is not valid"
         temp.fathername=values.fathername?"":"father's name is required"
         temp.fcontactnumber=values.fcontactnumber?"":"father's contact is required"
         temp.mothername=values.mothername?"":"mother's name is required"
@@ -65,6 +66,7 @@ function Personal() {
         return Object.values(temp).every(x=>x==="")
     }
     const handlesubmit=()=>{
+
         if(validate()){
             window.alert("successfully submited")
         }
@@ -137,7 +139,7 @@ function Personal() {
                     <Textfield label="Contact Number" id="contact-no" name="contactnumber" value={values.component} onChange={handleInputChange} error={errors.contactnumber}/>
                     <Textfield label="Alternate Contact Number" id="alt-contact-no" name="altcontactnumber" value={values.altcontactnumber} onChange={handleInputChange} />
                     <Textfield label="Email id" id="email-id" name="emailid" value={values.emailid} onChange={handleInputChange} errors={errors.emailid} error={errors.emailid}/>
-                    <Textfield label="Alternate Email id" id="alt-email-id" name="altemailid" value={values.altemailid} onChange={handleInputChange}/>
+                    <Textfield label="Alternate Email id" id="alt-email-id" name="altemailid" value={values.altemailid} onChange={handleInputChange} error={errors.altemailid}/>
                     <Textfield label="Father's Name" id="father's-name" name="fathername" value={values.fathername} onChange={handleInputChange} error={errors.fathername}/>
                     <Textfield label="Contact Number" id="father's-cntno" name="fcontactnumber" value={values.fcontactnumber} onChange={handleInputChange} error={errors.fcontactnumber}/>
                     <Textfield label="Mother's Name" id="mother's-name" name="mothername" value={values.mothername} onChange={handleInputChange} error={errors.mothername}/>

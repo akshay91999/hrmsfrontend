@@ -20,7 +20,8 @@ function Textfield(props) {
   const {label,id,name,value,onChange,error=null}=props
     return(
         <div>
-           <CssTextField required size="small" 
+           <CssTextField  
+           size="small" 
             sx={{width:'90%'}} 
             label={label} id={id}
              name={name} 

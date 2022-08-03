@@ -1,9 +1,9 @@
 import React from "react";
-import Personal from "../Components/Personal";
+import Personal from "../../Components/Personal";
 import Grid from '@mui/material/Grid';
-import AddressCalling from "../Components/Address/AddressCalling";
+import AddressCalling from "../../Components/Address/AddressCalling";
 import { Typography } from "@mui/material";
-import Btn from "../Components/Btn";
+import Btn from "../../Components/Reusablecomponents/Btn";
 import {useNavigate} from 'react-router-dom'
 
 function Basic() {
@@ -19,7 +19,7 @@ function Basic() {
       <Grid item xs={12} sm={12} md={6} lg={6}>
        <AddressCalling/>
        <Typography align='right' sx={{ p:'1%' }}>
-       <Btn text='Next' click={()=>{navigate("/academic")}}/>
+       <Btn text='Next' click={()=>{navigate("/Upload")}}/>
        </Typography>
       </Grid>
     </Grid>
