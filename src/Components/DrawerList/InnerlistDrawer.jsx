@@ -11,7 +11,7 @@ import NormallistDrawer from './NormallistDrawer';
 
 
 
-function InnerlistDrawer({click,name,icon,innericon1,innername1}) {
+function InnerlistDrawer({click,click1,click2,name,icon,innericon1,innername1,innericon2,innername2}) {
     const [open, setOpen] = React.useState(false);
 
     const handleClick = () => {
@@ -28,7 +28,8 @@ function InnerlistDrawer({click,name,icon,innericon1,innername1}) {
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding sx={{ pl: 1 }}>
-          <NormallistDrawer click={click} name={innername1} icon={innericon1}/>
+          <NormallistDrawer click={click1} name={innername1} icon={innericon1}/>
+          <NormallistDrawer click={click2} name={innername2} icon={innericon2}/>
         </List>
       </Collapse>
 

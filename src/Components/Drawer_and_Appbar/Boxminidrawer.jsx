@@ -10,8 +10,9 @@ import Exp from '../../Pages/Addemployee/Exp'
 import Upld from '../../Pages/Addemployee/Upld'
 import Skills from '../../Pages/Addemployee/Skills'
 import Job from '../../Pages/Addemployee/Job'
-
-
+import EmployeeList from '../../Pages/Viewemployee/EmployeeList'
+import EmployeeDetail from '../../Pages/Viewemployee/EmployeeDetail'
+import Register from '../../Pages/Addemployee/Register'
 function Boxminidrawer() {
   return (
     <>
@@ -25,6 +26,9 @@ function Boxminidrawer() {
                 <Route path="/upload" element={<Upld/>} />
                 <Route path="/skill" element={<Skills/>} />
                 <Route path="/jobdetails" element={<Job/>} />
+                <Route path="/register" element={<Register/>} />
+                <Route path="/viewemployee" element={<EmployeeDetail/>} />
+                <Route path="/employeelist" element={<EmployeeList/>} />
                 <Route path="/*" element={<PageNotfound/>} />
             </Routes>
         

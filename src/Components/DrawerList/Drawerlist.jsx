@@ -18,7 +18,7 @@ import ElderlyIcon from '@mui/icons-material/Elderly';
 import MarkAsUnreadIcon from '@mui/icons-material/MarkAsUnread';
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from "react-router-dom";
-
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
 
 function Drawerlist() {
@@ -33,7 +33,7 @@ function Drawerlist() {
                 
             >
                <ListelementDrawer name='DASHBOARD' click={()=>navigate("/")} icon={DashboardIcon} inner={false}/>
-               <ListelementDrawer name='EMP.MANAGEMENT' click={()=>navigate("/addemployee")} icon={GroupsIcon} inner={true} innericon1={AddIcon} innername1='ADD EMPLOYEE'/ >
+               <ListelementDrawer name='EMP.MANAGEMENT' click1={()=>navigate("/addemployee")} click2={()=>navigate("/employeelist")} icon={GroupsIcon} inner={true} innericon1={AddIcon} innername1='ADD EMPLOYEE' innericon2={RemoveRedEyeOutlinedIcon} innername2='VIEW EMPLOYEE'/ >
                <ListelementDrawer name='REC.MANAGEMENT' icon={HandshakeIcon} inner={false}/>
                <ListelementDrawer name='ATT.MANAGEMENT ' icon={FingerprintIcon} inner={false}/>
                <ListelementDrawer name='LEAVE MANAGEMENT ' icon={ArticleIcon} inner={false}/>
