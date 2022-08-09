@@ -16,7 +16,7 @@ const initialFvalues = {
   board: "",
   coursesid: "",
   branchid: "",
-  typeid: "",
+  coursetype: "",
   score: "",
   markid: "",
   durtnfrm: "",
@@ -24,8 +24,7 @@ const initialFvalues = {
 };
 
 function AcademicForm() {
-  const { values, errors, setErrors, handleInputChange } =
-    useForm(initialFvalues);
+  const { values, errors, setErrors, handleInputChange } =useForm(initialFvalues);
 
   const validate = () => {
     let temp = {};
@@ -36,7 +35,7 @@ function AcademicForm() {
     temp.durtnfrm = values.durtnfrm ? "" : "This field is required";
     temp.durtnto = values.durtnfrm ? "" : "This field is required";
     temp.branchid = values.branchid ? "" : "this field is required";
-    temp.typeid = values.typeid ? "" : "this field is required";
+    temp.coursetype = values.coursetype ? "" : "this field is required";
     temp.markid = values.markid ? "" : "this field is required";
     setErrors({
       ...temp,
@@ -46,15 +45,18 @@ function AcademicForm() {
 
   const handlesubmit = () => {
     if (validate()) {
+      // logging values
+      setAdd(true);
+      console.log(values)
       window.alert("successfully submited");
     }
   };
  
   const [add, setAdd] = useState(false);
 
-  const addfield = () => {
-    setAdd(true);
-  };
+  // const addfield = () => {
+  //   setAdd(true);
+  // };
   const removefield = () => {
     setAdd(false);
   };
@@ -169,15 +171,15 @@ function AcademicForm() {
             },
           }}
           size="small"
-          {...(errors.typeid && {error:true})}
+          {...(errors.coursetype && {error:true})}
         >
           <InputLabel id="demo-select-small">Type</InputLabel>
           <Select
             labelId="demo-select-small"
             id="demo-select-small"
-            value={values.typeid}
+            value={values.coursetype}
             label="Type"
-            name="typeid"
+            name="coursetype"
             onChange={handleInputChange}
           >
             <MenuItem value="">
@@ -186,7 +188,7 @@ function AcademicForm() {
             <MenuItem value={"pt"}>Part time</MenuItem>
             <MenuItem value={"ft"}>Full time</MenuItem>
           </Select>
-          {errors.typeid && <FormHelperText>{errors.typeid}</FormHelperText>}
+          {errors.coursetype && <FormHelperText>{errors.coursetype}</FormHelperText>}
         </FormControl>
 
         <Box
@@ -244,7 +246,7 @@ function AcademicForm() {
         sx={{ display: "flex", justifyContent: "flex-end", gap: 2, pb: "2%" }}
       >
         <Box sx={{ pt: "2%" }}>
-          <Btn text="Add" click={addfield} />
+          <Btn text="Add" click={handlesubmit} />
         </Box>
         <Box sx={{ pt: "2%" }}>
           <Btn text="Remove" click={removefield} />

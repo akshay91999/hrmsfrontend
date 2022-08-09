@@ -14,7 +14,7 @@ const initialFvalues = {
     department: "",
     branch: "",
     package: "",
-    typeid: "",
+    jobtype: "",
     doj:""
 
 }
@@ -25,7 +25,7 @@ function JobDetails() {
         temp.department = values.department ? "" : "This field is required"
         temp.branch = values.branch ? "" : "This field is required"
         temp.package = values.package ? "" : "This field is required"
-        temp.typeid = values.typeid ? "" : "This field is required"
+        temp.jobtype = values.jobtype ? "" : "This field is required"
         temp.doj = values.doj ? "" : "This field is required"
         setErrors({
             ...temp
@@ -37,8 +37,10 @@ function JobDetails() {
 
     const handleSubmit = e => {
         e.preventDefault()
-        if (validate())
+        if (validate()){
+            console.log(values)
           window.alert('testing')
+        }
       }
 
     
@@ -72,14 +74,14 @@ function JobDetails() {
                        
                       },
                 }} size="small"
-                {...(errors.typeid&&{error:true})}>
+                {...(errors.jobtype&&{error:true})}>
                     <InputLabel id="demo-select-small" >Type</InputLabel>
                     <Select
                         labelId="demo-select-small"
                         id="demo-select-small"
-                        value={values.typeid}
+                        value={values.jobtype}
                         label="Type"
-                        name="typeid"
+                        name="jobtype"
                         onChange={handleInputChange}
                     >
                         <MenuItem value="">
@@ -88,7 +90,7 @@ function JobDetails() {
                         <MenuItem value={"pt"}>Part time</MenuItem>
                         <MenuItem value={"ft"}>Full time</MenuItem>
                     </Select>
-                    {errors.typeid&&<FormHelperText>{errors.typeid}</FormHelperText>}
+                    {errors.jobtype&&<FormHelperText>{errors.jobtype}</FormHelperText>}
                 </FormControl>
                 <Calender text="Date Of Joining" name="doj" value={values.doj} error={errors.doj} onChange={handleInputChange}/>
             </Box>
