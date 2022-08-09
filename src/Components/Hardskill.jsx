@@ -23,7 +23,7 @@ function Hardskill(props) {
           }}>
           <TextField
           name={name}
-          label="Soft Skill"
+          label="hard skill"
           multiline
           rows={4}
           value={values.hardskill}

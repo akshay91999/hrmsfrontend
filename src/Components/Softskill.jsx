@@ -2,7 +2,7 @@
 import React from 'react'
 import Btn from './Reusablecomponents/Btn';
 import { Box } from '@mui/system';
-import { TextField } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 
 
 function Softskill(props) {
@@ -10,6 +10,9 @@ function Softskill(props) {
  
   return (
     <>
+     <Typography variant="h6" gutterBottom component="div">
+         Soft skills
+        </Typography>
       
         <Box component="form"
           noValidate
