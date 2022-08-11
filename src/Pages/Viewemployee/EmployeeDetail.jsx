@@ -32,7 +32,7 @@ export default function ViewEmployee() {
             </Card>
           
             <BasicTab/>
-            <Box sx={{display:"flex",justifyContent:"flex-end"}}>
+            <Box sx={{display:"flex",justifyContent:"flex-end",p:'2%'}}>
                 <Btn text="Back" click={()=>navigate(-1)}/>
             </Box>
 
