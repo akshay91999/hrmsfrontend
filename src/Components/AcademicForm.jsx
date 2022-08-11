@@ -16,7 +16,7 @@ const initialFvalues = {
   board: "",
   coursesid: "",
   branchid: "",
-  typeid: "",
+  coursetype: "",
   score: "",
   markid: "",
   durtnfrm: "",
@@ -36,7 +36,7 @@ function AcademicForm() {
     temp.durtnfrm = values.durtnfrm ? "" : "This field is required";
     temp.durtnto = values.durtnfrm ? "" : "This field is required";
     temp.branchid = values.branchid ? "" : "this field is required";
-    temp.typeid = values.typeid ? "" : "this field is required";
+    temp.coursetype = values.coursetype ? "" : "this field is required";
     temp.markid = values.markid ? "" : "this field is required";
     setErrors({
       ...temp,
@@ -46,36 +46,163 @@ function AcademicForm() {
 
   const handlesubmit = () => {
     if (validate()) {
+      // logging values
+      setAdd(true);
+      console.log(values)
       window.alert("successfully submited");
     }
   };
 
   const [add, setAdd] = useState(false);
 
-  const addfield = () => {
-    setAdd(true);
-  };
+  // const addfield = () => {
+  //   setAdd(true);
+  // };
   const removefield = () => {
     setAdd(false);
   };
   return (
     <>
-      <form>
+    <form>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { sm: "1fr 1fr" },
+          gap: 2,
+          width: "100%",
+        }}
+      >
+        <Textfield sx={{}} label="School/Institution" name="school" id="scl"  value={values.school} error={errors.school} onChange={handleInputChange}/>
+        <Textfield label="Board/University" name="board" id="scl"  value={values.board} error={errors.board} onChange={handleInputChange} />
+        <FormControl
+          sx={{
+            // mt: 1,
+            // mb: 1,
+            width: "90%",
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "#1565C0",
+              },
+              "&:hover fieldset": {
+                borderColor: "brown",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#1565C0",
+              },
+            },
+          }}
+          size="small"
+          {...(errors.coursesid && {error:true})}
+        >
+          <InputLabel id="demo-select-small">courses</InputLabel>
+          <Select
+            labelId="demo-select-small"
+            id="demo-select-small"
+            value={values.coursesid}
+            label="courses"
+            name="coursesid"
+            onChange={handleInputChange}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={"MCA"}>Master of Computer Application</MenuItem>
+            <MenuItem value={"BCA"}>Bachelor of Computer Application</MenuItem>
+            <MenuItem value={"Bsc"}>Bachelor of Science</MenuItem>
+            <MenuItem value={"Msc"}>Master of Science</MenuItem>
+          </Select>
+          {errors.coursesid &&<FormHelperText>{errors.coursesid}</FormHelperText>}
+        </FormControl>
+
+        <FormControl
+          sx={{
+            // mt: 1,
+            // mb: 1,
+            width: "90%",
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "#1565C0",
+              },
+              "&:hover fieldset": {
+                borderColor: "brown",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#1565C0",
+              },
+            },
+          }}
+          size="small"
+          {...(errors.branchid && {error:true})}
+        >
+          <InputLabel id="demo-select-small">Branch</InputLabel>
+          <Select
+            labelId="demo-select-small"
+            id="demo-select-small"
+            value={values.branchid}
+            label="Branch"
+            name="branchid"
+            onChange={handleInputChange}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={"CS"}>Computer Science</MenuItem>
+            <MenuItem value={"Ele"}>Electronics</MenuItem>
+            <MenuItem value={"IT"}>Infotmation and Technology</MenuItem>
+            <MenuItem value={"SE"}>Software Engineering</MenuItem>
+          </Select>
+          {errors.branchid && <FormHelperText>{errors.branchid}</FormHelperText>}
+        </FormControl>
+
+        <FormControl
+          sx={{
+            // mt: 1,
+            // mb: 1,
+            width: "90%",
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "#1565C0",
+              },
+              "&:hover fieldset": {
+                borderColor: "brown",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#1565C0",
+              },
+            },
+          }}
+          size="small"
+          {...(errors.coursetype && {error:true})}
+        >
+          <InputLabel id="demo-select-small">Type</InputLabel>
+          <Select
+            labelId="demo-select-small"
+            id="demo-select-small"
+            value={values.coursetype}
+            label="Type"
+            name="coursetype"
+            onChange={handleInputChange}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={"pt"}>Part time</MenuItem>
+            <MenuItem value={"ft"}>Full time</MenuItem>
+          </Select>
+          {errors.coursetype && <FormHelperText>{errors.coursetype}</FormHelperText>}
+        </FormControl>
+
         <Box
           sx={{
             display: "grid",
             gridTemplateColumns: { sm: "1fr 1fr" },
-            gap: 2,
-            width: "100%",
+            // mt: "2%",
           }}
         >
-          <Textfield sx={{}} label="School/Institution" name="school" id="scl" value={values.school} error={errors.school} onChange={handleInputChange} />
-          <Textfield label="Board/University" name="board" id="scl" value={values.board} error={errors.board} onChange={handleInputChange} />
+          <Textfield label="Score"  name="score" id="score" value={values.score} error={errors.school} onChange={handleInputChange} />
           <FormControl
             sx={{
-              // mt: 1,
-              // mb: 1,
-              width: "90%",
+              width: "80%",
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
                   borderColor: "#1565C0",
@@ -89,167 +216,43 @@ function AcademicForm() {
               },
             }}
             size="small"
-            {...(errors.coursesid && { error: true })}
+            {...(errors.markid &&{error:true})}
           >
-            <InputLabel id="demo-select-small">courses</InputLabel>
+            <InputLabel id="demo-select-small"></InputLabel>
             <Select
               labelId="demo-select-small"
               id="demo-select-small"
-              value={values.coursesid}
-              label="courses"
-              name="coursesid"
+              value={values.markid}
+              label=""
+              name="markid"
               onChange={handleInputChange}
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={"MCA"}>Master of Computer Application</MenuItem>
-              <MenuItem value={"BCA"}>Bachelor of Computer Application</MenuItem>
-              <MenuItem value={"Bsc"}>Bachelor of Science</MenuItem>
-              <MenuItem value={"Msc"}>Master of Science</MenuItem>
+              <MenuItem value={"cgpa"}>CGPA</MenuItem>
+              <MenuItem value={"per"}>%</MenuItem>
             </Select>
-            {errors.coursesid && <FormHelperText>{errors.coursesid}</FormHelperText>}
+            {errors.markid && <FormHelperText>{errors.markid}</FormHelperText>}
           </FormControl>
-
-          <FormControl
-            sx={{
-              // mt: 1,
-              // mb: 1,
-              width: "90%",
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "#1565C0",
-                },
-                "&:hover fieldset": {
-                  borderColor: "brown",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "#1565C0",
-                },
-              },
-            }}
-            size="small"
-            {...(errors.branchid && { error: true })}
-          >
-            <InputLabel id="demo-select-small">Branch</InputLabel>
-            <Select
-              labelId="demo-select-small"
-              id="demo-select-small"
-              value={values.branchid}
-              label="Branch"
-              name="branchid"
-              onChange={handleInputChange}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={"CS"}>Computer Science</MenuItem>
-              <MenuItem value={"Ele"}>Electronics</MenuItem>
-              <MenuItem value={"IT"}>Infotmation and Technology</MenuItem>
-              <MenuItem value={"SE"}>Software Engineering</MenuItem>
-            </Select>
-            {errors.branchid && <FormHelperText>{errors.branchid}</FormHelperText>}
-          </FormControl>
-
-          <FormControl
-            sx={{
-              // mt: 1,
-              // mb: 1,
-              width: "90%",
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "#1565C0",
-                },
-                "&:hover fieldset": {
-                  borderColor: "brown",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "#1565C0",
-                },
-              },
-            }}
-            size="small"
-            {...(errors.typeid && { error: true })}
-          >
-            <InputLabel id="demo-select-small">Type</InputLabel>
-            <Select
-              labelId="demo-select-small"
-              id="demo-select-small"
-              value={values.typeid}
-              label="Type"
-              name="typeid"
-              onChange={handleInputChange}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={"pt"}>Part time</MenuItem>
-              <MenuItem value={"ft"}>Full time</MenuItem>
-            </Select>
-            {errors.typeid && <FormHelperText>{errors.typeid}</FormHelperText>}
-          </FormControl>
-
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: { sm: "1fr 1fr" },
-              // mt: "2%",
-            }}
-          >
-            <Textfield label="Score" name="score" id="score" value={values.score} error={errors.school} onChange={handleInputChange} />
-            <FormControl
-              sx={{
-                width: "80%",
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "#1565C0",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "brown",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#1565C0",
-                  },
-                },
-              }}
-              size="small"
-              {...(errors.markid && { error: true })}
-            >
-              <InputLabel id="demo-select-small"></InputLabel>
-              <Select
-                labelId="demo-select-small"
-                id="demo-select-small"
-                value={values.markid}
-                label=""
-                name="markid"
-                onChange={handleInputChange}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={"cgpa"}>CGPA</MenuItem>
-                <MenuItem value={"per"}>%</MenuItem>
-              </Select>
-              {errors.markid && <FormHelperText>{errors.markid}</FormHelperText>}
-            </FormControl>
-          </Box>
-          <Calender text=" Duration From" name="durtnfrm" value={values.durtnfrm} onChange={handleInputChange} error={errors.durtnfrm} />
-          <Calender text="Duration To" name="durtnto" value={values.durtnto} onChange={handleInputChange} error={errors.durtnto} />
-          <input type="file" />
+        </Box>
+        <Calender text=" Duration From" name="durtnfrm" value={values.durtnfrm} onChange={handleInputChange} error={errors.durtnfrm}/>
+        <Calender text="Duration To" name="durtnto" value={values.durtnto} onChange={handleInputChange} error={errors.durtnto}/>
+        <input type="file" />
+      </Box>
+      <Box sx={{ pt: "2%" }}>
+      <Btn text="Save" click={handlesubmit}/>
+      </Box>
+      <Box
+        sx={{ display: "flex", justifyContent: "flex-end", gap: 2, pb: "2%" }}
+      >
+        <Box sx={{ pt: "2%" }}>
+          <Btn text="Add" click={handlesubmit} />
         </Box>
         <Box sx={{ pt: "2%" }}>
-          <Btn text="Save" click={handlesubmit} />
+          <Btn text="Remove" click={removefield} />
         </Box>
-        <Box
-          sx={{ display: "flex", justifyContent: "flex-end", gap: 2, pb: "2%" }}
-        >
-          <Box sx={{ pt: "2%" }}>
-            <Btn text="Add" click={addfield} />
-          </Box>
-          <Box sx={{ pt: "2%" }}>
-            <Btn text="Remove" click={removefield} />
-          </Box>
-        </Box>
+      </Box>
       </form>
 
 
