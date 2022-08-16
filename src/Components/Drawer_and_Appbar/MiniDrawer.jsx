@@ -15,6 +15,8 @@ import Drawerlist from '../DrawerList/Drawerlist';
 import SearchBar from './SearchBar';
 import AppbarSideIcon from './AppbarSideIcon';
 import Boxminidrawer from './Boxminidrawer';
+import Footer from '../Footer/Footer'
+
 
 
 const drawerWidth = 300;
@@ -141,6 +143,7 @@ export default function MiniDrawer() {
       </Drawer>
      {/* box calling */}
      <Boxminidrawer/>
+     {/* <Footer/>  */}
     </Box>
   );
 }

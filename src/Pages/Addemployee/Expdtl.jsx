@@ -11,6 +11,8 @@ import Btn from "../../Components/Reusablecomponents/Btn";
 import { Typography } from "@mui/material";
 import useForm from "../../Components/Validation/useForm";
 import {FormHelperText} from "@mui/material";
+import { getBranchtype } from "../../Components/Dropdowndata/getDepartmentname";
+import Dropdownlist from "../../Components/Reusablecomponents/Dropdownlist";
 const initialFvalues = {
   employeeid: "",
   employeetype: "",
@@ -70,44 +72,14 @@ function Expdtl() {
             onChange={handleInputChange}
             error={errors.employeeid}
           />
-          <FormControl 
-            sx={{
-              // mt: 1,
-              // mb: 1,
-              width: "90%",
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "green",
-                },
-                "&:hover fieldset": {
-                  borderColor: "brown",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "green",
-                },
-              },
-            }}
-            size="small"
-            {...(errors.employeetype && {error:true})}
-          >
-            <InputLabel id="demo-select-small">Employee Type</InputLabel>
-            <Select
-              labelId="demo-select-small"
-              id="demo-select-small"
-              value={values.employeetype}
-              label="employee type"
-              name="employeetype"
-              onChange={handleInputChange}  
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={"pt"}>Part time</MenuItem>
-              <MenuItem value={"ft"}>Full time</MenuItem>
-            </Select>
-            {errors.employeetype &&<FormHelperText>{errors.employeetype}</FormHelperText>}
-
-          </FormControl>
+         <Dropdownlist
+          name="employeetype"
+          label="type"
+          value={values.employeetype}
+          handleInputChange={handleInputChange}
+          options={getBranchtype()}
+          error={errors.employeetype}
+        />
           <Calender text="Duration From" name="durationfrom" value={values.durationfrom} onChange={handleInputChange} error={errors.durationfrom}/>
           <Calender text="Duration To" name="durationto" value={values.durationto} onChange={handleInputChange} error={errors.durationto} />
           {/* </Box> */}

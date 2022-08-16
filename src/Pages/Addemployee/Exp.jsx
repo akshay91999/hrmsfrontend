@@ -51,7 +51,7 @@ function Exp() {
 
           {open ? <Expdtl /> : null}
 
-          <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2,p:'1%' }}>
+          <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2,p:'1%',m:'2%' }}>
             <Btn text="Back" click={() => navigate(-1)} />
             <Btn text='Next'click={()=>{navigate("/skill")}}/>
           </Box>

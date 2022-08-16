@@ -13,14 +13,36 @@ import Job from '../../Pages/Addemployee/Job'
 import EmployeeList from '../../Pages/Viewemployee/EmployeeList'
 import EmployeeDetail from '../../Pages/Viewemployee/EmployeeDetail'
 import Register from '../../Pages/Addemployee/Register'
+import Vaccancy from '../../Pages/Recruitmentmanagement.jsx/Departmenthead/Vaccancy'
+import Vaccancyview from '../../Pages/Recruitmentmanagement.jsx/HR/Vaccancyview'
+import Datagridfilter from '../../Pages/Recruitmentmanagement.jsx/Departmenthead/Gatagridfilter'
+import HrTaskManage from '../../Pages/HrtaskmgmntModule/HrTaskManage'
+import HrEmployeeIndividualTask from '../../Pages/HrtaskmgmntModule/HrEmployeeIndividualTask'
+import DepartmentHeadTaskManage from '../../Pages/HodTaskMngmntModule/DepartmentHeadTaskManage'
+import HodEmployeeIndividualTask from '../../Pages/HodTaskMngmntModule/HodEmployeeIndividualTask'
+import DepartmentHeadAssignTaskForm from '../../Pages/HodTaskMngmntModule/DepartmentHeadAssignTaskForm'
+import TotalTaskTable from '../../Components/TaskTables/TotalTaskTable'
+import MyTask from '../../Pages/MyTaskMngmntModule/MyTask'
+import PopUp from '../../Components/Reusablecomponents/PopUp'
+import CompletedTaskTable from '../../Components/TaskTables/CompletedTaskTable'
+import OngoingTaskTable from '../../Components/TaskTables/OngoingTaskTable'
+import MyAssignedTaskTable from '../../Pages/MyTaskMngmntModule/MyAssignedTaskTable'
+import DashboardEmploy from '../../Pages/Employee/Dashboard/DashboardEmploy'
+import Tableshortlisted from '../../Pages/Recruitmentmanagement.jsx/Recruiters/Tableshortlisted'
+import TableSelectedCandidate from '../../Pages/Recruitmentmanagement.jsx/Recruiters/TableSelectedCandidate'
+import DashLeaveUsedRemainInDetail from '../LeaveUsedRemainInDetail'
+import LeaveUsedRemainInDetail from '../LeaveUsedRemainInDetail'
+
+
 function Boxminidrawer() {
   return (
     <>
-       <Box component="main" sx={{ flexGrow: 1, pt: 8 }}>
+     <Box sx={{width:'100%' }}>
+       <Box className='content-container' component="main" sx={{ flexGrow: 1, pt: 8,minHeight:'95vh'}}>
         
             <Routes>
                 <Route path="/addemployee" element={<Basic/>} />
-                <Route path="/" element={<Hello/>} />
+                <Route path="/" element={<DashboardEmploy/>} />
                 <Route path="/academic" element={<Academic/>} />
                 <Route path="/experience" element={<Exp/>} />
                 <Route path="/upload" element={<Upld/>} />
@@ -29,10 +51,33 @@ function Boxminidrawer() {
                 <Route path="/register" element={<Register/>} />
                 <Route path="/viewemployee" element={<EmployeeDetail/>} />
                 <Route path="/employeelist" element={<EmployeeList/>} />
+                <Route path="/addvaccancy" element={<Vaccancy/>} />
+                <Route path="/viewvaccancy" element={<Vaccancyview/>} />
+                <Route path="/candidatelist" element={<Tableshortlisted/>} />
+                <Route path="/selectedcandidatelist" element={<TableSelectedCandidate/>} />
+                <Route path="//LeaveUsedRemainInDetail" element={<LeaveUsedRemainInDetail/>} />
                 <Route path="/*" element={<PageNotfound/>} />
-            </Routes>
-        
-        <Footer/> 
+
+
+                <Route path='/hrtaskmange' element={<HrTaskManage />} />
+                <Route path='/hremployeeindividualtask' element={<HrEmployeeIndividualTask />} />
+                <Route path='/departmentheadtaskmanage' element={<DepartmentHeadTaskManage />} />
+                <Route path='/hodemployeeindividualtask' element={<HodEmployeeIndividualTask />} />
+                <Route path='/departmentheadtaskassign' element={<DepartmentHeadAssignTaskForm />} />
+                <Route path='/mytask' element={<MyTask />} />
+                <Route path='/popup' element={<PopUp />} />
+
+                <Route path='/totaltasktable' element={<TotalTaskTable />} />
+                <Route path='/completedtasktable' element={<CompletedTaskTable />} />
+                <Route path='/ongoingtasktable' element={<OngoingTaskTable />} />
+                <Route path='/myassignedtasktable' element={<MyAssignedTaskTable />} />
+                {/* check  in check out */}
+                {/* <Route path='/' element={<CheckInCheckOut />} /> */}
+                  </Routes>
+              
+        {/* <Footer/>  */}
+      </Box>
+      <Footer/> 
       </Box>
     </>
   )
