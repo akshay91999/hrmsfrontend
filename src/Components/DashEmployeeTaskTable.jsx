@@ -31,26 +31,28 @@ const rows = [
 export default function EmployeeTaskTable() {
   return (
     <>
-      <Card sx={{ borderRadius: "10px", m: "1%", border: "1px solid #1565C0" }}>
+      <Card sx={{ borderRadius: "10px" }}>
       <Grid container spacing={2}>
             <Grid item xs={6} lg={6} md={6} sm={6}>
-              <Typography variant="h5" sx={{ fontWeight: "600" }}>
+              <Box sx={{ pt:'2%' }}>
+              <Typography variant="Button" sx={{ fontWeight: "600" }}>
                 My Task
               </Typography>
+              </Box>
             </Grid>
             <Grid item xs={6} lg={6} md={6} sm={6}>
-              <IconButton sx={{ float: "right" }} >
+              <Box sx={{ display:'flex',justifyContent:'right' }}>
+              <IconButton >
                 <Typography sx={{ display: "flex",color:'#1565C0'}}>
                   View
                   <ArrowRightIcon />
                 </Typography>
               </IconButton>
+              </Box>
             </Grid>
           </Grid>
-
-
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 500 }} aria-label="caption table">
+          <Table sx={{ minWidth: 200 }} aria-label="caption table">
             <TableHead>
               <TableRow sx={{ backgroundColor: "#f5f5f5" }}>
                 <TableCell sx={{ fontWeight: "bold" }}>Project Name</TableCell>

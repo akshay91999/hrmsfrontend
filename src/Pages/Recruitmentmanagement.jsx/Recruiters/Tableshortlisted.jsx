@@ -6,6 +6,7 @@ import Acceptrejectbutton from "../../../Components/Acceptrejectbutton";
 import Dropdownlist from "../../../Components/Reusablecomponents/Dropdownlist";
 import useForm from "../../../Components/Validation/useForm";
 import { getDepartmentname, getPosition } from "../../../Components/Dropdowndata/getDepartmentname";
+import BlackListbutton from "../../../Components/BlackListbutton";
 
 
 
@@ -122,6 +123,18 @@ const columns = [
         <strong>
           {/* calling AcceptRejectbutton */}
         <Acceptrejectbutton/>
+        </strong>
+      ),
+  },
+  {
+    field: "Black_List",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    renderCell: (params) => (
+        <strong>
+          {/* calling Black list button */}
+        <BlackListbutton/>
         </strong>
       ),
   },

@@ -60,7 +60,7 @@ function Vaccancyform() {
         align="center"
         sx={{ color: "#1565C0", pb: "2%" }}
       >
-        Vaccancy Reoprt
+        Vacancy Report
       </Typography>
       <Box
         component="form"
@@ -97,7 +97,7 @@ function Vaccancyform() {
           error={errors.position}
         />
         <Textfield
-          label="Year of experience needed"
+          label="Year Of Experience Needed"
           name="yoeneeded"
           value={values.yoeneeded}
           onChange={handleInputChange}
@@ -113,7 +113,7 @@ function Vaccancyform() {
       </Box>
       <Box sx={{  display: "flex", justifyContent: "flex-end", gap: 2,p:'1%'  }}>
         <Btn text="Submit" click={handlesubmit} />
-        <Btn text="Cancel" click={handleclear}/>
+        <Btn text="Clear" click={handleclear}/>
       </Box>
     </>
   );

@@ -22,7 +22,7 @@ function Personal(props) {
     setOpen(false);
   };
   return (
-    <form>
+    
       <fieldset>
         <legend>
           <Typography
@@ -241,7 +241,7 @@ function Personal(props) {
           {/* <Box sx={{display:"flex",justifyContent:"flex-end"}}><Btn text="Save" click={handlesubmit} /></Box> */}
         </Box>
       </fieldset>
-    </form>
+   
   );
 }
 

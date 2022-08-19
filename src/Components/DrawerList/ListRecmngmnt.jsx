@@ -11,6 +11,8 @@ import HandshakeIcon from "@mui/icons-material/Handshake";
 import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 import PreviewIcon from "@mui/icons-material/Preview";
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import AddIcon from "@mui/icons-material/Add";
+import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 
 
 function ListRecmngmnt() {
@@ -52,6 +54,30 @@ function ListRecmngmnt() {
                     <FormatListBulletedIcon/>
                 </ListItemIcon>
                 <ListItemText primary="SELECTED LIST" />
+            </ListItemButton>
+        <ListItemButton onClick={() => navigate("/selectedlist")}>
+                <ListItemIcon>
+                    <FormatListBulletedIcon/>
+                </ListItemIcon>
+                <ListItemText primary="SELECTED LIST (HR)" />
+            </ListItemButton>
+        <ListItemButton onClick={() => navigate("/addcandidate")}>
+                <ListItemIcon>
+                <AddIcon/>
+                </ListItemIcon>
+                <ListItemText primary="ADD CANDIDATE" />
+            </ListItemButton>
+        <ListItemButton onClick={() => navigate("/vacancytobefilled")}>
+                <ListItemIcon>
+                <PlaylistAddCheckIcon/>
+                </ListItemIcon>
+                <ListItemText primary="VACANCY TO BE FILLED" />
+            </ListItemButton>
+        <ListItemButton onClick={() => navigate("/vacancytobefilledrecruiters")}>
+                <ListItemIcon>
+                <PlaylistAddCheckIcon/>
+                </ListItemIcon>
+                <ListItemText primary="VACANCY TO BE FILLED" />
             </ListItemButton>
         </List>
         </Collapse>

@@ -32,6 +32,10 @@ import Tableshortlisted from '../../Pages/Recruitmentmanagement.jsx/Recruiters/T
 import TableSelectedCandidate from '../../Pages/Recruitmentmanagement.jsx/Recruiters/TableSelectedCandidate'
 import DashLeaveUsedRemainInDetail from '../LeaveUsedRemainInDetail'
 import LeaveUsedRemainInDetail from '../LeaveUsedRemainInDetail'
+import TableSelectedList from '../../Pages/Recruitmentmanagement.jsx/HR/TableSelectedList'
+import AddCandidate from '../../Pages/Recruitmentmanagement.jsx/Recruiters/AddCandidate'
+import Vacancytofilled from '../../Pages/Recruitmentmanagement.jsx/HR/Vacancytofilled'
+import VacancyToBeFilled from '../../Pages/Recruitmentmanagement.jsx/Departmenthead/VacancyToBeFilled'
 
 
 function Boxminidrawer() {
@@ -42,6 +46,7 @@ function Boxminidrawer() {
         
             <Routes>
                 <Route path="/addemployee" element={<Basic/>} />
+                {/* dashboard employee */}
                 <Route path="/" element={<DashboardEmploy/>} />
                 <Route path="/academic" element={<Academic/>} />
                 <Route path="/experience" element={<Exp/>} />
@@ -51,14 +56,19 @@ function Boxminidrawer() {
                 <Route path="/register" element={<Register/>} />
                 <Route path="/viewemployee" element={<EmployeeDetail/>} />
                 <Route path="/employeelist" element={<EmployeeList/>} />
+
+                {/* Recruitment management */}
                 <Route path="/addvaccancy" element={<Vaccancy/>} />
                 <Route path="/viewvaccancy" element={<Vaccancyview/>} />
                 <Route path="/candidatelist" element={<Tableshortlisted/>} />
                 <Route path="/selectedcandidatelist" element={<TableSelectedCandidate/>} />
-                <Route path="//LeaveUsedRemainInDetail" element={<LeaveUsedRemainInDetail/>} />
+                <Route path="/selectedlist" element={<TableSelectedList/>} />
+                <Route path="/addcandidate" element={<AddCandidate/>} />
+                <Route path="/vacancytobefilled" element={<Vacancytofilled/>} />
+                <Route path="/vacancytobefilledrecruiters" element={<VacancyToBeFilled/>} />
                 <Route path="/*" element={<PageNotfound/>} />
 
-
+              {/* Task management */}
                 <Route path='/hrtaskmange' element={<HrTaskManage />} />
                 <Route path='/hremployeeindividualtask' element={<HrEmployeeIndividualTask />} />
                 <Route path='/departmentheadtaskmanage' element={<DepartmentHeadTaskManage />} />
@@ -73,6 +83,9 @@ function Boxminidrawer() {
                 <Route path='/myassignedtasktable' element={<MyAssignedTaskTable />} />
                 {/* check  in check out */}
                 {/* <Route path='/' element={<CheckInCheckOut />} /> */}
+
+              {/* leaveused remain */}
+                <Route path="//LeaveUsedRemainInDetail" element={<LeaveUsedRemainInDetail/>} />
                   </Routes>
               
         {/* <Footer/>  */}

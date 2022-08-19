@@ -12,7 +12,6 @@ export default function useForm(initialFvalues) {
       [name] : value
     })
   }
-  console.log(values)
   return {
    values,
    setValues,

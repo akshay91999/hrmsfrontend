@@ -9,7 +9,6 @@ function Dropdownlist(props) {
     const {name,label,value,handleInputChange,options,error=null}=props
   return (
     <>
-    {console.log(options)}
        <FormControl sx={{
                     width: "90%",
                     '& .MuiOutlinedInput-root': {

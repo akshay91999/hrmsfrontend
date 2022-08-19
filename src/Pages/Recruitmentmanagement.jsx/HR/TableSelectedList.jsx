@@ -3,6 +3,8 @@ import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import Eyeiconbutton from "../../../Components/Reusablecomponents/Eyeiconbutton";
 import DeleteCandidateButton from "../../../Components/DeleteCandidateButton";
+import Btn from "../../../Components/Reusablecomponents/Btn";
+
 
 
 
@@ -110,22 +112,11 @@ const columns = [
       </strong>
     ),
   },
-  {
-    field: "delete",
-    width: 150,
-    headerClassName: "super-app-theme--header",
-    headerAlign: 'center',
-    renderCell: (params) => (
-        <strong>
-        <DeleteCandidateButton/>
-        </strong>
-      ),
-  },
   
  
 ];
 
-export default function TableSelectedCandidate() {
+export default function TableSelectedList() {
  
 
     const [pageSize, setPageSize] = React.useState(5);
@@ -136,7 +127,7 @@ export default function TableSelectedCandidate() {
         align="center"
         sx={{ color: "#1565C0", pb: "2%" }}
       >
-        Shortlisted Candidate
+        Selected List
       </Typography>
      
       <Box
@@ -165,7 +156,10 @@ export default function TableSelectedCandidate() {
             },
           }}
         />
-
+          <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2,pt:'2%',m:'2%' }}>
+            <Btn text="Accept" />
+            <Btn text='Reject'/>
+          </Box>
       </Box>
     </Paper>
   );

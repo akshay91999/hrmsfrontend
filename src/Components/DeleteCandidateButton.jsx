@@ -5,7 +5,7 @@ import useForm from "./Validation/useForm";
 import { Box } from "@mui/system";
 
 const initialFvalues = {
-  DeleteCandidateButtonL: "",
+  deletecandidate: "",
 };
 
 function DeleteCandidateButton() {

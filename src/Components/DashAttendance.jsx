@@ -3,7 +3,7 @@ import React from "react";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import IconButton from "@mui/material/IconButton";
 import {useNavigate} from 'react-router-dom'
-export default function DashLeaveUsedRemain() {
+export default function DashAttendance() {
     let navigate=useNavigate()
   return (
     <>
@@ -19,8 +19,8 @@ export default function DashLeaveUsedRemain() {
           <Grid container>
             <Grid item xs={6} lg={6} md={6} sm={6}>
             <Box sx={{ pt:'3%' }}>
-              <Typography variant="Button" sx={{ fontWeight: "600" }}>
-                YOUR LEAVE
+              <Typography variant="Button" sx={{ fontWeight: "600"}}>
+                YOUR ATTENDANCE
               </Typography>
               </Box>
             </Grid>
@@ -41,8 +41,8 @@ export default function DashLeaveUsedRemain() {
               display: "flex",
               alignItems: "center",
              
-              // border: (theme) => `1px solid ${theme.palette.divider}`,
-              // borderRadius: 1,
+            //   border: (theme) => `1px solid ${theme.palette.divider}`,
+            //   borderRadius: 1,
               bgcolor: 'background.paper',
               color: 'text.secondary',
               mt:'1%',
@@ -59,9 +59,9 @@ export default function DashLeaveUsedRemain() {
                     fontWeight: "bold",
                   }}
                 >
-                  Total
+                  Present
                 </Typography>
-                <Typography sx={{ textAlign: "center" }}>12</Typography>
+                <Typography sx={{ textAlign: "center" }}>262</Typography>
                
               </Grid>
               <Divider sx={{mt:"5%"}} orientation="vertical" variant="middle" flexItem />
@@ -74,9 +74,9 @@ export default function DashLeaveUsedRemain() {
                     fontWeight: "bold",
                   }}
                 >
-                  Used
+                  Absent
                 </Typography>
-                <Typography sx={{ textAlign: "center" }}>08</Typography>
+                <Typography sx={{ textAlign: "center" }}>18</Typography>
               </Grid>
               <Divider sx={{mt:"5%"}} orientation="vertical" variant="middle" flexItem />
               <Grid item lg={3.8} sm={6} xs={12} md={6}>
@@ -88,9 +88,9 @@ export default function DashLeaveUsedRemain() {
                     fontWeight: "bold",
                   }}
                 >
-                  Remain
+                  Late
                 </Typography>
-                <Typography sx={{ textAlign: "center" }}>04</Typography>
+                <Typography sx={{ textAlign: "center" }}>05</Typography>
               </Grid>
             </Grid>
           </Box>
