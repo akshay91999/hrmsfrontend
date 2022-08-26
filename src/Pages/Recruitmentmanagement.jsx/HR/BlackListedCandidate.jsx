@@ -3,8 +3,7 @@ import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import Eyeiconbutton from "../../../Components/Reusablecomponents/Eyeiconbutton";
 import DeleteCandidateButton from "../../../Components/DeleteCandidateButton";
-import Btn from "../../../Components/Reusablecomponents/Btn";
-
+import BlackListedReasonView from "../../../Components/BlackListedReasonView";
 
 
 
@@ -15,9 +14,8 @@ const rows = [
     Department:'front end devolopment',
     Position:'python',
     Email: "akshaysudhakaran99@gamil.com",
-    Mobile: 9947395724,
-    Highest_Qualification: "akshaysudhakaran99@gamil.com",
-    Year_Of_Experience: 0,
+    Reason: "blu",
+    
    
   },
 
@@ -27,9 +25,7 @@ const rows = [
     Department:'front end devolopment',
     Position:'python',
     Email: "akshaysudhakaran99@gamil.com",
-    Mobile: 9947395724,
-    Highest_Qualification: "akshaysudhakaran99@gamil.com",
-    Year_Of_Experience: 1,
+    Reason: "bed",
    
   },
 
@@ -39,9 +35,8 @@ const rows = [
     Department:'front end devolopment',
     Position:'python',
     Email: "akshaysudhakaran99@gamil.com",
-    Mobile: 9947395724,
-    Highest_Qualification: "akshaysudhakaran99@gamil.com",
-    Year_Of_Experience: 3,
+    Reason: "all the ",
+    
    
   },
 
@@ -51,9 +46,8 @@ const rows = [
     Department:'front end devolopment',
     Position:'python',
     Email: "akshaysudhakaran99@gamil.com",
-    Mobile: 9947395724,
-    Highest_Qualification: "akshaysudhakaran99@gamil.com",
-    Year_Of_Experience: 3,
+    Reason: "complaints",
+   
    
   },
 
@@ -63,9 +57,8 @@ const rows = [
     Department:'front end devolopment',
     Position:'python',
     Email: "akshaysudhakaran99@gamil.com",
-    Mobile: 9947395724,
-    Highest_Qualification: "akshaysudhakaran99@gamil.com",
-    Year_Of_Experience: 3,
+    Reason: 'bad behaviour',
+
    
   },
   {
@@ -74,9 +67,7 @@ const rows = [
     Department:'front end devolopment',
     Position:'python',
     Email: "akshaysudhakaran99@gamil.com",
-    Mobile: 9947395724,
-    Highest_Qualification: "akshaysudhakaran99@gamil.com",
-    Year_Of_Experience: 3,
+    Reason: "bad behaviour",
    
   },
  
@@ -85,38 +76,27 @@ const rows = [
 const columns = [
   { field: "id", width: 100, headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "Name", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "Department", width: 150, headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "Department", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "Position", width: 150, headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "Email", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "Mobile", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "Reason", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
   {
-    field: "Highest_Qualification",
-    width: 150,
-    headerClassName: "super-app-theme--header",
-    headerAlign: 'center'
-  },
-  {
-    field: "Year_Of_Experience",
-    width: 150,
-    headerClassName: "super-app-theme--header",
-    headerAlign: 'center'
-  },
-  {
-    field: "Cv",
+    field: "View",
     width: 100,
     headerClassName: "super-app-theme--header",
     headerAlign: 'center',
     renderCell: (params) => (
       <strong> 
-        <Eyeiconbutton/>
+        <BlackListedReasonView/>
       </strong>
     ),
   },
+ 
   
  
 ];
 
-export default function TableSelectedList() {
+export default function BlackListedCandidate() {
  
 
     const [pageSize, setPageSize] = React.useState(5);
@@ -127,12 +107,12 @@ export default function TableSelectedList() {
         align="center"
         sx={{ color: "#1565C0", pb: "2%" }}
       >
-        Selected List
+        Blacklisted Candidate
       </Typography>
      
       <Box
         sx={{
-          height: "55vh",
+          height: "50vh",
           width: "100%",
           "& .super-app-theme--header": {
             background: "linear-gradient(#8B8B8B,#1565C0)",
@@ -156,10 +136,7 @@ export default function TableSelectedList() {
             },
           }}
         />
-          <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2,pt:'2%',m:'2%' }}>
-            <Btn text="Accept" />
-            <Btn text='Reject'/>
-          </Box>
+
       </Box>
     </Paper>
   );

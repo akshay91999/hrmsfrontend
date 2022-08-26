@@ -15,7 +15,7 @@ export default function Academic() {
       <fieldset sx={{ m: "50%" }}>
         <legend>
           <Typography variant="h6" gutterBottom component="div">
-            Academic Qualifications
+            Academic Qualifications(Highest Qualification First)
           </Typography>
         </legend>
         {/* calling Academic form */}

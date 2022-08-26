@@ -20,7 +20,7 @@ function DashProfile() {
     }
   return (
     <>
-      <Card sx={{ borderRadius: "10px" }}>
+      <Card sx={{ borderRadius: "10px",minHeight:'250px'}}>
         {/* <CardActionArea> */}
           <CardMedia
             sx={{ display: "flex", justifyContent: "center", m: "2%" }}

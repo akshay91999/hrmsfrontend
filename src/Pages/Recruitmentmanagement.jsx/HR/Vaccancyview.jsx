@@ -5,9 +5,9 @@ import Vaccancyviewform from '../../../Components/Vaccancyviewform'
 function Vaccancyview() {
   return (
     <>
-     <Paper elevation={4} sx={{ m: "2%", p: "2%" }}>
+     
         <Vaccancyviewform/>
-      </Paper> 
+      
     </>
   )
 }

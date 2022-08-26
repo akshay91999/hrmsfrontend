@@ -3,10 +3,15 @@ import React from "react";
 import DashAttendance from "../../../Components/DashAttendance";
 import DashBarChart from "../../../Components/DashBarChart";
 import EmployeeTaskTable from "../../../Components/DashEmployeeTaskTable";
+import DashEmployonLeave from "../../../Components/DashEmployonLeave";
 import DashLeaveUsedRemain from "../../../Components/DashLeaveUsedRemain";
 import DashNewjoins from "../../../Components/DashNewjoins";
 import DashProfile from "../../../Components/DashProfile";
-import DashBirthday from "../../../Components/DrawerList/DashBirthday";
+import DashBirthday from "../../../Components/DashBirthday";
+import EmployMovements from "../../HrAnalytics/EmployMovements";
+import DashAnnouncements from "../../../Components/DashAnnouncements";
+import DashWorkAnniversary from "../../../Components/DashWorkAnniversary";
+import DashQuotes from "../../../Components/DashQuotes";
 
 
 function DashboardEmploy() {
@@ -29,7 +34,7 @@ function DashboardEmploy() {
           <DashProfile/>
         </Grid>
         <Grid item md={6} xs={12}>
-          <DashBarChart/>   
+          <DashBarChart/>  
         </Grid>
         <Grid item md={3} xs={12}>
         <DashBirthday/>
@@ -37,15 +42,18 @@ function DashboardEmploy() {
         <Grid item md={3} xs={12}>
           <DashNewjoins/>
         </Grid>
-        {/* <Grid item md={6} xs={12}>
-          <h1>xs</h1>
+        <Grid item md={3} xs={12}>
+          <DashEmployonLeave/>
         </Grid>
         <Grid item md={3} xs={12}>
-          <h1>xs</h1>
+          <DashAnnouncements/>
         </Grid>
         <Grid item md={3} xs={12}>
-          <h1>xs</h1>
-        </Grid> */}
+         <DashWorkAnniversary/>
+        </Grid>
+        <Grid item md={3} xs={12}>
+          <DashQuotes/>
+        </Grid>
       </Grid>
       </Paper>
     </>

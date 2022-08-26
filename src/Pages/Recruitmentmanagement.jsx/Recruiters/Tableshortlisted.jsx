@@ -157,7 +157,7 @@ export default function Tableshortlisted() {
      
       <Box
         sx={{
-          height: "50vh",
+          height: "60vh",
           width: "100%",
           "& .super-app-theme--header": {
             background: "linear-gradient(#8B8B8B,#1565C0)",

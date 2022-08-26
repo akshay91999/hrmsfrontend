@@ -13,6 +13,7 @@ import PreviewIcon from "@mui/icons-material/Preview";
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import AddIcon from "@mui/icons-material/Add";
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
+import ContrastIcon from '@mui/icons-material/Contrast';
 
 
 function ListRecmngmnt() {
@@ -78,6 +79,12 @@ function ListRecmngmnt() {
                 <PlaylistAddCheckIcon/>
                 </ListItemIcon>
                 <ListItemText primary="VACANCY TO BE FILLED" />
+            </ListItemButton>
+        <ListItemButton onClick={() => navigate("/blacklistedcandidate")}>
+                <ListItemIcon>
+                <ContrastIcon/>
+                </ListItemIcon>
+                <ListItemText primary="BLACKLISTED CANDIDATE" />
             </ListItemButton>
         </List>
         </Collapse>

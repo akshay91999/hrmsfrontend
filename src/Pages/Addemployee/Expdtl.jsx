@@ -8,9 +8,9 @@ import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 import Calender from "../../Components/Reusablecomponents/Calender";
 import Btn from "../../Components/Reusablecomponents/Btn";
-import { Typography } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogTitle, Typography } from "@mui/material";
 import useForm from "../../Components/Validation/useForm";
-import {FormHelperText} from "@mui/material";
+import { FormHelperText } from "@mui/material";
 import { getBranchtype } from "../../Components/Dropdowndata/getDepartmentname";
 import Dropdownlist from "../../Components/Reusablecomponents/Dropdownlist";
 const initialFvalues = {
@@ -26,12 +26,17 @@ function Expdtl() {
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
 
-  const [open, setOpen] = useState(false);
+  const [add, setAdd] = useState(false);
   const addNew = () => {
-    setOpen(true);
+    if (validate()) {
+      setAdd(true);
+      console.log(values);
+      window.alert("successfully saved");
+    }
   };
 
   const removeNew = () => {
+    setAdd(false);
     setOpen(false);
   };
 
@@ -47,8 +52,19 @@ function Expdtl() {
 
   const handlesubmit = () => {
     if (validate()) {
+      // logging values
+      console.log(values);
       window.alert("successfully submited");
     }
+  };
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
   return (
     <>
@@ -72,16 +88,28 @@ function Expdtl() {
             onChange={handleInputChange}
             error={errors.employeeid}
           />
-         <Dropdownlist
-          name="employeetype"
-          label="type"
-          value={values.employeetype}
-          handleInputChange={handleInputChange}
-          options={getBranchtype()}
-          error={errors.employeetype}
-        />
-          <Calender text="Duration From" name="durationfrom" value={values.durationfrom} onChange={handleInputChange} error={errors.durationfrom}/>
-          <Calender text="Duration To" name="durationto" value={values.durationto} onChange={handleInputChange} error={errors.durationto} />
+          <Dropdownlist
+            name="employeetype"
+            label="type"
+            value={values.employeetype}
+            handleInputChange={handleInputChange}
+            options={getBranchtype()}
+            error={errors.employeetype}
+          />
+          <Calender
+            text="Duration From"
+            name="durationfrom"
+            value={values.durationfrom}
+            onChange={handleInputChange}
+            error={errors.durationfrom}
+          />
+          <Calender
+            text="Duration To"
+            name="durationto"
+            value={values.durationto}
+            onChange={handleInputChange}
+            error={errors.durationto}
+          />
           {/* </Box> */}
           <Textfield
             label="Designation"
@@ -119,23 +147,46 @@ function Expdtl() {
             </label>
             <input type="file" />
           </Box>
+          {add?null:(
           <Box sx={{ pt: "2%" }}>
             <Btn text="Save" click={handlesubmit} />
           </Box>
+          )}
         </Box>
         <Box
           sx={{ display: "flex", justifyContent: "flex-end", gap: 2, p: "1%" }}
         >
-          <Box sx={{ pt: "2%" }}>
-            <Btn text="Add" click={addNew} />
-          </Box>
+          {add ? null : (
+            <Box sx={{ pt: "2%" }}>
+              <Btn text="Add" click={addNew} />
+            </Box>
+          )}
+          {add?(
           <Box sx={{ pt: "2%" }}>
             <Btn text="Remove" click={removeNew} />
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"Are you sure do you want to remove this field"}
+              </DialogTitle>
+              <DialogActions>
+                <Button onClick={handleClose}>Disagree</Button>
+                <Button onClick={removeNew} autoFocus>
+                  Agree
+                </Button>
+              </DialogActions>
+            </Dialog>
           </Box>
+          ):null
+          }
         </Box>
       </form>
 
-      {open ? <Expdtl /> : null}
+      {add ? <Expdtl /> : null}
     </>
   );
 }

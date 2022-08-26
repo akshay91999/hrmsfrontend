@@ -10,6 +10,8 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import { useNavigate } from "react-router-dom";
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import TableRowsIcon from '@mui/icons-material/TableRows';
 
 
 
@@ -40,6 +42,24 @@ function ListEmpmngmnt() {
                     <RemoveRedEyeOutlinedIcon/>
                 </ListItemIcon>
                 <ListItemText primary="VIEW EMPLOYEE" />
+            </ListItemButton>
+        <ListItemButton onClick={() => navigate("/resignationform")}>
+                <ListItemIcon>
+                    <ExitToAppIcon/>
+                </ListItemIcon>
+                <ListItemText primary="RESIGNATION FORM" />
+            </ListItemButton>
+        <ListItemButton onClick={() => navigate("/resignationtable")}>
+                <ListItemIcon>
+                    <TableRowsIcon/>
+                </ListItemIcon>
+                <ListItemText primary="RESIGNATION TABLE" />
+            </ListItemButton>
+        <ListItemButton onClick={() => navigate("/resignedemployees")}>
+                <ListItemIcon>
+                    <TableRowsIcon/>
+                </ListItemIcon>
+                <ListItemText primary="RESIGNED EMPLOYEES" />
             </ListItemButton>
         </List>
         </Collapse>

@@ -163,7 +163,6 @@ export default function DashBarChart(){
 //   const demoUrl = 'https://codesandbox.io/s/stacked-bar-chart-s47i2';
 
     return (
-        
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           width={500}

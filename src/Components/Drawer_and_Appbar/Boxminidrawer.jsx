@@ -36,6 +36,14 @@ import TableSelectedList from '../../Pages/Recruitmentmanagement.jsx/HR/TableSel
 import AddCandidate from '../../Pages/Recruitmentmanagement.jsx/Recruiters/AddCandidate'
 import Vacancytofilled from '../../Pages/Recruitmentmanagement.jsx/HR/Vacancytofilled'
 import VacancyToBeFilled from '../../Pages/Recruitmentmanagement.jsx/Departmenthead/VacancyToBeFilled'
+import EmployMovements from '../../Pages/HrAnalytics/EmployMovements'
+import BlackListedCandidate from '../../Pages/Recruitmentmanagement.jsx/HR/BlackListedCandidate'
+import ResignationForm from '../../Pages/HrAnalytics/Resignation/ResignationForm'
+import ResignationTable from '../../Pages/HrAnalytics/Resignation/ResignationTable'
+import GenderAnalysis from '../../Pages/HrAnalytics/GenderAnalysis'
+import ResignedEmployees from '../../Pages/HrAnalytics/Resignation/ResignedEmployees'
+import AgeGroupAnalysis from '../../Pages/HrAnalytics/AgeGroupAnalysis'
+
 
 
 function Boxminidrawer() {
@@ -46,14 +54,20 @@ function Boxminidrawer() {
         
             <Routes>
                 <Route path="/addemployee" element={<Basic/>} />
-                {/* dashboard employee */}
+
+                {/* Resignation */}
+                <Route path="/resignationform" element={<ResignationForm/>}/>
+                <Route path="/resignationtable" element={<ResignationTable/>}/>
+                <Route path="/resignedemployees" element={<ResignedEmployees/>}/>
+
+                {/* dashboard employee  and add and view employ*/}
                 <Route path="/" element={<DashboardEmploy/>} />
                 <Route path="/academic" element={<Academic/>} />
                 <Route path="/experience" element={<Exp/>} />
-                <Route path="/upload" element={<Upld/>} />
+                <Route path="/upload/:basicId" element={<Upld/>} />
                 <Route path="/skill" element={<Skills/>} />
                 <Route path="/jobdetails" element={<Job/>} />
-                <Route path="/register" element={<Register/>} />
+                {/* <Route path="/register" element={<Register/>} /> */}
                 <Route path="/viewemployee" element={<EmployeeDetail/>} />
                 <Route path="/employeelist" element={<EmployeeList/>} />
 
@@ -66,7 +80,14 @@ function Boxminidrawer() {
                 <Route path="/addcandidate" element={<AddCandidate/>} />
                 <Route path="/vacancytobefilled" element={<Vacancytofilled/>} />
                 <Route path="/vacancytobefilledrecruiters" element={<VacancyToBeFilled/>} />
+                <Route path="/blacklistedcandidate" element={<BlackListedCandidate/>} />
                 <Route path="/*" element={<PageNotfound/>} />
+
+
+                {/* Hr analytics */}
+                <Route path="/empmovements" element={<EmployMovements/>} />
+                <Route path="/genderanalysis" element={<GenderAnalysis/>} />
+                <Route path="/ageanalysis" element={<AgeGroupAnalysis/>} />
 
               {/* Task management */}
                 <Route path='/hrtaskmange' element={<HrTaskManage />} />
@@ -85,7 +106,7 @@ function Boxminidrawer() {
                 {/* <Route path='/' element={<CheckInCheckOut />} /> */}
 
               {/* leaveused remain */}
-                <Route path="//LeaveUsedRemainInDetail" element={<LeaveUsedRemainInDetail/>} />
+                <Route path="/LeaveUsedRemainInDetail" element={<LeaveUsedRemainInDetail/>} />
                   </Routes>
               
         {/* <Footer/>  */}

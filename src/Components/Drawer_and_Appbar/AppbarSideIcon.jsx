@@ -8,6 +8,8 @@ import IconButton from "@mui/material/IconButton";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
+import QuotesFormHr from "../QuotesFormHr";
 
 function AppbarSideIcon() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -73,12 +75,7 @@ function AppbarSideIcon() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
+        <QuotesFormHr p={true}/>
       </MenuItem>
       <MenuItem>
         <IconButton
@@ -110,11 +107,7 @@ function AppbarSideIcon() {
   return (
     <>
       <Box sx={{ display: { xs: "none", md: "flex" } }}>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
+      <QuotesFormHr p={false}/>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"

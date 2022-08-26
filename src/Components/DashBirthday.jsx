@@ -1,15 +1,16 @@
-import { Avatar, Box, Card, CardContent, CardHeader, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
+import { Avatar, Box, Card, CardContent, CardHeader, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
 import React from 'react'
 
 function DashBirthday() {
   return (
     <>
-    <Card sx={{ borderRadius: "10px",p:'2%'}}>
-    <Box sx={{ pt:'3%' }}>
+    <Card sx={{ borderRadius: "10px",p:'2%',minHeight:'300px'}}>
+    <Box sx={{ p:'3%' }}>
               <Typography variant="Button" sx={{ fontWeight: "600"}}>
                 UPCOMING BIRTHDAYS
               </Typography>
               </Box>
+              <Divider light />
       
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <ListItem sx={{ borderLeft:'5px solid #00ee00' }}>

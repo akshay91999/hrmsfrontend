@@ -160,20 +160,16 @@ function Basic() {
       ) .then(function (response) {
           console.log(response);
           window.alert("successfully submited");
+          let id={id:response.data.id}
+          console.log(id)
+
+          navigate("/upload/"+id)
         })
         .catch(function (error) {
           console.log(error);
-        });
-
-      // Handle the response from backend here
-      // .then((res) => {console.log("uploaded successfully") })
-
-      // // Catch errors if any
-      // .catch((err) => {console.log(err)});
+        });    
     }
 
-    // window.alert("successfully submited")
-    // navigate("/Upload")
   };
 
   let navigate = useNavigate();

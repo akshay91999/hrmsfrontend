@@ -50,7 +50,7 @@ export default function DashAttendance() {
             }}
           >
             <Grid container spacing={2}>
-              <Grid item lg={3.8} sm={6} xs={12} md={6}>
+              <Grid item lg={3.8} sm={6} xs={12} md={3.8}>
                 <Typography gutterBottom
                   sx={{
                     display: "flex",
@@ -65,7 +65,7 @@ export default function DashAttendance() {
                
               </Grid>
               <Divider sx={{mt:"5%"}} orientation="vertical" variant="middle" flexItem />
-              <Grid item lg={3.8} sm={6} xs={12} md={6}>
+              <Grid item lg={3.8} sm={6} xs={12} md={3.8}>
                 <Typography gutterBottom
                   sx={{
                     display: "flex",
@@ -79,7 +79,7 @@ export default function DashAttendance() {
                 <Typography sx={{ textAlign: "center" }}>18</Typography>
               </Grid>
               <Divider sx={{mt:"5%"}} orientation="vertical" variant="middle" flexItem />
-              <Grid item lg={3.8} sm={6} xs={12} md={6}>
+              <Grid item lg={3.8} sm={6} xs={12} md={3.8}>
                 <Typography gutterBottom
                   sx={{
                     display: "flex",

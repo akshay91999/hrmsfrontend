@@ -6,6 +6,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  DialogTitle,
   IconButton,
   TextField,
   Tooltip,
@@ -36,8 +37,10 @@ function BlackListbutton() {
           </IconButton>
         </Tooltip>
         <Dialog open={open} onClose={handleClose}>
+        <DialogTitle id="responsive-dialog-title">
+          {"Reason For Black Listing"}
+        </DialogTitle>
           <DialogContent>
-            <Box sx={{ display: "flex", justifyContent: "center", mt: "10%" }}>
               <TextField
                 name="blacklistreason"
                 label="reason"
@@ -47,7 +50,6 @@ function BlackListbutton() {
                 onChange={handleInputChange}
                 sx={{ width: 500 }}
               />
-            </Box>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>

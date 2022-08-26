@@ -9,7 +9,7 @@ import Calender from "./Reusablecomponents/Calender";
 import Btn from "./Reusablecomponents/Btn";
 import { FormHelperText } from "@mui/material";
 import useForm from "./Validation/useForm";
-import { getBranchtype } from "./Dropdowndata/getDepartmentname";
+import { getBranchtype, getDepartmentname, getPosition } from "./Dropdowndata/getDepartmentname";
 import Dropdownlist from "./Reusablecomponents/Dropdownlist";
 const initialFvalues = {
   position: "",
@@ -56,20 +56,22 @@ function JobDetails() {
             width: "100%",
           }}
         >
-          <Textfield
-            label="Position"
-            name="position"
-            value={values.position}
-            error={errors.position}
-            onChange={handleInputChange}
-          />
-          <Textfield
-            label="Department"
-            name="department"
-            value={values.department}
-            error={errors.department}
-            onChange={handleInputChange}
-          />
+          <Dropdownlist
+          name="position"
+          label="Position"
+          value={values.position}
+          handleInputChange={handleInputChange}
+          options={getPosition()}
+          error={errors.position}
+        />
+          <Dropdownlist
+          name="departmentname"
+          label="Department Name"
+          value={values.departmentname}
+          handleInputChange={handleInputChange}
+          options={getDepartmentname()}
+          error={errors.departmentname}
+        />
           <Textfield
             label="Branch"
             name="branch"
