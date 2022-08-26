@@ -10,8 +10,33 @@ const initialFvalues = {
 };
 
 function ResetPassword() {
-  const { values, errors, setErrors, handleInputChange } =
+  const { values,setValues, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
+    const validate=()=>{
+      let temp={}
+      temp.newpassword=values.newpassword.length>5?"":"password length need atleast 6 characters"
+      temp.confirmpassword=values.confirmpassword.length>5?"":"password length need atleast 6 characters"
+      setErrors({...temp})
+      return Object.values(temp).every((x)=>x==="")
+
+    }
+    const handlesubmit=()=>{
+      if(validate()){
+        if(values.newpassword==values.confirmpassword){
+        window.alert("password successfully reseted")
+      }
+      else{
+        window.alert("mismatch in your password entered")
+      }
+      }
+    }
+    const handleclear=()=>{
+      setValues({
+        newpassword:"",
+        confirmpassword:""
+      }
+      )
+    }
   return (
     <>
     <Typography
@@ -51,20 +76,22 @@ function ResetPassword() {
             name="newpassword"
             value={values.newpassword}
             onChange={handleInputChange}
-            // error={errors.firstname}
+            error={errors.newpassword}
+            type="password"
           />
           <Textfield
             label="Confirm Password"
             name="confirmpassword"
             value={values.confirmpassword}
             onChange={handleInputChange}
-            // error={errors.lastname}
+            error={errors.confirmpassword}
+            type="password"
           />
         </Box>
         <Box sx={{ pt: "3%" }}>
         <Box sx={{ display:'flex',justifyContent:'flex-end',gap: 2,}}>
-        <Btn text="SUBMIT"/>
-        <Btn text='CANCEL'/>
+        <Btn text="SUBMIT" click={handlesubmit}/>
+        <Btn text='CANCEL' click={handleclear}/>
         </Box>
       </Box>
       </Card>

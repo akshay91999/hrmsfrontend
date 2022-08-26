@@ -109,7 +109,7 @@ function ThoughtFormHr(props) {
             }}
           >
             <Btn text="Submit" click={handlesubmit} />
-            <Btn text="Cancel" click={handleclear} />
+            <Btn text="Clear" click={handleclear} />
           </Box>
           </DialogActions>
       </Dialog>

@@ -1,16 +1,17 @@
 import React from "react";
 import { Card, Divider, Typography, Box, Grid } from "@mui/material";
+import EmployeeLeaveTaken from "./EmployeeLeaveTaken";
 export default function LeaveUsedRemainInDetail() {
   return (
     <>
-      <Box sx={{ display: "flex", justifyContent: "center", gap: "3%" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", gap: "3%",p:"3%" }}>
         <Card
           sx={{
             borderRadius: "10px",
             width: "20%",
             p: "1%",
-          
-            alignContent: "center",borderLeft: "8px solid #1565C0"
+         
+            alignContent: "center",borderLeft: "8px solid #A5C5E4"
           }}
         >
           <Typography variant="h5" sx={{ fontWeight: "600",pb:"2%" }}>
@@ -73,7 +74,7 @@ export default function LeaveUsedRemainInDetail() {
             borderRadius: "10px",
             width: "20%",
             p: "1%",
-            borderLeft: "8px solid #1565C0",
+            borderLeft: "8px solid #A5C5E4",
             alignContent: "center",
           }}
         >
@@ -132,6 +133,7 @@ export default function LeaveUsedRemainInDetail() {
           </Box>
         </Card>
       </Box>
+      <EmployeeLeaveTaken/>
     </>
   );
 }

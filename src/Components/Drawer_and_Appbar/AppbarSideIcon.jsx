@@ -10,8 +10,10 @@ import Menu from "@mui/material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import ThoughtFormHr from "../ThoghtFormHr";
+import { useNavigate } from "react-router-dom";
 
 function AppbarSideIcon() {
+  let navigate=useNavigate()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -52,8 +54,8 @@ function AppbarSideIcon() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={()=>navigate("/profile")}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
     </Menu>
   );
 

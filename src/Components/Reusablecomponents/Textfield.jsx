@@ -17,7 +17,7 @@ const CssTextField = styled(TextField)({
   },
 });
 function Textfield(props) {
-  const { label, id, name, value, onChange, error = null } = props
+  const { label, id, name, value, onChange, error = null,type } = props
   return (
     <div>
       <CssTextField
@@ -28,6 +28,7 @@ function Textfield(props) {
         name={name}
         value={value}
         onChange={onChange}
+        type={type}
         {...(error && { error: true, helperText: error })}
       />
     </div>

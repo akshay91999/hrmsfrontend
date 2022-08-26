@@ -16,10 +16,10 @@ import React from "react";
 function DashEmployonLeave() {
   return (
     <>
-      <Card sx={{ borderRadius: "10px", p: "2%" ,minHeight:'350px'}}>
+      <Card sx={{ borderRadius: "10px", p: "2%" ,maxHeight:'350px'}}>
         <Box sx={{ pt: "3%" }}>
           <Typography variant="Button" sx={{ fontWeight: "600" }}>
-            EMPLOY ON LEAVE
+            EMPLOYEE ON LEAVE
           </Typography>
         </Box>
         <Divider light />

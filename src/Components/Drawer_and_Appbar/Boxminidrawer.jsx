@@ -55,6 +55,7 @@ import VisitorPassForm from '../../Pages/Visitormanagement/VisitorPassForm'
 import VisitorCard from '../../Pages/Visitormanagement/VisitorCard'
 import VisitorList from '../../Pages/Visitormanagement/VisitorList'
 import VisitorCheckOut from '../../Pages/Visitormanagement/VisitorCheckOut'
+import EmpProfile from '../../Pages/Profile/EmpProfile'
 function Boxminidrawer() {
   return (
     <>
@@ -62,7 +63,8 @@ function Boxminidrawer() {
        <Box className='content-container' component="main" sx={{ flexGrow: 1, pt: 8,minHeight:'95vh'}}>
         
             <Routes>
-                <Route path="/addemployee" element={<Basic/>} />
+              {/* employee viewing profile */}
+              <Route path="/profile" element={<EmpProfile/> }/>
 
                 {/* Resignation */}
                 <Route path="/resignationform" element={<ResignationForm/>}/>
@@ -71,6 +73,7 @@ function Boxminidrawer() {
 
                 {/* dashboard employee  and add and view employ*/}
                 <Route path="/" element={<DashboardEmploy/>} />
+                <Route path="/addemployee" element={<Basic/>} />
                 <Route path="/academic" element={<Academic/>} />
                 <Route path="/experience" element={<Exp/>} />
                 <Route path="/upload/:basicId" element={<Upld/>} />
@@ -116,9 +119,6 @@ function Boxminidrawer() {
 
               {/* leaveused remain */}
                 <Route path="/LeaveUsedRemainInDetail" element={<LeaveUsedRemainInDetail/>} />
-
-
-
 
                 {/* Routing For Leave Management */}
             <Route path="/Leave" element={<Leave />} />

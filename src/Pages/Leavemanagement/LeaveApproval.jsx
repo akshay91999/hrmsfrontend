@@ -3,6 +3,8 @@ import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import Avatar from "@mui/material/Avatar";
 import ApproveRejectIcon from "../../Components/ApproveRejectIcon";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import EyeIconButtonLeaveApproval from "../../Components/Reusablecomponents/EyeIconButtonLeaveApproval";
 const rows = [
   {
     id: 1220,
@@ -18,7 +20,8 @@ const rows = [
     // },
     department: "Marketing",
     leavetype: "Unpaid",
-    from_to: "12/02/2022-14/03/2022",
+    leavefrom: "12/02/2022",
+    numberofdays:"3",
     reason: "Fever",
   },
 
@@ -36,7 +39,8 @@ const rows = [
     // },
     department: "Advertising",
     leavetype: "Unpaid",
-    from_to: "12/02/2022-14/03/2022",
+    leavefrom: "12/02/2022",
+    numberofdays:"6",
     reason: "Fever",
   },
 
@@ -54,7 +58,8 @@ const rows = [
     // },
     department: "Development",
     leavetype: "Paid",
-    from_to: "12/02/2022-14/03/2022",
+    leavefrom: "12/02/2022",
+    numberofdays:"2",
     reason: "Fever",
   },
 
@@ -72,7 +77,8 @@ const rows = [
     // },
     department: "Development",
     leavetype: "Unpaid",
-    from_to: "12/02/2022-14/03/2022",
+    leavefrom: "12/02/2022",
+    numberofdays:"4",
     reason: "Fever",
   },
 
@@ -90,7 +96,8 @@ const rows = [
     // },
     department: "Development",
     leavetype: "paid",
-    from_to: "12/02/2022-14/03/2022",
+    leavefrom: "12/02/2022",
+    numberofdays:"1",
     reason: "Fever",
   },
   {
@@ -107,7 +114,8 @@ const rows = [
     // },
     department: "Marketing",
     leavetype: "unpaid",
-    from_to: "12/02/2022-14/03/2022",
+    leavefrom: "12/02/2022",
+    numberofdays:"2",
     reason: "Fever",
   },
 ];
@@ -161,9 +169,15 @@ const columns = [
     headerClassName: "super-app-theme--header",
   },
   {
-    field: "from_to",
-    headerName: "From-To",
-    width: 200,
+    field: "leavefrom",
+    headerName: "Leave From",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "numberofdays",
+    headerName: "Number Of Days",
+    width: 150,
     headerClassName: "super-app-theme--header",
   },
   {
@@ -171,6 +185,17 @@ const columns = [
     headerName: "Reason",
     width: 150,
     headerClassName: "super-app-theme--header",
+  }, {
+    field: "View",
+    width: 100,
+    headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    renderCell: (params) => (
+      <strong>
+        {/* calling Eyeiconbutton component which contain iconbutton */}
+        <EyeIconButtonLeaveApproval/>
+      </strong>
+    ),
   },
   {
     field: "Approve/Reject",
@@ -228,3 +253,5 @@ export default function LeaveApproval() {
     </>
   );
 }
+
+
