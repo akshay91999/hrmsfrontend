@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-import QuotesFormHr from "../QuotesFormHr";
+import ThoughtFormHr from "../ThoghtFormHr";
 
 function AppbarSideIcon() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -75,7 +75,7 @@ function AppbarSideIcon() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <QuotesFormHr p={true}/>
+        <ThoughtFormHr p={true}/>
       </MenuItem>
       <MenuItem>
         <IconButton
@@ -107,7 +107,7 @@ function AppbarSideIcon() {
   return (
     <>
       <Box sx={{ display: { xs: "none", md: "flex" } }}>
-      <QuotesFormHr p={false}/>
+      <ThoughtFormHr p={false}/>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"

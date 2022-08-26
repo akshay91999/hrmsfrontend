@@ -41,11 +41,15 @@ const rows = [
   
 ];
 
-export default function Tableshortlisted() {
+export default function EmpLeaveList() {
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
-    <Paper elevation={4} sx={{ m: "2%", p: "2%",width:"50%" }}>
-    <Typography variant="h6" align="center" gutterBottom component="div">
+    <Paper elevation={4} sx={{ m: "2%", p: "2%",width:"100%" }}>
+    <Typography
+          variant="h4"
+          align="center"
+          sx={{ color: "#1565C0", pb: "2%" }}
+        >
           Leaves Applied
         </Typography>
     <TableContainer component={Paper}>

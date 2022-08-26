@@ -1,134 +1,225 @@
-import React from 'react'
-import { getDepartmentname } from '../../Components/getDepartmentname';
-import Dropdownlist from '../../Components/Reusablecomponents/Dropdownlist'
-import { Box, Button, TablePagination, Typography } from "@mui/material"
-import useForm from '../../Components/useForm';
-import { Paper } from '@mui/material';
-import TableRow from '@mui/material/TableRow';
-import { styled } from '@mui/material/styles';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import ApproveRejectIcon from '../../Components/ApproveRejectIcon';
-import Imagewithname from '../../Components/Reusablecomponents/Imagewithname';
-import { useNavigate } from 'react-router-dom'
-const initialValues = {
-  departmentname: ""
-};
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    background: 'linear-gradient(#8B8B8B,#1565C0)',
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
-
-function createData(name, leavetype, fromto,reason) {
-  return { name, leavetype, fromto,reason};
-}
-
+import React from "react";
+import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
+import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
+import Avatar from "@mui/material/Avatar";
 const rows = [
-  createData('john', 'Unpaid', '23/09/2022-29/09/2022', 'sick'),
-  createData('Mathew', 'Unpaid', '23/09/2022-29/09/2022', 'sick'),
-  createData('Mathew', 'Unpaid', '23/09/2022-29/09/2022', 'sick'),
-  createData('Mathew', 'Unpaid', '23/09/2022-29/09/2022', 'sick'),
-  createData('Mathew', 'Unpaid', '23/09/2022-29/09/2022', 'sick'),
-  createData('Mathew', 'Unpaid', '23/09/2022-29/09/2022', 'sick'),
+  {
+    id: 1220,
+    employee: {
+      avatar:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
+    },
+    employeename: "David",
+    // employeename: {
+    //   username: "David",
+    //   avatar:
+    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
+    // },
+    // VisitorName: "David",
+    department: "Development",
+    leavetype: "Unpaid",
+    from_to: "12/05/2022-13/06/2022",
+    reason: "Fever",
+  },
 
+  {
+    id: 1221,
+    employee: {
+      avatar:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLe5PABjXc17cjIMOibECLM7ppDwMmiDg6Dw&usqp=CAU",
+    },
+    employeename: "Ramsan",
+    // employeename: {
+    //   username: "Ramsan",
+    //   avatar:
+    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLe5PABjXc17cjIMOibECLM7ppDwMmiDg6Dw&usqp=CAU",
+    // },
+    // VisitorName: "David",
+    department: "Marketing",
+    leavetype: "Unpaid",
+    from_to: "12/05/2022-13/06/2022",
+    reason: "Fever",
+  },
 
+  {
+    id: 1222,
+    employee: {
+      avatar:
+        "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
+    },
+    employeename: "David",
+    // employeename: {
+    //   username: "David",
+    //   avatar:
+    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
+    // },
+    // VisitorName: "David",
+    department: "Advertising",
+    leavetype: "Unpaid",
+    from_to: "12/05/2022-13/06/2022",
+    reason: "Fever",
+  },
+
+  {
+    id: 1223,
+    employee: {
+      avatar:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
+    },
+    employeename: "David",
+    // employeename: {
+    //   username: "David",
+    //   avatar:
+    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
+    // },
+    // VisitorName: "David",
+    department: "Marketing",
+    leavetype: "Unpaid",
+    from_to: "12/05/2022-13/06/2022",
+    reason: "Fever",
+  },
+
+  {
+    id: 1224,
+    employee: {
+      avatar:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
+    },
+    employeename: "aarooo",
+    // employeename: {
+    //   username: "aarooo",
+    //   avatar:
+    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
+    // },
+    // VisitorName: "David",
+    department: "Marketing",
+    leavetype: "Unpaid",
+    from_to: "12/05/2022-13/06/2022",
+    reason: "Fever",
+  },
+  {
+    id: 1225,
+    employee: {
+      avatar:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
+    },
+    employeename: "Daviddddd",
+    // employeename: {
+    //   username: "Daviddddd",
+    //   avatar:
+    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
+    // },
+    // VisitorName: "David",
+    department: "Advertising",
+    leavetype: "Unpaid",
+    from_to: "12/05/2022-13/06/2022",
+    reason: "Fever",
+  },
 ];
 
+const columns = [
+  { field: "id", width: 170, headerClassName: "super-app-theme--header" },
+  // {
+  //   field: "employeename", headerClassName: "super-app-theme--header",
+  //   headerName: "Employee Name",
+  //   width: 280,
+  //   renderCell: (params) => {
+  //     console.log(params);
+  //     return (
+  //       <>
+  //         <Avatar src={params.value.avatar} />&nbsp;&nbsp;&nbsp;
+  //         {params.value.username}
+  //       </>
+  //     );
+  //   },
+  // },
+  {
+    field: "employee",
+    headerName: "Employee",
+    width: 170,
+    renderCell: (params) => {
+      console.log(params);
+      return (
+        <>
+          <Avatar src={params.value.avatar} />
+        </>
+      );
+    },
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "employeename",
+    headerName: "Employee Name",
+    width: 250,
+    headerClassName: "super-app-theme--header",
+  },
+  // { field: "VisitorName", width: 250, headerClassName: "super-app-theme--header" },
+  {
+    field: "department",
+    headerName: "Department",
+    width: 230,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "leavetype",
+    headerName: "Leave Type",
+    width: 170,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "from_to",
+    headerName: "From-To",
+    width: 240,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "reason",
+    headerName: "Reason",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+  },
+];
 export default function LeaveApprovedList() {
-  let navigate = useNavigate()
-  const { values, errors, setErrors, handleInputChange } =
-    useForm(initialValues);
-
-
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+  const [pageSize, setPageSize] = React.useState(5);
   return (
     <>
-      <Paper sx={{ m: '2%' }}>
+      <Paper elevation={4} sx={{ m: "2%", p: "2%" }}>
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{ color: "#1565C0", pb: "2%" }}
+        >
+          Leave Approved List
+        </Typography>
+
         <Box
-          component="form"
-          noValidate
           sx={{
-            display: "flex",
-            gridTemplateColumns: { sm: "1fr" },
-            gap: 2,
-            width: "30%",
-            mt: "1%",
-            justifyContent: "center"
+            height: "50vh",
+            width: "100%",
+            "& .super-app-theme--header": {
+              background: "linear-gradient(#8B8B8B,#1565C0)",
+            },
           }}
         >
-        </Box>
-
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Paper elevation={4} sx={{ m: "2%", p: "2%", width: "100%" }}>
-            <Typography variant="h6" gutterBottom component="div">
-              <b>Leave Approved Employees</b>
-            </Typography>
-            <TableContainer component={Paper}>
-              <Table sx={{ width: "100%" }} aria-label="customized table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell align="left">Employee Name</StyledTableCell>
-                    <StyledTableCell align="center">Leave Type</StyledTableCell>
-                    <StyledTableCell align="center">From-To</StyledTableCell>
-                    <StyledTableCell align="center">Reason</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => (
-                      <StyledTableRow key={row.id}>
-
-
-                        <StyledTableCell align="center"><Imagewithname name={row.name} /></StyledTableCell>
-                        <StyledTableCell align="center">{row.leavetype}</StyledTableCell>
-                        <StyledTableCell align="center">{row.fromto}</StyledTableCell>
-                        <StyledTableCell align="center">{row.reason}</StyledTableCell>
-                      </StyledTableRow>
-                    ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <TablePagination
-              rowsPerPageOptions={[5, 15, 50]}
-              component="div"
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </Paper>
+          <DataGrid
+            columns={columns}
+            rows={rows}
+            components={{ Toolbar: GridToolbar }}
+            pageSize={pageSize}
+            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+            rowsPerPageOptions={[5, 10, 20]}
+            pagination
+            sx={{
+              boxShadow: 2,
+              border: 2,
+              borderColor: "primary.light",
+              "& .MuiDataGrid-cell:hover": {
+                color: "primary.main",
+              },
+            }}
+          />
         </Box>
       </Paper>
     </>
-  )
+  );
 }

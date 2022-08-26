@@ -12,27 +12,24 @@ export default function DashLeaveUsedRemain() {
           sx={{
             borderRadius: "10px",
             width: "100%",
-            p: "2%",
+            p: "1%",
+            border: "1px solid #1565C0",
             alignContent: "center"
           }}
         >
-          <Grid container>
+          <Grid container spacing={2}>
             <Grid item xs={6} lg={6} md={6} sm={6}>
-            <Box sx={{ pt:'3%' }}>
-              <Typography variant="Button" sx={{ fontWeight: "600" }}>
-                YOUR LEAVE
+              <Typography variant="h5" sx={{ fontWeight: "600" }}>
+                Your Leave
               </Typography>
-              </Box>
             </Grid>
             <Grid item xs={6} lg={6} md={6} sm={6}>
-            <Box sx={{ display:'flex',justifyContent:'right' }}>
-              <IconButton >
+              <IconButton sx={{ float: "right" }} onClick={()=>{navigate("/LeaveUsedRemainInDetail")}}>
                 <Typography sx={{ display: "flex",color:'#1565C0'}}>
                   View
                   <ArrowRightIcon />
                 </Typography>
               </IconButton>
-              </Box>
             </Grid>
           </Grid>
 
@@ -41,16 +38,16 @@ export default function DashLeaveUsedRemain() {
               display: "flex",
               alignItems: "center",
              
-              // border: (theme) => `1px solid ${theme.palette.divider}`,
-              // borderRadius: 1,
+              border: (theme) => `1px solid ${theme.palette.divider}`,
+              borderRadius: 1,
               bgcolor: 'background.paper',
               color: 'text.secondary',
-              mt:'1%',
+             mt:"1%",
             p:"2%"
             }}
           >
             <Grid container spacing={2}>
-              <Grid item lg={3.8} sm={6} xs={12} md={3.8}>
+              <Grid item lg={3.8} sm={6} xs={12} md={6}>
                 <Typography gutterBottom
                   sx={{
                     display: "flex",
@@ -65,7 +62,7 @@ export default function DashLeaveUsedRemain() {
                
               </Grid>
               <Divider sx={{mt:"5%"}} orientation="vertical" variant="middle" flexItem />
-              <Grid item lg={3.8} sm={6} xs={12} md={3.8}>
+              <Grid item lg={3.8} sm={6} xs={12} md={6}>
                 <Typography gutterBottom
                   sx={{
                     display: "flex",
@@ -79,7 +76,7 @@ export default function DashLeaveUsedRemain() {
                 <Typography sx={{ textAlign: "center" }}>08</Typography>
               </Grid>
               <Divider sx={{mt:"5%"}} orientation="vertical" variant="middle" flexItem />
-              <Grid item lg={3.8} sm={6} xs={12} md={3.8}>
+              <Grid item lg={3.8} sm={6} xs={12} md={6}>
                 <Typography gutterBottom
                   sx={{
                     display: "flex",

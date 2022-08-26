@@ -30,7 +30,6 @@ import MyAssignedTaskTable from '../../Pages/MyTaskMngmntModule/MyAssignedTaskTa
 import DashboardEmploy from '../../Pages/Employee/Dashboard/DashboardEmploy'
 import Tableshortlisted from '../../Pages/Recruitmentmanagement.jsx/Recruiters/Tableshortlisted'
 import TableSelectedCandidate from '../../Pages/Recruitmentmanagement.jsx/Recruiters/TableSelectedCandidate'
-import DashLeaveUsedRemainInDetail from '../LeaveUsedRemainInDetail'
 import LeaveUsedRemainInDetail from '../LeaveUsedRemainInDetail'
 import TableSelectedList from '../../Pages/Recruitmentmanagement.jsx/HR/TableSelectedList'
 import AddCandidate from '../../Pages/Recruitmentmanagement.jsx/Recruiters/AddCandidate'
@@ -43,9 +42,19 @@ import ResignationTable from '../../Pages/HrAnalytics/Resignation/ResignationTab
 import GenderAnalysis from '../../Pages/HrAnalytics/GenderAnalysis'
 import ResignedEmployees from '../../Pages/HrAnalytics/Resignation/ResignedEmployees'
 import AgeGroupAnalysis from '../../Pages/HrAnalytics/AgeGroupAnalysis'
-
-
-
+import Leave from '../../Pages/Leavemanagement/Leave'
+import LeaveApproval from '../../Pages/Leavemanagement/LeaveApproval'
+import EmpLeaveList from '../../Pages/Leavemanagement/EmpLeaveList'
+import LeaveApprovedList from '../../Pages/Leavemanagement/LeaveApprovedList'
+import LeaveRejectedList from '../../Pages/Leavemanagement/LeaveRejectedList'
+import NumberOfLeaveAllot from '../../Pages/Leavemanagement/NumberOfLeaveAllot'
+import BookTrips from '../../Pages/Travelmanagement/BookTrips'
+import MyTransport from '../../Pages/Travelmanagement/MyTransport'
+import TripApproval from '../../Pages/Travelmanagement/TripApproval'
+import VisitorPassForm from '../../Pages/Visitormanagement/VisitorPassForm'
+import VisitorCard from '../../Pages/Visitormanagement/VisitorCard'
+import VisitorList from '../../Pages/Visitormanagement/VisitorList'
+import VisitorCheckOut from '../../Pages/Visitormanagement/VisitorCheckOut'
 function Boxminidrawer() {
   return (
     <>
@@ -107,6 +116,35 @@ function Boxminidrawer() {
 
               {/* leaveused remain */}
                 <Route path="/LeaveUsedRemainInDetail" element={<LeaveUsedRemainInDetail/>} />
+
+
+
+
+                {/* Routing For Leave Management */}
+            <Route path="/Leave" element={<Leave />} />
+            <Route path="/LeaveApproval" element={<LeaveApproval />} />
+            <Route path="/EmpLeaveList" element={<EmpLeaveList />} />
+            <Route path="LeaveApprovedList" element={<LeaveApprovedList />} />
+            <Route path="LeaveRejectedList" element={<LeaveRejectedList />} />
+            <Route
+              path="/NumberOfLeaveAllot"
+              element={<NumberOfLeaveAllot />}
+            />
+            {/* Routing For Leave Management */}
+
+            {/* Routing For Travel Management */}
+            <Route path="/BookTrips" element={<BookTrips />} />
+            <Route path="/MyTransport" element={<MyTransport />} />
+            <Route path="/TripApproval" element={<TripApproval />} />
+            {/* Routing For Travel Management */}
+
+             {/* Routing For Visitor Management */}
+             <Route path="/VisitorPassForm" element={<VisitorPassForm />} />
+            <Route path="/VisitorCard" element={<VisitorCard />} />
+            <Route path="/VisitorList" element={<VisitorList />} />
+            <Route path="/VisitorCheckOut" element={<VisitorCheckOut />} />
+
+            {/* Routing For Visitor Management */}
                   </Routes>
               
         {/* <Footer/>  */}

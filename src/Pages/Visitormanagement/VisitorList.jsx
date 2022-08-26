@@ -5,123 +5,118 @@ import Avatar from "@mui/material/Avatar";
 const rows = [
   {
     id: 1220,
-    employee:{
+    visitor: {
       avatar:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
     },
- employeename:"David",
-    // employeename: {
+    visitorname: "David",
+    // visitorname: {
     //   username: "David",
     //   avatar:
     //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
     // },
     // VisitorName: "David",
-    department: "Development",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reasonforrejection: "Pending Work",
+    Purpose: "meeting",
+    Person_To_Meet: "Samuel",
+    Date: "12/05/2022",
+    Status: "checkout",
   },
-
   {
     id: 1221,
-    employee:{
+    visitor: {
       avatar:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
     },
- employeename:"David",
-    // employeename: {
+    visitorname: "David",
+    // visitorname: {
     //   username: "Ramsan",
     //   avatar:
     //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLe5PABjXc17cjIMOibECLM7ppDwMmiDg6Dw&usqp=CAU",
     // },
     // VisitorName: "David",
-    department: "Marketing",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reasonforrejection: "Pending Work",
+    Purpose: "interview",
+    Person_To_Meet: "Samuel",
+    Date: "12/05/2022",
+    Status: "checkout",
   },
-
   {
     id: 1222,
-    employee:{
+    visitor: {
       avatar:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
     },
- employeename:"David",
-    // employeename: {
+    visitorname: "David",
+    // visitorname: {
     //   username: "David",
     //   avatar:
     //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
     // },
     // VisitorName: "David",
-    department: "Advertising",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reasonforrejection: "Pending Work",
+    Purpose: "interview",
+    Person_To_Meet: "Samuel",
+    Date: "12/05/2022",
+    Status: "checkout",
   },
-
   {
     id: 1223,
-    employee:{
+    visitor: {
       avatar:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
     },
- employeename:"David",
-    // employeename: {
+    visitorname: "David",
+    // visitorname: {
     //   username: "David",
     //   avatar:
     //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
     // },
     // VisitorName: "David",
-    department: "Marketing",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reasonforrejection: "Pending Work",
+    Purpose: "interview",
+    Person_To_Meet: "Samuel",
+    Date: "12/05/2022",
+    Status: "checkout",
   },
-
   {
     id: 1224,
-    employee:{
+    visitor: {
       avatar:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
     },
- employeename:"David",
-    // employeename: {
+    visitorname: "David",
+    // visitorname: {
     //   username: "aarooo",
     //   avatar:
     //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
     // },
     // VisitorName: "David",
-    department: "Marketing",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reasonforrejection: "Pending Work",
+    Purpose: "meeting",
+    Person_To_Meet: "Samuel",
+    Date: "12/05/2022",
+    Status: "checkout",
   },
   {
     id: 1225,
-    employee:{
+    visitor: {
       avatar:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
     },
- employeename:"David",
-    // employeename: {
+    visitorname: "David",
+    // visitorname: {
     //   username: "Daviddddd",
     //   avatar:
     //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
     // },
     // VisitorName: "David",
-    department: "Advertising",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reasonforrejection: "Pending Work",
+    Purpose: "meeting",
+    Person_To_Meet: "Samuel",
+    Date: "12/05/2022",
+    Status: "checkout",
   },
 ];
-
 const columns = [
   { field: "id", width: 170, headerClassName: "super-app-theme--header" },
   // {
-  //   field: "employeename", headerClassName: "super-app-theme--header",
-  //   headerName: "Employee Name",
+  //   field: "visitorname", headerClassName: "super-app-theme--header",
+  //   headerName: "Visitor Name",
   //   width: 280,
   //   renderCell: (params) => {
   //     console.log(params);
@@ -133,22 +128,38 @@ const columns = [
   //     );
   //   },
   // },
-  { field: "employee",  headerName: "Employee",width: 150, renderCell: (params) => {
-    console.log(params);
-    return (
-       <>
-         <Avatar src={params.value.avatar} />
-      </>
-   );
-  }, headerClassName: "super-app-theme--header" },
-  { field: "employeename",  headerName: "Employee Name",width: 250, headerClassName: "super-app-theme--header" },
+  {
+    field: "visitor",
+    headerName: "Visitor",
+    width: 140,
+    renderCell: (params) => {
+      console.log(params);
+      return (
+        <>
+          <Avatar src={params.value.avatar} />
+        </>
+      );
+    },
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "visitorname",
+    headerName: "Visitor Name",
+    width: 250,
+    headerClassName: "super-app-theme--header",
+  },
   // { field: "VisitorName", width: 250, headerClassName: "super-app-theme--header" },
-  { field: "department",headerName: "Department", width: 230, headerClassName: "super-app-theme--header" },
-  {field: "leavetype",headerName: "Leave Type",width: 140,headerClassName: "super-app-theme--header",},
-  { field: "from_to",headerName: "From-To", width: 240, headerClassName: "super-app-theme--header" },
-  { field: "reasonforrejection",headerName: "Reason for Rejection", width: 200, headerClassName: "super-app-theme--header" },
+  { field: "Purpose", width: 230, headerClassName: "super-app-theme--header" },
+  {
+    field: "Person_To_Meet",
+    headerName: "Person To Meet",
+    width: 250,
+    headerClassName: "super-app-theme--header",
+  },
+  { field: "Date", width: 170, headerClassName: "super-app-theme--header" },
+  { field: "Status", width: 170, headerClassName: "super-app-theme--header" },
 ];
-export default function LeaveRejectedList() {
+export default function VisitorList() {
   const [pageSize, setPageSize] = React.useState(5);
   return (
     <>
@@ -158,7 +169,7 @@ export default function LeaveRejectedList() {
           align="center"
           sx={{ color: "#1565C0", pb: "2%" }}
         >
-          Leave Rejected List
+          Visitor List
         </Typography>
 
         <Box

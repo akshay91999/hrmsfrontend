@@ -11,7 +11,8 @@ import DashBirthday from "../../../Components/DashBirthday";
 import EmployMovements from "../../HrAnalytics/EmployMovements";
 import DashAnnouncements from "../../../Components/DashAnnouncements";
 import DashWorkAnniversary from "../../../Components/DashWorkAnniversary";
-import DashQuotes from "../../../Components/DashQuotes";
+import DashThought from "../../../Components/DashThought";
+
 
 
 function DashboardEmploy() {
@@ -52,7 +53,7 @@ function DashboardEmploy() {
          <DashWorkAnniversary/>
         </Grid>
         <Grid item md={3} xs={12}>
-          <DashQuotes/>
+          <DashThought/>
         </Grid>
       </Grid>
       </Paper>

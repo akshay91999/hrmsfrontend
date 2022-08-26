@@ -12,7 +12,7 @@ const initialFvalues = {
   designation: "",
 };
 
-function QuotesFormHr(props) {
+function ThoughtFormHr(props) {
   const { values, setValues, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
   const [open, setOpen] = React.useState(false);
@@ -62,7 +62,7 @@ function QuotesFormHr(props) {
           align="center"
           sx={{ color: "#1565C0", pb: "3%" }}
         >
-          Add Today's Quote
+          Add Thought Of The Day
         </Typography>
           <Box
             component="form"
@@ -117,4 +117,4 @@ function QuotesFormHr(props) {
   );
 }
 
-export default QuotesFormHr;
+export default ThoughtFormHr;

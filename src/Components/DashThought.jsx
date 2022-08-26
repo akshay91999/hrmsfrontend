@@ -1,7 +1,7 @@
 import { Avatar, Box, Card, CardContent, CardHeader, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
 import React from 'react'
 
-function DashQuotes() {
+function DashThought() {
   return (
     <>
     <Card sx={{ borderRadius: "10px",p:'2%',minHeight:'350px',background:'linear-gradient(#ffffff,#ccffff,#CAE6F5)'}}>
@@ -22,4 +22,4 @@ function DashQuotes() {
   )
 }
 
-export default DashQuotes
+export default DashThought
