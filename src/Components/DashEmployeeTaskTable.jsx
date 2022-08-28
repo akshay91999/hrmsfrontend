@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { borderBottom } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 function createData(projectname, taskname, assigneddate, duedate) {
   return { projectname, taskname, assigneddate, duedate };
@@ -29,6 +30,7 @@ const rows = [
 ];
 
 export default function EmployeeTaskTable() {
+  let navigate=useNavigate()
   return (
     <>
       <Card sx={{ borderRadius: "10px"}}>
@@ -42,7 +44,7 @@ export default function EmployeeTaskTable() {
             </Grid>
             <Grid item xs={6} lg={6} md={6} sm={6}>
               <Box sx={{ display:'flex',justifyContent:'right' }}>
-              <IconButton >
+              <IconButton onClick={()=>{navigate("/mytask")}} >
                 <Typography sx={{ display: "flex",color:'#1565C0'}}>
                   View
                   <ArrowRightIcon />

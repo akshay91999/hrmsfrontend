@@ -7,7 +7,7 @@ import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
 // project imports
 import MainCard from '../cards/MainCard';
-import SkeletonEarningCard from '../cards/TaskCard';
+import SkeletonEarningCard from '../cards/StructureCard';
 
 // assets
 import AddTaskTwoToneIcon from '@mui/icons-material/AddTaskTwoTone';

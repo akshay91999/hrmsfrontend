@@ -55,3 +55,22 @@ export const getUsertype=()=>(
     ]
 )
 
+export const getEmployee=()=>(
+    [
+        {id:"1",title:"Akshaya"},
+        {id:"2",title:"Akshayb"},
+        {id:"3",title:"Akshayc"},
+        {id:"4",title:"Akshayd"},
+        {id:"5",title:"Akshayf"},
+        
+    ]
+)
+
+export const getShift=()=>(
+    [
+        {id:"1",title:"Day"},
+        {id:"2",title:"Night"},
+        
+    ]
+)
+

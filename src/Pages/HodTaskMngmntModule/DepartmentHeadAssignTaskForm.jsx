@@ -7,6 +7,7 @@ import Calender from "../../Components/Reusablecomponents/Calender";
 import Btn from "../../Components/Reusablecomponents/Btn";
 import useForm from "../../Components/Validation/useForm";
 const initialFvalues = {
+    projectname:"",
     taskname: "",
     assigneddate: "",
     duedate: "",
@@ -19,6 +20,7 @@ export default function DepartmentHeadAssignTaskForm() {
 
     const validate = () => {
         let temp = {};
+        temp.projectname = values.projectname ? "" : "employeeid is required";
         temp.taskname = values.taskname ? "" : "employeeid is required";
         temp.assigneddate = values.assigneddate ? "" : "employeetype is required";
         temp.duedate = values.duedate ? "" : "duration from is required";
@@ -51,6 +53,14 @@ export default function DepartmentHeadAssignTaskForm() {
                             alignItems:"center"
                         }}
                     >
+                         <Textfield
+                            label="Project Name"
+                            id="projectname"
+                            name="projectname"
+                            value={values.projectname}
+                            onChange={handleInputChange}
+                            error={errors.projectname}
+                        />
                         <Textfield
                             label="Task Name"
                             id="taskname"

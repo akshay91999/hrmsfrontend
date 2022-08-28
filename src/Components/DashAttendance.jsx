@@ -26,7 +26,7 @@ export default function DashAttendance() {
             </Grid>
             <Grid item xs={6} lg={6} md={6} sm={6}>
             <Box sx={{ display:'flex',justifyContent:'right' }}>
-              <IconButton >
+              <IconButton onClick={()=>{navigate("/myattandance")}}>
                 <Typography sx={{ display: "flex",color:'#1565C0'}}>
                   View
                   <ArrowRightIcon />

@@ -11,6 +11,7 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import ThoughtFormHr from "../ThoghtFormHr";
 import { useNavigate } from "react-router-dom";
+import Notification from "../Notification";
 
 function AppbarSideIcon() {
   let navigate=useNavigate()
@@ -80,7 +81,8 @@ function AppbarSideIcon() {
         <ThoughtFormHr p={true}/>
       </MenuItem>
       <MenuItem>
-        <IconButton
+      <Notification p={true}/>
+        {/* <IconButton
           size="large"
           aria-label="show 17 new notifications"
           color="inherit"
@@ -89,7 +91,7 @@ function AppbarSideIcon() {
             <NotificationsIcon />
           </Badge>
         </IconButton>
-        <p>Notifications</p>
+        <p>Notifications</p> */}
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -110,7 +112,8 @@ function AppbarSideIcon() {
     <>
       <Box sx={{ display: { xs: "none", md: "flex" } }}>
       <ThoughtFormHr p={false}/>
-        <IconButton
+      <Notification  p={false}/>
+        {/* <IconButton
           size="large"
           aria-label="show 17 new notifications"
           color="inherit"
@@ -118,7 +121,7 @@ function AppbarSideIcon() {
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
-        </IconButton>
+        </IconButton> */}
         <IconButton
           size="large"
           edge="end"

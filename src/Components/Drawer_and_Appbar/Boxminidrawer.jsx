@@ -16,17 +16,6 @@ import Register from '../../Pages/Addemployee/Register'
 import Vaccancy from '../../Pages/Recruitmentmanagement.jsx/Departmenthead/Vaccancy'
 import Vaccancyview from '../../Pages/Recruitmentmanagement.jsx/HR/Vaccancyview'
 import Datagridfilter from '../../Pages/Recruitmentmanagement.jsx/Departmenthead/Gatagridfilter'
-import HrTaskManage from '../../Pages/HrtaskmgmntModule/HrTaskManage'
-import HrEmployeeIndividualTask from '../../Pages/HrtaskmgmntModule/HrEmployeeIndividualTask'
-import DepartmentHeadTaskManage from '../../Pages/HodTaskMngmntModule/DepartmentHeadTaskManage'
-import HodEmployeeIndividualTask from '../../Pages/HodTaskMngmntModule/HodEmployeeIndividualTask'
-import DepartmentHeadAssignTaskForm from '../../Pages/HodTaskMngmntModule/DepartmentHeadAssignTaskForm'
-import TotalTaskTable from '../../Components/TaskTables/TotalTaskTable'
-import MyTask from '../../Pages/MyTaskMngmntModule/MyTask'
-import PopUp from '../../Components/Reusablecomponents/PopUp'
-import CompletedTaskTable from '../../Components/TaskTables/CompletedTaskTable'
-import OngoingTaskTable from '../../Components/TaskTables/OngoingTaskTable'
-import MyAssignedTaskTable from '../../Pages/MyTaskMngmntModule/MyAssignedTaskTable'
 import DashboardEmploy from '../../Pages/Employee/Dashboard/DashboardEmploy'
 import Tableshortlisted from '../../Pages/Recruitmentmanagement.jsx/Recruiters/Tableshortlisted'
 import TableSelectedCandidate from '../../Pages/Recruitmentmanagement.jsx/Recruiters/TableSelectedCandidate'
@@ -56,6 +45,53 @@ import VisitorCard from '../../Pages/Visitormanagement/VisitorCard'
 import VisitorList from '../../Pages/Visitormanagement/VisitorList'
 import VisitorCheckOut from '../../Pages/Visitormanagement/VisitorCheckOut'
 import EmpProfile from '../../Pages/Profile/EmpProfile'
+import HrTaskEmployeeTable from '../../Pages/HrtaskmgmntModule/HrTaskEmployeeTable'
+import HrEmployeeIndividualTask from '../../Pages/HrtaskmgmntModule/HrEmployeeIndividualTask'
+import HodTaskEmployeeTable from '../../Pages/HodTaskMngmntModule/HodTaskEmployeeTable'
+import HodEmployeeIndividualTask from '../../Pages/HodTaskMngmntModule/HodEmployeeIndividualTask'
+import DepartmentHeadAssignTaskForm from '../../Pages/HodTaskMngmntModule/DepartmentHeadAssignTaskForm'
+import MyTask from '../../Pages/MyTaskMngmntModule/MyTask'
+import PopUp from '../Reusablecomponents/PopUp'
+import TotalTaskCard from '../TaskCards/TotalTaskCard'
+import CompletedTaskCard from '../TaskCards/CompleteTaskCard'
+import OngoingTaskCard from '../TaskCards/OngoingTaskCard'
+import MyAssignedTaskTable from '../../Pages/MyTaskMngmntModule/MyAssignedTaskTable'
+import TotalTaskTable from '../TaskTables/TotalTaskTable'
+import CompletedTaskTable from '../TaskTables/CompletedTaskTable'
+import OngoingTaskTable from '../TaskTables/OngoingTaskTable'
+import Attandance from '../../Pages/AttandanceManagement/HrAttandanceManagmnt'
+import PresentTable from '../AttandanceTables/PresentTable'
+import OnTimeTable from '../AttandanceTables/OnTimeTable'
+import LateTimeTable from '../AttandanceTables/LateTimeTable'
+import AbsentTable from '../AttandanceTables/AbsentTable'
+import HrCompleteAttandanceTable from '../../Pages/AttandanceManagement/CompleteAttandanceTable'
+
+import HodShiftMgmnt from '../../Pages/AttandanceManagement/HodShiftMgmnt'
+import HodOvertimeMgmnt from '../../Pages/AttandanceManagement/HodOvertimeMangmnt'
+import MyAttancanceTable from '../../Pages/EmployeeAttandance/MyAttendanceTable'
+import EmpFeedback from '../../Pages/EmployeeTraining/EmpFeedback'
+import TrainingEmp from '../../Pages/EmployeeTraining/TrainingEmp'
+import TrainingDetailsEmp from '../../Pages/EmployeeTraining/TrainingdetailsEmp'
+import AddTrainerTrainingTimeHod from '../../Pages/HodTraining/AddTrainerTrainingTimeHod'
+import AllotingTrainer from '../../Pages/HodTraining/AllotingTrainer'
+import ViewFeedback from '../../Pages/HodTraining/ViewFeedback'
+import TrainingdetailsHod from '../../Pages/HodTraining/TrainingdetailsHod'
+
+import AttendanceViewHod from '../../Pages/HodTraining/AttendanceViewHod'
+import AcceptTraining from '../../Pages/HrTraining/AcceptTraining'
+import TrainingdetailsHr from '../../Pages/HrTraining/TrainingdetailsHr'
+import ViewFeedbackHr from '../../Pages/HrTraining/ViewFeedbackHr'
+import EmployeeGrievance from '../../Pages/Grievance/EmployeeGrievance'
+import  GrievanceList from '../../Pages/Grievance/GrievanceList'
+import HrGrievanceTable from '../../Pages/Grievance/HrGrievanceTable'
+import AddLinkHod from '../../Pages/LearningHod/AddLinkHod'
+import ViewLinkEmployee from '../../Pages/LearningEmployee/ViewLinkEmployee'
+import AddLinkHr from '../../Pages/LearningHr/AddLinkHr'
+
+
+
+
+
 function Boxminidrawer() {
   return (
     <>
@@ -102,20 +138,39 @@ function Boxminidrawer() {
                 <Route path="/ageanalysis" element={<AgeGroupAnalysis/>} />
 
               {/* Task management */}
-                <Route path='/hrtaskmange' element={<HrTaskManage />} />
-                <Route path='/hremployeeindividualtask' element={<HrEmployeeIndividualTask />} />
-                <Route path='/departmentheadtaskmanage' element={<DepartmentHeadTaskManage />} />
-                <Route path='/hodemployeeindividualtask' element={<HodEmployeeIndividualTask />} />
-                <Route path='/departmentheadtaskassign' element={<DepartmentHeadAssignTaskForm />} />
-                <Route path='/mytask' element={<MyTask />} />
-                <Route path='/popup' element={<PopUp />} />
+                <Route path='/hrtaskemployeetable' element={<HrTaskEmployeeTable/>} />
+                <Route path='/hremployeeindividualtask' element={<HrEmployeeIndividualTask/>}/>
+                <Route path='/hodtaskemployeetable' element={<HodTaskEmployeeTable/>} />
+                <Route path='/hodemployeeindividualtask' element={< HodEmployeeIndividualTask/>} />
+                <Route path='/departmentheadtaskassign' element={< DepartmentHeadAssignTaskForm/>} />
+                <Route path='/mytask' element={<MyTask/>} />
+                <Route path='/popup' element={<PopUp/>} />
 
-                <Route path='/totaltasktable' element={<TotalTaskTable />} />
-                <Route path='/completedtasktable' element={<CompletedTaskTable />} />
-                <Route path='/ongoingtasktable' element={<OngoingTaskTable />} />
-                <Route path='/myassignedtasktable' element={<MyAssignedTaskTable />} />
-                {/* check  in check out */}
-                {/* <Route path='/' element={<CheckInCheckOut />} /> */}
+                <Route path='/totaltasktable' element={<TotalTaskTable/>} />
+                <Route path='/completedtasktable' element={<CompletedTaskTable/>} />
+                <Route path='/ongoingtasktable' element={<OngoingTaskTable/>} />
+                <Route path='/myassignedtasktable' element={<MyAssignedTaskTable/>} /> 
+                check  in check out
+                {/* <Route path='/' element={<CheckInCheckOut />} />
+
+                {/*Attandance Management*/}
+               <Route path='/attandance' element={<Attandance/>} />
+
+               <Route path='/presenttable' element={<PresentTable/>} />
+                <Route path='/ontimetable' element={<OnTimeTable/>} />
+                <Route path='/latetimetable' element={<LateTimeTable/>} />
+                <Route path='/absenttable' element={<AbsentTable/>} />
+                <Route path='/hrcompleteattandancetable' element={<HrCompleteAttandanceTable/>} />
+
+                <Route path='/hodassignshift' element={<HodShiftMgmnt/>} />
+                <Route path='/hodassignovertime' element={<HodOvertimeMgmnt/>} />
+
+                <Route path='/myattandance' element={<MyAttancanceTable/>} />
+
+
+
+
+
 
               {/* leaveused remain */}
                 <Route path="/LeaveUsedRemainInDetail" element={<LeaveUsedRemainInDetail/>} />
@@ -145,6 +200,38 @@ function Boxminidrawer() {
             <Route path="/VisitorCheckOut" element={<VisitorCheckOut />} />
 
             {/* Routing For Visitor Management */}
+
+
+
+            {/* Routing for Grievance */}
+            <Route path="/EmployeeGrievance" element={<EmployeeGrievance />} />
+            <Route path="/HrGrievanceTable" element={<HrGrievanceTable />} />
+            <Route path="/GrievanceList" element={<GrievanceList />} />
+
+ {/* Routing for Training Employee */}
+ <Route path="/EmpFeedback" element={<EmpFeedback />} />
+            <Route path="/TrainingEmp" element={<TrainingEmp />} />
+            <Route path="/TrainingDetailsEmp" element={<TrainingDetailsEmp />} />
+
+            {/* Routing for Training Hod */}
+            <Route path="/AddTrainerTrainingTimeHod" element={<AddTrainerTrainingTimeHod />} />
+            <Route path="/AllotingTrainer" element={<AllotingTrainer />} />
+            <Route path="/AttendanceViewHod" element={<AttendanceViewHod />} />
+            <Route path="/TrainingdetailsHod" element={<TrainingdetailsHod />} />
+            <Route path="/ViewFeedback" element={<ViewFeedback />} />
+
+
+              {/* Routing for Training Hr */}
+              <Route path="/AcceptTraining" element={<AcceptTraining  />} />
+            <Route path="/TrainingdetailsHr" element={<TrainingdetailsHr />} />
+            <Route path="/ViewFeedbackHr" element={<ViewFeedbackHr/>} />
+
+
+              {/* Routing for Employee Learning and Training */}
+              <Route path="/ViewLinkEmployee" element={<ViewLinkEmployee />} />
+            <Route path="/AddLinkHod" element={<AddLinkHod />} />
+            <Route path="/AddLinkHr" element={<AddLinkHr />} />
+
                   </Routes>
               
         {/* <Footer/>  */}
