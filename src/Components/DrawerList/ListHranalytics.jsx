@@ -34,20 +34,20 @@ function ListHranalytics() {
                   <ListItemIcon>
                     <PersonRemoveIcon/>
                   </ListItemIcon>
-                  <ListItemText primary="EMPLOYEE MOVEMENTS"/>
+                  <ListItemText primary="Employee Movements"/>
               </ListItemButton>
                 <ListItemButton onClick={()=>navigate("/genderanalysis")}>
                   <ListItemIcon>
                     <WcIcon/>
                   </ListItemIcon>
-                  <ListItemText primary="GENDER ANALYTICS"/>
+                  <ListItemText primary="Gender Analysis"/>
               </ListItemButton>
                 <ListItemButton onClick={()=>navigate("/ageanalysis")}>
                   <ListItemIcon>
                     <FolderSharedIcon/>
                   </ListItemIcon>
-                  <ListItemText primary="AGE ANALYTICS"/>
-              </ListItemButton>
+                  <ListItemText primary="Age Analysis"/>
+              </ListItemButton> 
               </List>
             </Collapse>
     </>

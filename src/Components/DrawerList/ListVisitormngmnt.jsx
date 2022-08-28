@@ -32,19 +32,19 @@ function ListVisitormngmnt() {
             <ListItemIcon>
             <NoteAltSharpIcon />
             </ListItemIcon>
-            <ListItemText primary="VISITOR PASS FORM" />
+            <ListItemText primary="Visitor Pass Form" />
           </ListItemButton>
           <ListItemButton onClick={() => navigate("/VisitorList")}>
             <ListItemIcon>
               <FormatListBulletedIcon />
             </ListItemIcon>
-            <ListItemText primary="VISITOR LIST " />
+            <ListItemText primary="Visitor List " />
           </ListItemButton>
           <ListItemButton onClick={() => navigate("/VisitorCheckOut")}>
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
-            <ListItemText primary="VISITOR CHECK OUT " />
+            <ListItemText primary="Visitor  CheckOut " />
           </ListItemButton>
             </List>
       </Collapse>

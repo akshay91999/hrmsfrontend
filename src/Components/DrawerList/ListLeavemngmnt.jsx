@@ -34,37 +34,37 @@ function ListLeavemngmnt() {
             <ListItemIcon>
               <NoteAltSharpIcon />
             </ListItemIcon>
-            <ListItemText primary="LEAVE FORM" />
+            <ListItemText primary="Leave Form" />
           </ListItemButton>
           <ListItemButton onClick={() => navigate("/LeaveApproval")}>
             <ListItemIcon>
             <AssignmentTurnedInSharpIcon />
             </ListItemIcon>
-            <ListItemText primary="LEAVE APPROVAL BY HR" />
+            <ListItemText primary="Leave Approval(HR)" />
           </ListItemButton>
           <ListItemButton onClick={() => navigate("/EmpLeaveList")}>
             <ListItemIcon>
             <ListSharpIcon />
             </ListItemIcon>
-            <ListItemText primary="LEAVES APPLIED" />
+            <ListItemText primary="Leaves Applied" />
           </ListItemButton>
           <ListItemButton onClick={() => navigate("/LeaveApprovedList")}>
             <ListItemIcon>
             <PlaylistAddCheckSharpIcon />
             </ListItemIcon>
-            <ListItemText primary="LEAVE APPROVED LIST" />
+            <ListItemText primary="Leave Approved List" />
           </ListItemButton>
           <ListItemButton onClick={() => navigate("/LeaveRejectedList")}>
             <ListItemIcon>
             <PlaylistRemoveIcon />
             </ListItemIcon>
-            <ListItemText primary="LEAVE REJECTED LIST" />
+            <ListItemText primary="Leave Rejected List" />
           </ListItemButton>
           <ListItemButton onClick={() => navigate("/NumberOfLeaveAllot")}>
             <ListItemIcon>
             <HowToRegIcon />
             </ListItemIcon>
-            <ListItemText primary="LEAVE ALLOT" />
+            <ListItemText primary="Leave Allot" />
           </ListItemButton>
      </List>
       </Collapse>

@@ -29,13 +29,13 @@ function ListTravelmngmnt() {
             <ListItemIcon>
               <EventAvailableIcon />
             </ListItemIcon>
-            <ListItemText primary="BOOK TRIPS" />
+            <ListItemText primary="Book Trips" />
           </ListItemButton>
           <ListItemButton onClick={() => navigate("/TripApproval")}>
             <ListItemIcon>
               <NoCrashIcon />
             </ListItemIcon>
-            <ListItemText primary="TRIP APPROVAL" />
+            <ListItemText primary="Trip Approval" />
           </ListItemButton>
       </List>
       </Collapse>

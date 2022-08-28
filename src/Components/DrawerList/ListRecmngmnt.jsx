@@ -36,55 +36,55 @@ function ListRecmngmnt() {
                 <ListItemIcon>
                     <DynamicFormIcon/>
                 </ListItemIcon>
-                <ListItemText primary="ADD VACCANCY" />
+                <ListItemText primary="Add Vaccancy" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/viewvaccancy")}>
                 <ListItemIcon>
                     <PreviewIcon/>
                 </ListItemIcon>
-                <ListItemText primary="VIEW VACCANCY" />
+                <ListItemText primary="View Vaccancy" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/candidatelist")}>
                 <ListItemIcon>
                     <FormatListBulletedIcon/>
                 </ListItemIcon>
-                <ListItemText primary="CANDIDATE LIST" />
+                <ListItemText primary="Candidate List" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/selectedcandidatelist")}>
                 <ListItemIcon>
                     <FormatListBulletedIcon/>
                 </ListItemIcon>
-                <ListItemText primary="SELECTED LIST" />
+                <ListItemText primary="Selected List" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/selectedlist")}>
                 <ListItemIcon>
                     <FormatListBulletedIcon/>
                 </ListItemIcon>
-                <ListItemText primary="SELECTED LIST (HR)" />
+                <ListItemText primary="Selected List (HR)" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/addcandidate")}>
                 <ListItemIcon>
                 <AddIcon/>
                 </ListItemIcon>
-                <ListItemText primary="ADD CANDIDATE" />
+                <ListItemText primary="Add Candidate" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/vacancytobefilled")}>
                 <ListItemIcon>
                 <PlaylistAddCheckIcon/>
                 </ListItemIcon>
-                <ListItemText primary="VACANCY TO BE FILLED" />
+                <ListItemText primary="Vacancy To Be Filled" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/vacancytobefilledrecruiters")}>
                 <ListItemIcon>
                 <PlaylistAddCheckIcon/>
                 </ListItemIcon>
-                <ListItemText primary="VACANCY TO BE FILLED" />
+                <ListItemText primary="Vacancy To Be Filled" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/blacklistedcandidate")}>
                 <ListItemIcon>
                 <ContrastIcon/>
                 </ListItemIcon>
-                <ListItemText primary="BLACKLISTED CANDIDATE" />
+                <ListItemText primary="Blacklisted Candidate" />
             </ListItemButton>
         </List>
         </Collapse>

@@ -35,31 +35,31 @@ function ListEmpmngmnt() {
                 <ListItemIcon>
                     <AddIcon/>
                 </ListItemIcon>
-                <ListItemText primary="ADD EMPLOYEE" />
+                <ListItemText primary="Add Employee" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/employeelist")}>
                 <ListItemIcon>
                     <RemoveRedEyeOutlinedIcon/>
                 </ListItemIcon>
-                <ListItemText primary="VIEW EMPLOYEE" />
+                <ListItemText primary="View Employee" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/resignationform")}>
                 <ListItemIcon>
                     <ExitToAppIcon/>
                 </ListItemIcon>
-                <ListItemText primary="RESIGNATION FORM" />
+                <ListItemText primary="Resignation Form" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/resignationtable")}>
                 <ListItemIcon>
                     <TableRowsIcon/>
                 </ListItemIcon>
-                <ListItemText primary="RESIGNATION TABLE" />
+                <ListItemText primary="Resignation Table" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/resignedemployees")}>
                 <ListItemIcon>
                     <TableRowsIcon/>
                 </ListItemIcon>
-                <ListItemText primary="RESIGNED EMPLOYEES" />
+                <ListItemText primary="Resigned Employees" />
             </ListItemButton>
         </List>
         </Collapse>
