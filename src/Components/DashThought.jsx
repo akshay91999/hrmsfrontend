@@ -4,7 +4,7 @@ import React from 'react'
 function DashThought() {
   return (
     <>
-    <Card sx={{ borderRadius: "10px",p:'2%',minHeight:'350px',background:'linear-gradient(#ffffff,#ccffff,#CAE6F5)'}}>
+    <Card sx={{ borderRadius: "10px",p:'2%',minHeight:'300px',height:'100%',background:'linear-gradient(#ffffff,#ccffff,#CAE6F5)'}}>
     <Box sx={{ pt:'20%' }}>
     <Typography  variant="h5" align="center" sx={{ fontFamily:'Lucida Handwriting,Helvetica, sans-serif' }}>
     "When something is important enough, you do it even if the odds are not in your favor."

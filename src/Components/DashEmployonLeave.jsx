@@ -16,7 +16,7 @@ import React from "react";
 function DashEmployonLeave() {
   return (
     <>
-      <Card sx={{ borderRadius: "10px", p: "2%" ,maxHeight:'350px'}}>
+      <Card sx={{ borderRadius: "10px", p: "2%",height:'100%'}}>
         <Box sx={{ pt: "3%" }}>
           <Typography variant="Button" sx={{ fontWeight: "600" }}>
             EMPLOYEE ON LEAVE
@@ -67,20 +67,6 @@ function DashEmployonLeave() {
             <ListItemText
               sx={{ display: "flex", justifyContent: "right" }}
               primary="27 jul 2022"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar
-                alt="Remy Sharp"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSgQXNlVXoCtR7uE7xoOANPOLhZM3Vk22XMw&usqp=CAU"
-                sx={{ width: 50, height: 50 }}
-              />
-            </ListItemAvatar>
-            <ListItemText primary="Prasoon" secondary="Backend Devoloper" />
-            <ListItemText
-              sx={{ display: "flex", justifyContent: "right" }}
-              primary="26 jul 2022"
             />
           </ListItem>
         </List>

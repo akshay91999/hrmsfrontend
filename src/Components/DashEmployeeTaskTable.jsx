@@ -31,7 +31,7 @@ const rows = [
 export default function EmployeeTaskTable() {
   return (
     <>
-      <Card sx={{ borderRadius: "10px" }}>
+      <Card sx={{ borderRadius: "10px"}}>
       <Grid container spacing={2}>
             <Grid item xs={6} lg={6} md={6} sm={6}>
               <Box sx={{ pt:'2%' }}>

@@ -45,7 +45,7 @@ function Drawerlist() {
         sx={{
           width: "100%",
           maxWidth: 360,
-          background: "linear-gradient(#CAE6F5,#1565C0)",
+          background: "linear-gradient(#8B8B8B,#1565C0)",
           color: "white",
         }}
         component="nav"

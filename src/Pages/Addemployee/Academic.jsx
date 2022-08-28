@@ -3,11 +3,12 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Btn from "../../Components/Reusablecomponents/Btn";
 import AcademicForm from "../../Components/AcademicForm";
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 
 
 export default function Academic() {
-
+  const params=useParams()
+  console.log(params)
   let navigate=useNavigate()
   return (
     <>

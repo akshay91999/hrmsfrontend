@@ -3,16 +3,27 @@ import React, { useState } from "react";
 import Upload from "../../Components/Upload";
 import Btn from "../../Components/Reusablecomponents/Btn";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+
+
 function Upld() {
   const params=useParams();
   console.log(params)
-  let file=null
+
+  const [file,selectedFile]=useState(null)
+  
+  // for setting response message 
+  const [photo,setPhoto]=useState(null)
+  const [cv,setCv]=useState(null)
+
   let navigate = useNavigate();
+
   const handlefilechange = (e) => {
-    file=e.target.files[0];
-    console.log(file); 
+    selectedFile(e.target.files[0])
   };
-  const handlefileupload=()=>{
+  console.log(file); 
+  const handlephotoupload=(e)=>{
+    e.preventDefault();
     if(file.type!="image/jpg" && file.type!="image/jpeg" && file.type!="image/png"){
       window.alert("File does not support. You must use .png or .jpg")
       return(false)
@@ -22,7 +33,60 @@ function Upld() {
       return(false)
     }
     else{
-    window.alert("uploaded")
+      const formData=new FormData()
+      formData.append("document",file)
+      formData.append("doc_type",'photo')
+      axios.post("http://localhost:5000/upload/"+params.basicId,formData,{
+        headers:{"Content-Type":"application/json"},
+      })
+      .then(function(response){
+        console.log(response);
+        setPhoto(response.data.message)
+        if(response.data.message==="success"){
+          window.alert("successfully uploaded")
+        }
+        else{
+          window.alert(response.data.message)
+        }
+        
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+  }
+  }
+
+  const handlecvupload=(e)=>{
+    e.preventDefault();
+    if(file.type!="application/pdf"){
+      window.alert("File does not support You must use pdf")
+      return(false)
+    } 
+    else if(file.size>100000){
+      window.alert("Please upload a file smaller than 1mb")
+      return(false)
+    }
+    else{
+      const formData=new FormData()
+      formData.append("document",file)
+      formData.append("doc_type","cv")
+      axios.post("http://localhost:5000/upload/"+params.basicId,formData,{
+        headers:{"Content-Type":"application/json"},
+      })
+      .then(function(response){
+        console.log(response);
+        setCv(response.data.message)
+        if(response.data.message==="success"){
+          window.alert("successfully uploaded")
+        }
+        else{
+          window.alert(response.data.message)
+        }
+        
+      })
+      .catch(function(error){
+        console.log(error)
+      })
   }
   }
   return (
@@ -45,8 +109,8 @@ function Upld() {
             File Uploads
           </Typography>
         </legend>
-        <Upload text="Upload photo" onChange={handlefilechange} onSubmit={handlefileupload} />
-        <Upload text="Upload CV" onChange={handlefilechange} onSubmit={handlefileupload}/>
+        <Upload text="Upload photo" onChange={handlefilechange} onSubmit={handlephotoupload} />
+        <Upload text="Upload CV" onChange={handlefilechange} onSubmit={handlecvupload}/>
       </fieldset>
       {/* <Box sx={{ p: "2%" }}>
         <Btn text="Save" />
@@ -56,8 +120,9 @@ function Upld() {
           <Btn text="Back" click={() => navigate(-1)} />
           <Btn
             text="Next"
-            click={() => {
-              navigate("/academic");
+            click={() => {if(photo===cv==="success"){
+              navigate("/academic/"+params.basicId);
+            }
             }}
           />
         </Box>

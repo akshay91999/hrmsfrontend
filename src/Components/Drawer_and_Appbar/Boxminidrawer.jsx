@@ -74,7 +74,7 @@ function Boxminidrawer() {
                 {/* dashboard employee  and add and view employ*/}
                 <Route path="/" element={<DashboardEmploy/>} />
                 <Route path="/addemployee" element={<Basic/>} />
-                <Route path="/academic" element={<Academic/>} />
+                <Route path="/academic/:basicId" element={<Academic/>} />
                 <Route path="/experience" element={<Exp/>} />
                 <Route path="/upload/:basicId" element={<Upld/>} />
                 <Route path="/skill" element={<Skills/>} />

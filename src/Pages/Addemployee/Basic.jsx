@@ -134,42 +134,49 @@ function Basic() {
     state: values.permanantstate,
     country: values.permanantcountry,
     pincode: values.permanantpincode,
+    currentaddress: values.currentaddress,
+    currentstate: values.currentstate,
+    currentpincode: values.currentpincode,
+    currentcountry: values.currentcountry,
     fathername,
     fcontactnumber,
     mothername,
     mcontactnumber,
-    maritalstatus:values.martialstatus,
+    maritalstatus: values.martialstatus,
+    spousename: values.spousename,
+    scontactnumber: values.scontactnumber,
     contactnumber,
     altcontactnumber,
     email: values.emailid,
     altemail: values.altemailid,
   };
-  
+
   const handlesubmit = () => {
     // loging values
     // console.log(values)
-    console.log(user)
+    console.log(user);
     if (validate()) {
-      
-      axios.post(
-        "http://localhost:5001/basics",
-        user ,
-        {
+      axios
+        .post("http://localhost:5000/basics", user, {
           headers: { "Content-Type": "application/json" },
-        }
-      ) .then(function (response) {
+        })
+        .then(function (response) {
           console.log(response);
-          window.alert("successfully submited");
-          let id={id:response.data.id}
-          console.log(id)
 
-          navigate("/upload/"+id)
+          let id = response.data.data;
+          console.log(id);
+          if (response.data.message === "success") {
+            window.alert("successfully submited");
+            navigate("/upload/" + id);
+          }
+          else{
+            window.alert(response.data.message)
+          }
         })
         .catch(function (error) {
           console.log(error);
-        });    
+        });
     }
-
   };
 
   let navigate = useNavigate();

@@ -18,7 +18,7 @@ import CampaignIcon from "@mui/icons-material/Campaign";
 function DashAnnouncements() {
   return (
     <>
-      <Card sx={{ borderRadius: "10px", p: "2%" ,minHeight:'350px'}}>
+      <Card sx={{ borderRadius: "10px", p: "2%" ,minHeight:'300px',height:'100%'}}>
         <Box sx={{ pt: "3%" }}>
           <Typography variant="Button" sx={{ fontWeight: "600" }}>
             ANNOUNCEMENT
