@@ -10,9 +10,9 @@ const rows = [
     id: 1220,
     employeename: "Prasoon P",
     department:"IT",
-    date:"",
-    grievance:"",
-    solution:"",
+    date:"10/02/2022",
+    grievance:"Need Extra Salary",
+    solution:"Need It",
     // status:" "
    
   },
@@ -21,9 +21,9 @@ const rows = [
     id: 1221,
     employeename: "Akshay p v",
     department:"IT",
-    date:"",
-    grievance:"",
-    solution:"",
+    date:"10/02/2022",
+    grievance:"Need Extra Salary",
+    solution:"Need It",
     // status:""
    
    
@@ -33,9 +33,9 @@ const rows = [
     id: 1222,
     employeename: "Aswanth saseendran",
     department:"IT",
-    date:"",
-    grievance:"",
-    solution:"",
+    date:"10/02/2022",
+    grievance:"Need Extra Salary",
+    solution:"Need It",
     // status:""
    
    
@@ -45,9 +45,9 @@ const rows = [
     id: 1223,
     employeename: "Asraya Mohan",
     department:"IT",
-    date:"",
-    grievance:"",
-    solution:"",
+    date:"10/02/2022",
+    grievance:"Need Extra Salary",
+    solution:"Need It",
     // status:""
    
   },
@@ -56,9 +56,9 @@ const rows = [
     id: 1224,
     employeename: "Anupama Balan",
     department:"IT",
-    date:"",
-    grievance:"",
-    solution:"",
+    date:"10/02/2022",
+    grievance:"Need Extra Salary",
+    solution:"Need It",
     // status:""
    
    
@@ -67,9 +67,9 @@ const rows = [
     id: 1225,
     employeename: "Megha T K",
     department:"IT",
-    date:"",
-    grievance:"",
-    solution:"",
+    date:"10/02/2022",
+    grievance:"Need Extra Salary",
+    solution:"Need It",
     // status:""
    
    
