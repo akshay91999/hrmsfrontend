@@ -75,7 +75,7 @@ function Vaccancyform() {
       >
         <Dropdownlist
           name="departmentname"
-          label="departmentname"
+          label="Department Name"
           value={values.departmentname}
           handleInputChange={handleInputChange}
           options={getDepartmentname()}
@@ -90,7 +90,7 @@ function Vaccancyform() {
           error={errors.position}
         />
         <Textfield
-          label="Number of vaccancies"
+          label="Number Of Vaccancies"
           name="vaccancynumber"
           value={values.vaccancynumber}
           onChange={handleInputChange}
@@ -104,7 +104,7 @@ function Vaccancyform() {
           error={errors.yoeneeded}
         />
         <Calender
-          text="needed with in"
+          text="Needed Within"
           name="neededwithin"
           value={values.neededwithin}
           onChange={handleInputChange}

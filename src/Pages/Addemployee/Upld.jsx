@@ -22,6 +22,14 @@ function Upld() {
     selectedFile(e.target.files[0])
   };
   console.log(file); 
+
+  const nextButton=()=>{
+    console.log(photo)
+    console.log(cv)
+   if(photo==="success" && cv==="success"){
+      navigate("/academic/"+params.basicId);
+    }
+  }
   const handlephotoupload=(e)=>{
     e.preventDefault();
     if(file.type!="image/jpg" && file.type!="image/jpeg" && file.type!="image/png"){
@@ -120,10 +128,7 @@ function Upld() {
           <Btn text="Back" click={() => navigate(-1)} />
           <Btn
             text="Next"
-            click={() => {if(photo===cv==="success"){
-              navigate("/academic/"+params.basicId);
-            }
-            }}
+            click={nextButton}
           />
         </Box>
       </Box>

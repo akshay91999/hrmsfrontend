@@ -23,7 +23,7 @@ function Job() {
       </fieldset>
       <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2,p:'1%' }}>
             <Btn text="Back" click={() => navigate(-1)} />
-            <Btn text="Next" click={() => {navigate('/register')}} />
+            <Btn text="Next" click={() => {navigate('/')}} />
       </Box>
        </Box>
     </div>

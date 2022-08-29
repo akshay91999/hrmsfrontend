@@ -32,7 +32,7 @@ function Skills() {
             component="div"
             sx={{ color: "#1565C0" }}
           >
-            skills
+            Skills
           </Typography>
         </legend>
        

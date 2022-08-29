@@ -66,14 +66,15 @@ return (
           gridTemplateColumns: { sm: "1fr" },
           gap: 2,
           width: "100%",
+          pl:'5%'
         }}
       >
-        <Textfield label="trainingname" name="trainingname" id="trainingname" value={values.trainingname} error={errors.trainingname} onChange={handleInputChange} />
-        <Textfield label="trainer" name="trainer" id="trainer" value={values.trainer} error={errors.trainer} onChange={handleInputChange} />       
-        <Textfield label="timeschedular" name="timeschedular" id="timeschedular" value={values.timeschedular} error={errors.trainingname} onChange={handleInputChange} />
+        <Textfield label="Training Name" name="trainingname" id="trainingname" value={values.trainingname} error={errors.trainingname} onChange={handleInputChange} />
+        <Textfield label="Trainer" name="trainer" id="trainer" value={values.trainer} error={errors.trainer} onChange={handleInputChange} />       
+        <Textfield label="Time Schedular" name="timeschedular" id="timeschedular" value={values.timeschedular} error={errors.trainingname} onChange={handleInputChange} />
 
 
-        <Calender text=" date" name="calender" value={values.calender} onChange={handleInputChange} error={errors.calender} />
+        <Calender text="Date" name="calender" value={values.calender} onChange={handleInputChange} error={errors.calender} />
 
          
           {/* <Box sx={{ pt: "2%" }}>

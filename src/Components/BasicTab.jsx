@@ -1,45 +1,80 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import PersonalDetails from '../Pages/Viewemployee/PersonalDetails';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import PersonalDetails from '../Pages/Viewemployee/PersonalDetails'
 import AcademicDetails from '../Pages/Viewemployee/AcademicDetails';
-import ViewJobDetails from '../Pages/Viewemployee/ViewJobDetails';
 import ExperienceDetails from '../Pages/Viewemployee/ExperienceDetails';
+import ViewJobDetails from '../Pages/Viewemployee/ViewJobDetails';
+import { Grid } from '@mui/material';
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
-export default function BasicTab() {
-  const [value, setValue] = React.useState('1');
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 0 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+export default function BasicTabs() {
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Box sx={{ width: '100%', typography: 'body1' }}>
-      <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="PERSONAL DETAILS" value="1" />
-            <Tab label="ACADEMIC DETAILS" value="2" />
-            <Tab label="EXPERIENCE DETAILS" value="3" />
-            <Tab label="JOB DETAILS" value="4" />
-          </TabList>
-        </Box>
-        <TabPanel value="1">
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>  
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" sx={{
+            '& .MuiTabs-flexContainer': {
+              flexWrap: 'wrap',
+            },
+          }}>      
+          <Tab label="Personal Details" {...a11yProps(0)} />
+          <Tab label="Academic Details" {...a11yProps(1)} />
+          <Tab label="Experience Details" {...a11yProps(2)} />
+          <Tab label="Job Details" {...a11yProps(3)} />      
+        </Tabs>  
+      </Box>
+      <TabPanel value={value} index={0}>
       <PersonalDetails/>
-        </TabPanel>
-        <TabPanel value="2">
-          <AcademicDetails/>
-        </TabPanel>
-        <TabPanel value="3">
-          <ExperienceDetails/>
-        </TabPanel>
-        <TabPanel value="4">
-          <ViewJobDetails/>
-        </TabPanel>
-      </TabContext>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+      <AcademicDetails/>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+      <ExperienceDetails/>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+      <ViewJobDetails/>
+      </TabPanel>
     </Box>
   );
 }

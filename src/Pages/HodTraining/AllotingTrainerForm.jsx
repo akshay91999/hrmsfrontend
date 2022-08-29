@@ -64,7 +64,7 @@ function AllotingTrainerForm() {
         }}
       >
         <Calender
-          text="calender"
+          text="Calender"
           name="calender"
           value={values.calender}
           onChange={handleInputChange}
@@ -73,7 +73,7 @@ function AllotingTrainerForm() {
          
         <Dropdownlist
           name="trainingname"
-          label="trainingname"
+          label="Training Name"
           value={values.trainingname}
           handleInputChange={handleInputChange}
           options={getDepartmentname()}
@@ -81,7 +81,7 @@ function AllotingTrainerForm() {
         />
         <Dropdownlist
           name="employeename"
-          label="employeename"
+          label="Employee Name"
           value={values.employeename}
           handleInputChange={handleInputChange}
           options={getDepartmentname()}
@@ -89,7 +89,7 @@ function AllotingTrainerForm() {
         />
         <Dropdownlist
           name="trainer"
-          label="trainer"
+          label="Trainer"
           value={values.trainer}
           handleInputChange={handleInputChange}
           options={getDepartmentname()}
@@ -97,7 +97,7 @@ function AllotingTrainerForm() {
         />
         <Dropdownlist
           name="timeschedule"
-          label="timeschedule"
+          label="Time Schedule"
           value={values.timeschedule}
           handleInputChange={handleInputChange}
           options={getDepartmentname()}

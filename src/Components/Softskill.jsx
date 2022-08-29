@@ -11,7 +11,7 @@ function Softskill(props) {
   return (
     <>
      <Typography variant="h6" gutterBottom component="div">
-         Soft skills
+         Soft Skills
         </Typography>
       
         <Box component="form"

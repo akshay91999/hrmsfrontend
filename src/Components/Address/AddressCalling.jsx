@@ -18,7 +18,7 @@ function AddressCalling(props) {
   return (
     <>
       <Address
-        text="Permanant address"
+        text="Permanant Address"
         address="permanantaddress"
         state="permanantstate"
         country="permanantcountry"
@@ -55,7 +55,7 @@ function AddressCalling(props) {
       </Typography>
       {check ? null : (
         <Address
-          text="Current address"
+          text="Current Address"
           address="currentaddress"
           state="currentstate"
           country="currentcountry"

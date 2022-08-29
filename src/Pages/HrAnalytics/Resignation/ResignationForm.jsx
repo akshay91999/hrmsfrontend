@@ -87,7 +87,7 @@ function ResignationForm() {
           />
           <Dropdownlist
             name="departmentname"
-            label="departmentname"
+            label="Department Name"
             value={values.departmentname}
             handleInputChange={handleInputChange}
             options={getDepartmentname()}
@@ -104,7 +104,7 @@ function ResignationForm() {
 
           <MultiLineTextfield
             label="Reason"
-            name="reason"
+            name="Reason"
             value={values.reason}
             error={errors.reason}
             onChange={handleInputChange}

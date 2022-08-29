@@ -40,7 +40,6 @@ const initialFvalues = {
 function AcademicForm() {
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
-
   const validate = () => {
     let temp = {};
     temp.school = values.school ? "" : "This field is required";
@@ -119,7 +118,7 @@ function AcademicForm() {
         />
         <Dropdownlist
           name="courseid"
-          label="course"
+          label="Course"
           value={values.courseid}
           handleInputChange={handleInputChange}
           options={getCourseid()}
@@ -128,7 +127,7 @@ function AcademicForm() {
 
         <Dropdownlist
           name="branchid"
-          label="branch"
+          label="Branch"
           value={values.branchid}
           handleInputChange={handleInputChange}
           options={getBranchid()}
@@ -136,7 +135,7 @@ function AcademicForm() {
         />
         <Dropdownlist
           name="coursetype"
-          label="type"
+          label="Type"
           value={values.coursetype}
           handleInputChange={handleInputChange}
           options={getBranchtype()}
@@ -162,7 +161,7 @@ function AcademicForm() {
           />
           <Dropdownlist
             name="markid"
-            label="type"
+            label="Type"
             value={values.markid}
             handleInputChange={handleInputChange}
             options={getMarkid()}

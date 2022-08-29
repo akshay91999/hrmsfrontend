@@ -50,20 +50,21 @@ function AddLinkHrForm() {
           gridTemplateColumns: { sm: "1fr" },
           gap: 2,
           width: "100%",
+          pl:'5%'
         }}
       >
        
 
         <Dropdownlist
           name="department"
-          label="department"
+          label="Department"
           value={values.department}
           handleInputChange={handleInputChange}
           options={getDepartmentname()}
           error={errors.department}
         />
-        <Textfield label="add_link" name="add_link" id="add_link" value={values.add_link} error={errors.add_link} onChange={handleInputChange} />
-        <Textfield label="add_description" name="add_description" id="add_description" value={values.add_description} error={errors.add_description} onChange={handleInputChange} />
+        <Textfield label="Add Link" name="add_link" id="add_link" value={values.add_link} error={errors.add_link} onChange={handleInputChange} />
+        <Textfield label="Add Description" name="add_description" id="add_description" value={values.add_description} error={errors.add_description} onChange={handleInputChange} />
 
         {/* <Textfield label=" add_description" name=" add_description" id=" add_description" value={values.add_description} error={errors.add_description} onChange={handleInputChange} /> */}
       </Box>

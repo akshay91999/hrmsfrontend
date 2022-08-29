@@ -90,7 +90,7 @@ function Expdtl() {
           />
           <Dropdownlist
             name="employeetype"
-            label="type"
+            label="Type"
             value={values.employeetype}
             handleInputChange={handleInputChange}
             options={getBranchtype()}

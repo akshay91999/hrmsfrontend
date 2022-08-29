@@ -88,7 +88,7 @@ function JobDetails() {
           />
           <Dropdownlist
             name="jobtype"
-            label="type"
+            label="Type"
             value={values.jobtype}
             handleInputChange={handleInputChange}
             options={getBranchtype()}

@@ -34,7 +34,7 @@ export default function BookTrips() {
   };
   return (
     <>
-      <Paper sx={{ pl: "3%", m: "2%" }}>
+      <Paper sx={{ pl: "3%", m: "2%",pb:"2%" }}>
         <Typography
           variant="h4"
           align="center"
@@ -136,7 +136,7 @@ export default function BookTrips() {
               {...(errors.location && { error: true, helperText: errors.location })}
             />
             </Box>
-            <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2, p: '1%' }}>
+            <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2, p: '2%' }}>
                 <Btn text="Confirm Booking" click={handlesubmit} />
             </Box>
           </Grid>

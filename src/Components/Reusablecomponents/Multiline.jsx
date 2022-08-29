@@ -18,9 +18,10 @@ export default function MultilineTextFields({text,name,onChange,error}) {
     //   noValidate
     //   autoComplete="off"
     // >
-      <div>
-     
-        <TextField size='small' sx={{ width:'90%','& .MuiOutlinedInput-root': {
+   
+    <>
+        <TextField size='small' sx={{ width:'90%',
+      '& .MuiOutlinedInput-root': {
       '& fieldset': {
         borderColor: '#1565C0',
       },
@@ -32,21 +33,17 @@ export default function MultilineTextFields({text,name,onChange,error}) {
       },
     }
     }}
-          id="outlined-multiline-static"
+          
           label={text}
           multiline
           rows={4}
           name={name}
-          
           onChange={onChange}
           {...(error && {error:true,helperText:error})}
-          InputLabelProps={{
-            shrink: true,}}
+          // InputLabelProps={{
+          //   shrink: true,}}
           // defaultValue="Default Value"
         />
-      </div>
-      
-    
-    // </Box>
+    </>
   );
 }

@@ -88,41 +88,6 @@ const columns = [
   { field: "trainer", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "checkin", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "checkout", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-//   {
-//     field: "Highest_Qualification",
-//     width: 150,
-//     headerClassName: "super-app-theme--header",
-//     headerAlign: 'center'
-//   },
-//   {
-//     field: "Year_Of_Experience",
-//     width: 150,
-//     headerClassName: "super-app-theme--header",
-//     headerAlign: 'center'
-//   },
-//   {
-//     field: "Cv",
-//     width: 100,
-//     headerClassName: "super-app-theme--header",
-//     headerAlign: 'center',
-//     renderCell: (params) => (
-//       <strong>
-//         {/* <Eyeiconbutton/> */}
-//       </strong>
-//     ),
-//   },
-//   {
-//     field: "Short_List",
-//     width: 150,
-//     headerClassName: "super-app-theme--header",
-//     headerAlign: 'center',
-//     renderCell: (params) => (
-//         <strong>
-//         {/* <Acceptrejectbutton/> */}
-//         </strong>
-//       ),
-//   },
- 
 ];
 
 export default function AttendanceViewHod() {
@@ -136,7 +101,7 @@ export default function AttendanceViewHod() {
         align="center"
         sx={{ color: "#1565C0", pb: "2%" }}
       >
-        Training attendance
+        Training Attendance
       </Typography>
      
       <Box

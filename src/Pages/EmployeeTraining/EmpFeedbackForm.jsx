@@ -9,6 +9,7 @@ import Textarea from "../../Components/Reusablecomponents/Textarea";
 // import useForm from '../../Components/Validation/useForm';
 // import Calendar from "../Reusable/Calendar";
 import useForm from "../../Components/Validation/useForm";
+import MultiLineTextfield from "../../Components/Reusablecomponents/MultiLineTextfield";
 
 const initialFvalues = {
   empid:"",
@@ -55,6 +56,7 @@ function AllotingTrainerForm() {
           gridTemplateColumns: { sm: "1fr" },
           gap: 2,
           width: "100%",
+          pl: "5%",
          
         
         }}
@@ -64,17 +66,17 @@ function AllotingTrainerForm() {
        
         <Dropdownlist
           name="trainingdone"
-          label="trainingdone"
+          label="Training Done"
           value={values.trainingdone}
           handleInputChange={handleInputChange}
           options={getDepartmentname()}
           error={errors.trainingdone}
         />
-        <Textarea
+        <MultiLineTextfield
          name="feedback"
-         label="feedback"
+         label="Feedback"
          value={values.feedback}
-         handleInputChange={handleInputChange}
+         onChange={handleInputChange}
          error={errors.feedback}
         
         />

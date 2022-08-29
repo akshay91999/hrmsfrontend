@@ -55,7 +55,7 @@ function TrainingEmpForm() {
       >
         <Dropdownlist
           name="trainingname"
-          label="trainingname"
+          label="Training Name"
           value={values.trainingname}
           handleInputChange={handleInputChange}
           options={getDepartmentname()}
@@ -70,7 +70,7 @@ function TrainingEmpForm() {
         />
          <Dropdownlist
           name="timeschedule"
-          label="timeschedule"
+          label="Time Schedule"
           value={values.timeschedule}
           handleInputChange={handleInputChange}
           options={getDepartmentname()}

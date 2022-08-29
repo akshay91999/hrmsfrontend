@@ -41,7 +41,7 @@ function Address(props) {
         >
   
           <Textfeild
-            label="address"
+            label="Address"
             name={address}
             value={values[address]}
             onChange={handleInputChange}

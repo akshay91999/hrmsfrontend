@@ -9,7 +9,7 @@ function Hardskill(props) {
     <>
       
         <Typography variant="h6" gutterBottom component="div">
-         Hard skills
+         Hard Skills
         </Typography>
       
         <Box component="form"
@@ -23,7 +23,7 @@ function Hardskill(props) {
           }}>
           <TextField
           name={name}
-          label="hard skill"
+          label="Hard Skill"
           multiline
           rows={4}
           value={values.hardskill}
