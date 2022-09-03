@@ -25,6 +25,7 @@ import {
 import Dropdownlist from "./Reusablecomponents/Dropdownlist";
 import Upload from "./Upload";
 
+
 const initialFvalues = {
   school: "",
   board: "",
@@ -38,6 +39,7 @@ const initialFvalues = {
 };
 
 function AcademicForm() {
+ 
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
   const validate = () => {

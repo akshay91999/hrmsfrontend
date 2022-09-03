@@ -10,7 +10,7 @@ function ListDashboard() {
     let navigate = useNavigate();
   return (
     <>
-       <ListItemButton onClick={() => navigate("/")}>
+       <ListItemButton onClick={() => navigate("/dashboard")}>
                 <ListItemIcon>
                     <DashboardIcon/>
                 </ListItemIcon>

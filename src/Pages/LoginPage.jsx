@@ -16,9 +16,9 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import LockIcon from "@mui/icons-material/Lock";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Textfield from "../Components/Reusablecomponents/Textfield";
 import Dropdownlist from "../Components/Reusablecomponents/Dropdownlist";
 import useForm from "../Components/Validation/useForm";
@@ -29,9 +29,13 @@ const initialFvalues = {
   email: "",
   password: "",
 };
+
+
  
 
-function LoginPage() {
+function LoginPage(props) {
+  const {setLoggedIn}=props
+  const navigate=useNavigate()
     const options=[{id:1,title:'super admin'}]
   const { values, setValues, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
@@ -46,13 +50,18 @@ function LoginPage() {
         return Object.values(temp).every((x) => x === "");
     }
     const handlesubmit=()=>{
+      
         if(validate()){
             window.alert('signed in successfully')
+            setLoggedIn(true)
+            navigate("/dashboard")
+           
         }
     }
   return (
     <>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
+        {localStorage.setItem('Name','Login')}
         <CssBaseline />
         <Card sx={{mt:10,p:"5%"}}>
         <Box

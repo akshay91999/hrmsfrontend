@@ -18,7 +18,7 @@ export default function DashLeaveUsedRemain() {
         >
           <Grid container>
             <Grid item xs={6} lg={6} md={6} sm={6}>
-            <Box sx={{ pt:'3%' }}>
+            <Box sx={{ pt:'3%',pl:'2%' }}>
               <Typography variant="Button" sx={{ fontWeight: "600"}}>
                 YOUR LEAVE
               </Typography>

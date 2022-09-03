@@ -17,7 +17,7 @@ function DashEmployonLeave() {
   return (
     <>
       <Card sx={{ borderRadius: "10px", p: "2%",height:'100%'}}>
-        <Box sx={{ pt: "3%" }}>
+        <Box sx={{ p: "3%" }}>
           <Typography variant="Button" sx={{ fontWeight: "600" }}>
             EMPLOYEE ON LEAVE
           </Typography>

@@ -9,7 +9,7 @@ function ListTimesheet() {
     let navigate = useNavigate();
   return (
     <>
-      <ListItemButton onClick={() => navigate("/")}>
+      <ListItemButton onClick={() => navigate("/dashboard")}>
         <ListItemIcon>
           <AccessTimeFilledIcon />
         </ListItemIcon>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import MailIcon from "@mui/icons-material/Mail";
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -13,7 +13,9 @@ import ThoughtFormHr from "../ThoghtFormHr";
 import { useNavigate } from "react-router-dom";
 import Notification from "../Notification";
 
-function AppbarSideIcon() {
+function AppbarSideIcon(props) {
+  // const setLoggedIn=useContext(UserContext);
+  const {setLoggedIn}=props
   let navigate=useNavigate()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -32,6 +34,10 @@ function AppbarSideIcon() {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
+  };
+  const logout = () => {
+    setLoggedIn(false)
+    navigate("/")
   };
 
   const handleMobileMenuOpen = (event) => {
@@ -56,7 +62,7 @@ function AppbarSideIcon() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={()=>navigate("/profile")}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+      <MenuItem onClick={logout}>Log Out</MenuItem>
     </Menu>
   );
 

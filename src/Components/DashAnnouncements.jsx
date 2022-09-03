@@ -19,7 +19,7 @@ function DashAnnouncements() {
   return (
     <>
       <Card sx={{ borderRadius: "10px", p: "2%" ,minHeight:'300px',height:'100%'}}>
-        <Box sx={{ pt: "3%" }}>
+        <Box sx={{ p: "3%" }}>
           <Typography variant="Button" sx={{ fontWeight: "600" }}>
             ANNOUNCEMENT
           </Typography>

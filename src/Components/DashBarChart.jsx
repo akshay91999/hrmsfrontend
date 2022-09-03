@@ -149,7 +149,7 @@ export default function DashBarChart() {
   //   const demoUrl = 'https://codesandbox.io/s/stacked-bar-chart-s47i2';
 
   return (
-    <Card sx={{ width: "100%", height: "100%", borderRadius: "10px", p: "2%" }}>
+    <Card sx={{ width: "100%", height: "300px", borderRadius: "10px", p: "2%" }}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             width={500}

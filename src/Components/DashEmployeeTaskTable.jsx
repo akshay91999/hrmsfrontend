@@ -10,6 +10,7 @@ import {
   Box,
   Card,
   CardHeader,
+  Divider,
   Grid,
   IconButton,
   Link,
@@ -36,11 +37,12 @@ export default function EmployeeTaskTable() {
       <Card sx={{ borderRadius: "10px"}}>
       <Grid container spacing={2}>
             <Grid item xs={6} lg={6} md={6} sm={6}>
-              <Box sx={{ pt:'2%' }}>
-              <Typography variant="Button" sx={{ fontWeight: "600" }}>
-                My Task
+            <Box sx={{ p:'2%' }}>
+              <Typography variant="Button" sx={{ fontWeight: "600"}}>
+                MY TASKS
               </Typography>
               </Box>
+              <Divider light />
             </Grid>
             <Grid item xs={6} lg={6} md={6} sm={6}>
               <Box sx={{ display:'flex',justifyContent:'right' }}>
