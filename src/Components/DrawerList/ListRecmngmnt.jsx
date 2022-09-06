@@ -32,6 +32,12 @@ function ListRecmngmnt() {
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding sx={{ pl: 1 }}>
+        <ListItemButton onClick={() => navigate("/adddepartment")}>
+                <ListItemIcon>
+                    <DynamicFormIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Add Department"/>
+            </ListItemButton>
         <ListItemButton onClick={() => navigate("/addvaccancy")}>
                 <ListItemIcon>
                     <DynamicFormIcon/>

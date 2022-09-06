@@ -138,6 +138,7 @@ function Personal(props) {
             label="Contact Number"
             id="contact-no"
             name="contactnumber"
+            type="number"
             value={values.component}
             onChange={handleInputChange}
             error={errors.contactnumber}
@@ -146,6 +147,7 @@ function Personal(props) {
             label="Alternate Contact Number"
             id="alt-contact-no"
             name="altcontactnumber"
+            type="number"
             value={values.altcontactnumber}
             onChange={handleInputChange}
             error={errors.altcontactnumber}
@@ -178,6 +180,7 @@ function Personal(props) {
           <Textfield
             label="Contact Number"
             id="father's-cntno"
+            type="number"
             name="fcontactnumber"
             value={values.fcontactnumber}
             onChange={handleInputChange}
@@ -195,6 +198,7 @@ function Personal(props) {
             label="Contact Number"
             id="mother's-cntno"
             name="mcontactnumber"
+            type="number"
             value={values.mcontactnumber}
             onChange={handleInputChange}
             error={errors.mcontactnumber}

@@ -21,13 +21,13 @@ export default function Academic() {
           </Typography>
         </legend>
         {/* calling Academic form */}
-        <AcademicForm/>
+        <AcademicForm params={params}/>
        
       </fieldset>
       <Box sx={{ p: "1%" }}>
         <Box sx={{ display:'flex',justifyContent:'flex-end',gap: 2,}}>
         <Btn text="Back" click={()=>navigate(-1)}/>
-        <Btn text='Next'click={()=>{navigate("/experience")}}/>
+        <Btn text='Next'click={()=>{navigate("/experience"+params.basicId)}}/>
         </Box>
       </Box>
     </>

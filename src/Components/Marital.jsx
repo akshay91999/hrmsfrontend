@@ -31,6 +31,7 @@ function Marital(props) {
             label="Contact Number"
             id="spouse-contact"
             name="scontactnumber"
+            type="number"
             value={values.scontactnumber}
             error={errors.scontactnumber}
             onChange={handleInputChange}

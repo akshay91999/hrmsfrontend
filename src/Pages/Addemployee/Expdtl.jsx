@@ -13,6 +13,9 @@ import useForm from "../../Components/Validation/useForm";
 import { FormHelperText } from "@mui/material";
 import { getBranchtype } from "../../Components/Dropdowndata/getDepartmentname";
 import Dropdownlist from "../../Components/Reusablecomponents/Dropdownlist";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import Upload from "../../Components/Upload";
 const initialFvalues = {
   employeeid: "",
   employeetype: "",
@@ -23,15 +26,21 @@ const initialFvalues = {
 };
 
 function Expdtl() {
+  const [file,selectedFile]=useState(null)
+  const params=useParams()
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
 
   const [add, setAdd] = useState(false);
+  const [save,setSave]=useState(true)  //for disabling add button
+  const [experience,setExperience]=useState(null)
+  const [contact,setContact]=useState(null)
   const addNew = () => {
     if (validate()) {
       setAdd(true);
       console.log(values);
-      window.alert("successfully saved");
+      // window.alert("successfully saved");
+      setSave(true)
     }
   };
 
@@ -50,11 +59,114 @@ function Expdtl() {
     return Object.values(temp).every((x) => x === "");
   };
 
+  const handlefilechange = (e) => {
+    selectedFile(e.target.files[0])
+  };
+  // console.log(file);
+
+  const handleexperienceupload=(e)=>{
+    e.preventDefault();
+    if(file.type!="image/jpg" && file.type!="image/jpeg" && file.type!="image/png" &&file.type!="application/pdf"){
+      window.alert("File does not support. You must use .png or .jpg or pdf")
+      return(false)
+    } 
+    else if(file.size>100000){
+      window.alert("Please upload a file smaller than 1mb")
+      return(false)
+    }
+    else{
+      const formData=new FormData()
+      formData.append("document",file)
+      formData.append("doc_type",'experience certificate')
+      axios.post("http://localhost:5000/upload/"+params.basicId,formData,{
+        headers:{"Content-Type":"application/json"},
+      })
+      .then(function(response){
+        console.log(response);
+        if(response.data.message==="success"){
+          window.alert("successfully uploaded")
+          setExperience(response.data.message)
+        }
+        else{
+          window.alert(response.data.message)
+        }
+        
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+  }
+  }
+  const handlecontactupload=(e)=>{
+    e.preventDefault();
+    if(file.type!="image/jpg" && file.type!="image/jpeg" && file.type!="image/png" &&file.type!="application/pdf"){
+      window.alert("File does not support. You must use .png or .jpg or pdf")
+      return(false)
+    } 
+    else if(file.size>100000){
+      window.alert("Please upload a file smaller than 1mb")
+      return(false)
+    }
+    else{
+      const formData=new FormData()
+      formData.append("document",file)
+      formData.append("doc_type",'contact certificate')
+      axios.post("http://localhost:5000/upload/"+params.basicId,formData,{
+        headers:{"Content-Type":"application/json"},
+      })
+      .then(function(response){
+        console.log(response);
+        if(response.data.message==="success"){
+          window.alert("successfully uploaded")
+          setContact(response.data.message)
+        }
+        else{
+          window.alert(response.data.message)
+        }
+        
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+  }
+  }
+
+  const data={
+    employeeid:values.employeeid,
+    employeetype:values.employeetype,
+    durationfrom:values.durationfrom,
+    durationto:values.durationto,
+    designation:values.designation,
+    annualsalary:values.annualsalary
+
+  }
+
   const handlesubmit = () => {
     if (validate()) {
+      // console.log(values);
       // logging values
-      console.log(values);
-      window.alert("successfully submited");
+      
+      if(experience=="success" && contact=="success")
+        { 
+          console.log(experience)
+          console.log(contact)
+      axios.post("http://localhost:5000/exp/"+params.basicId,data,{
+        headers:{"Content-Type":"application/json"},
+      })
+      .then(function(response){
+        console.log(response)
+        window.alert("successfully submited")
+        setSave(false)
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+    }
+    else{
+      window.alert("Please Upload the documents")
+    }
+      
+      
     }
   };
   const [open, setOpen] = useState(false);
@@ -68,7 +180,7 @@ function Expdtl() {
   };
   return (
     <>
-      <form>
+      
         <Box
           component="form"
           noValidate
@@ -127,25 +239,17 @@ function Expdtl() {
           />
           <Box
             sx={{
-              display: "grid",
-              gridTemplateColumns: { sm: "1fr 1fr" },
+              width:'90%'
             }}
           >
-            <label>
-              <Typography variant="h6">Experience Certificate</Typography>
-            </label>
-            <input type="file" />
+           <Upload text="Experience Certificate" onChange={handlefilechange} onSubmit={handleexperienceupload} />
           </Box>
           <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: { sm: "1fr 1fr" },
-            }}
+           sx={{
+            width:'90%'
+          }}
           >
-            <label>
-              <Typography variant="h6">Contact Certificate</Typography>
-            </label>
-            <input type="file" />
+           <Upload text="Contact Certificate" onChange={handlefilechange} onSubmit={handlecontactupload} />
           </Box>
           {add?null:(
           <Box sx={{ pt: "2%" }}>
@@ -156,14 +260,14 @@ function Expdtl() {
         <Box
           sx={{ display: "flex", justifyContent: "flex-end", gap: 2, p: "1%" }}
         >
-          {add ? null : (
+          {add ? null :(
             <Box sx={{ pt: "2%" }}>
-              <Btn text="Add" click={addNew} />
-            </Box>
-          )}
+              <Btn text="Add" click={addNew} disabled={save}/>
+            </Box>)
+          }
           {add?(
           <Box sx={{ pt: "2%" }}>
-            <Btn text="Remove" click={removeNew} />
+            <Btn text="Remove" click={handleClickOpen} />
             <Dialog
               open={open}
               onClose={handleClose}
@@ -184,7 +288,7 @@ function Expdtl() {
           ):null
           }
         </Box>
-      </form>
+     
 
       {add ? <Expdtl /> : null}
     </>

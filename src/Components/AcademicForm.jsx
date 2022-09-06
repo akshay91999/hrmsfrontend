@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import { useState } from "react";
 import Btn from "./Reusablecomponents/Btn";
 import useForm from "./Validation/useForm";
+import axios from "axios";
 import {
   Button,
   Dialog,
@@ -38,8 +39,8 @@ const initialFvalues = {
   durtnto: "",
 };
 
-function AcademicForm() {
- 
+function AcademicForm(props) {
+ const {params}=props
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
   const validate = () => {
@@ -59,16 +60,30 @@ function AcademicForm() {
     });
     return Object.values(temp).every((x) => x === "");
   };
+  // const data={
+  //   institution_name:values.school,
+  //   board:values.board,
+  //   programme:values.courseid,
+  //   branch:values.branchid,
+  //   coursetype:values.coursetype,
+  //   score:values.score,
+  //   duration:values.durtnfrm
+
+  // }
 
   const handlesubmit = () => {
     if (validate()) {
       // logging values
+      // axios.post("http://localhost:5000/accademic"+params,)
       console.log(values);
       window.alert("successfully submited");
+      setSave(false)
     }
   };
 
   const [add, setAdd] = useState(false);
+  const [save,setSave]=useState(true)  //for disabling add button
+
 
   const addfield = () => {
     if (validate()) {
@@ -76,6 +91,7 @@ function AcademicForm() {
       setAdd(true);
       console.log(values);
       window.alert("successfully saved");
+      setSave(true)
     }
   };
   const removefield = () => {
@@ -144,7 +160,7 @@ function AcademicForm() {
           error={errors.coursetype}
         />
 
-        <Box
+        {/* <Box
           sx={{
             display: "grid",
             gridTemplateColumns: { sm: "1fr 1fr" },
@@ -152,24 +168,24 @@ function AcademicForm() {
             maxWidth: "95%",
             // mt: "2%",
           }}
-        >
+        > */}
           <Textfield
-            label="Score"
+            label="Score In Percentage"
             name="score"
             id="score"
             value={values.score}
             error={errors.school}
             onChange={handleInputChange}
           />
-          <Dropdownlist
+          {/* <Dropdownlist
             name="markid"
             label="Type"
             value={values.markid}
             handleInputChange={handleInputChange}
             options={getMarkid()}
             error={errors.markid}
-          />
-        </Box>
+          /> */}
+        
         <Calender
           text=" Duration From"
           name="durtnfrm"
@@ -208,7 +224,7 @@ function AcademicForm() {
       >
         {add ? null: (
           <Box sx={{ pt: "2%" }}>
-            <Btn text="Add" click={addfield} />
+            <Btn text="Add" click={addfield} disabled={save}/>
           </Box>
         ) }
         {add ? (

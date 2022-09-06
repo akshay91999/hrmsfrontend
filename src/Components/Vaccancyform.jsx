@@ -1,11 +1,16 @@
-import { Box, Typography } from "@mui/material";
-import React from "react";
+import { Autocomplete, Box, TextField, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import Dropdownlist from "./Reusablecomponents/Dropdownlist";
 import useForm from "./Validation/useForm";
-import { getDepartmentname } from "./Dropdowndata/getDepartmentname";
+import {
+  getDepartmentname,
+  getPosition,
+} from "./Dropdowndata/getDepartmentname";
 import Textfield from "./Reusablecomponents/Textfield";
 import Btn from "./Reusablecomponents/Btn";
 import Calender from "./Reusablecomponents/Calender";
+import AutocompletePosition from "./Reusablecomponents/AutocompletePosition";
+import axios from "axios";
 
 const initialFvalues = {
   departmentname: "",
@@ -16,7 +21,32 @@ const initialFvalues = {
 };
 
 function Vaccancyform() {
-  const { values,setValues ,errors, setErrors, handleInputChange } =
+  const [depart,setDepart]=useState([])
+  useEffect(()=>{  
+      getDepartmentname();
+  },[])
+
+    const getDepartmentname=()=>{
+    axios.get("http://localhost:5000/depart")
+    .then(function(response){
+      console.log(response)
+      let dep=response.data.viewAlldep
+      const newdep=dep.map(({
+        dp_id:id,
+        departmentname:title,
+        ...rest
+      })=>({
+        id,
+        title,
+        ...rest
+      }))
+        console.log(newdep)
+        setDepart(newdep)
+      })
+
+    }
+ 
+  const { values, setValues, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
   const validate = () => {
     const temp = {};
@@ -37,20 +67,36 @@ function Vaccancyform() {
     setErrors({ ...temp });
     return Object.values(temp).every((x) => x === "");
   };
+  const data = {
+    departmentname: values.departmentname,
+    designation: values.position,
+    vaccancynumber: values.vaccancynumber,
+    yoeneeded: values.yoeneeded,
+    neededwithin: values.neededwithin,
+  };
   const handlesubmit = () => {
+    console.log(values);
     if (validate()) {
-      window.alert("successfully updated");
+      axios.post("http://localhost:5000/vacancy", data, {
+        headers: { "Content-Type": "application/json" },
+      }).then(function(response){
+        console.log(response)
+        window.alert("successfully updated");
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+      // console.log(values);
     }
   };
   const handleclear = () => {
     setValues({
-      departmentname:'',
-      position:'',
-      vaccancynumber:'',
-      yoeneeded:'',
-      neededwithin:''
-    }
-    )
+      departmentname: "",
+      position: "",
+      vaccancynumber: "",
+      yoeneeded: "",
+      neededwithin: "",
+    });
   };
 
   return (
@@ -73,15 +119,29 @@ function Vaccancyform() {
           pl: "5%",
         }}
       >
-        <Dropdownlist
+        {/* <Dropdownlist
           name="departmentname"
           label="Department Name"
           value={values.departmentname}
           handleInputChange={handleInputChange}
-          options={getDepartmentname()}
+          options={depart}
           error={errors.departmentname}
-        />
+        /> */}
+        <Textfield
+            label="Department Name"
+            name="departmentname"
+            value={values.departmentname}
+            error={errors.departmentname}
+            onChange={handleInputChange}
+          />
 
+        {/* <AutocompletePosition
+          options={getPosition()}
+          value={values.position}
+          handleInputChange={handleInputChange}
+          name="position"
+          error={errors.departmentname}
+        /> */}
         <Textfield
           label="Position"
           name="position"
@@ -94,7 +154,7 @@ function Vaccancyform() {
           name="vaccancynumber"
           value={values.vaccancynumber}
           onChange={handleInputChange}
-          error={errors.position}
+          error={errors.vaccancynumber}
         />
         <Textfield
           label="Year Of Experience Needed"
@@ -111,9 +171,11 @@ function Vaccancyform() {
           error={errors.neededwithin}
         />
       </Box>
-      <Box sx={{  display: "flex", justifyContent: "flex-end", gap: 2,p:'1%'  }}>
+      <Box
+        sx={{ display: "flex", justifyContent: "flex-end", gap: 2, p: "1%" }}
+      >
         <Btn text="Submit" click={handlesubmit} />
-        <Btn text="Clear" click={handleclear}/>
+        <Btn text="Clear" click={handleclear} />
       </Box>
     </>
   );

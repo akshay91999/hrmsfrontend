@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,21 +9,53 @@ import Calender from "./Reusablecomponents/Calender";
 import Btn from "./Reusablecomponents/Btn";
 import { FormHelperText } from "@mui/material";
 import useForm from "./Validation/useForm";
-import { getBranchtype, getDepartmentname, getPosition } from "./Dropdowndata/getDepartmentname";
+import {
+  getBranchtype,
+  getDepartmentname,
+  getPosition,
+} from "./Dropdowndata/getDepartmentname";
 import Dropdownlist from "./Reusablecomponents/Dropdownlist";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+
 const initialFvalues = {
   position: "",
-  department: "",
+  departmentname: "",
   branch: "",
   package: "",
   jobtype: "",
   doj: "",
 };
 function JobDetails() {
+  const params = useParams();
+
+  const [depart,setDepart]=useState([])
+  useEffect(()=>{
+    axios.get("http://localhost:5000/depart")
+    .then(function(response){
+      console.log(response)
+      let dep=response.data.viewAlldep
+      const newdep=dep.map(({
+        dp_id:id,
+        departmentname:title,
+        ...rest
+      })=>({
+        id,
+        title,
+        ...rest
+      }))
+        console.log(newdep)
+        setDepart(newdep)
+      })
+      
+      // setDepart(response)
+      // console.log(depart)
+  },[])
+
   const validate = () => {
     let temp = {};
     temp.position = values.position ? "" : "This field is required";
-    temp.department = values.department ? "" : "This field is required";
+    temp.departmentname = values.departmentname ? "" : "This field is required";
     temp.branch = values.branch ? "" : "This field is required";
     temp.package = values.package ? "" : "This field is required";
     temp.jobtype = values.jobtype ? "" : "This field is required";
@@ -37,17 +69,53 @@ function JobDetails() {
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      console.log(values);
-      window.alert("testing");
-    }
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (validate()) {
+  //     console.log(values);
+  //     window.alert("testing");
+  //   }
+  // };
+
+
+  const user = {
+    ds_id: values.position,
+    dp_id: values.departmentname,
+    branch: values.branch,
+    package: values.package,
+    jobtype: values.jobtype,
+    doj: values.doj,
   };
 
+
+  const handlesubmit = () => {
+    console.log(user);
+    if (validate()) {
+      axios
+        .post("http://localhost:5000/job/" + params.basicId, user, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then(function (response) {
+          console.log(response);
+
+          // let id = response.data.data;
+          // console.log(id);
+          // if (response.data.message === "success") {
+          window.alert("successfully submited");
+          //   navigate("/jobdetails/" + id);
+          // }
+          // else{
+          //   window.alert(response.data.message)
+          // }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}> */}
         <Box
           sx={{
             display: "grid",
@@ -57,21 +125,22 @@ function JobDetails() {
           }}
         >
           <Dropdownlist
-          name="position"
-          label="Position"
-          value={values.position}
-          handleInputChange={handleInputChange}
-          options={getPosition()}
-          error={errors.position}
-        />
+            name="position"
+            label="Position"
+            value={values.position}
+            handleInputChange={handleInputChange}
+            options={getPosition()}
+            error={errors.position}
+          />
+           
           <Dropdownlist
-          name="departmentname"
-          label="Department Name"
-          value={values.departmentname}
-          handleInputChange={handleInputChange}
-          options={getDepartmentname()}
-          error={errors.departmentname}
-        />
+            name="departmentname"
+            label="Department Name"
+            value={values.departmentname}
+            handleInputChange={handleInputChange}
+            options={depart}
+            error={errors.departmentname}
+          />
           <Textfield
             label="Branch"
             name="branch"
@@ -104,9 +173,9 @@ function JobDetails() {
           />
         </Box>
         <Box sx={{ display: "flex", justifyContent: "flex-end", m: "1%" }}>
-          <Btn text="Save" type="submit" />
+          <Btn text="Save" click={handlesubmit} />
         </Box>
-      </form>
+      {/* </form> */}
     </div>
   );
 }

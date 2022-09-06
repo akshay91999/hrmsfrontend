@@ -85,16 +85,18 @@ import ViewLinkEmployee from "../Pages/LearningEmployee/ViewLinkEmployee";
 import AddLinkHr from "../Pages/LearningHr/AddLinkHr";
 import LoginPage from "../Pages/LoginPage";
 import DrawerandAppBar from "./Drawer_and_Appbar/DrawerandAppBar";
+import AddDepartment from "../Pages/Recruitmentmanagement.jsx/HR/AddDepartment";
 
 const logged=localStorage.getItem('id');
 // const UserContext=createContext()
 function Routing() {
-  const [loggedin,setLoggedIn]=useState(logged?true:false)
+  const [loggedin,setLoggedIn]=useState(true)
   if(!loggedin)
   {
     return(
       <Routes>
         <Route path='/' element={<LoginPage setLoggedIn={setLoggedIn}/>}></Route>
+        <Route path="/*" element={<PageNotfound />} />
       </Routes>
     )
   }
@@ -125,14 +127,16 @@ function Routing() {
               <Route path="/dashboard" element={<DashboardEmploy />} />
               <Route path="/addemployee" element={<Basic />} />
               <Route path="/academic/:basicId" element={<Academic />} />
-              <Route path="/experience" element={<Exp />} />
+              <Route path="/experience/:basicId" element={<Exp />} />
               <Route path="/upload/:basicId" element={<Upld />} />
-              <Route path="/skill" element={<Skills />} />
-              <Route path="/jobdetails" element={<Job />} />
+              <Route path="/skill/:basicId" element={<Skills />} />
+              <Route path="/jobdetails/:basicId" element={<Job />} />
               {/* <Route path="/register" element={<Register/>} /> */}
               <Route path="/viewemployee" element={<EmployeeDetail />} />
               <Route path="/employeelist" element={<EmployeeList />} />
               {/* Recruitment management */}
+
+              <Route path="/adddepartment" element={<AddDepartment />} />
               <Route path="/addvaccancy" element={<Vaccancy />} />
               <Route path="/viewvaccancy" element={<Vaccancyview />} />
               <Route path="/candidatelist" element={<Tableshortlisted />} />

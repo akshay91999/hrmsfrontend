@@ -1,11 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import Softskill from "../../Components/Softskill";
 import Btn from "../../Components/Reusablecomponents/Btn";
 import { Typography } from "@mui/material";
 import Hardskill from "../../Components/Hardskill";
 import {Box} from "@mui/material";
 import useForm from "../../Components/Validation/useForm";
+import axios from "axios";
 
 
 const initialFvalues={
@@ -15,12 +16,48 @@ const initialFvalues={
 
 
 function Skills() {
-  const {values,handleInputChange}=useForm(initialFvalues)
+  const params=useParams();
+
+  const {values,setErrors,handleInputChange}=useForm(initialFvalues)
     let navigate=useNavigate()
+
+
+    const validate = () => {
+      let temp = {};
+      temp.hardskill = values.hardskill ? "" : "hardskill is required";
+      temp.softskill = values.softskill ? "" : "softskill is required";
+     
+
+      setErrors({ ...temp });
+      return Object.values(temp).every((x) => x === "");
+    };
+  
+
+    const user = {
+      hardskills: values.hardskill,
+      softskills: values.softskill,
+    
+  
+
+    };
     const handlesubmit = () => {   
         // logging values
-        console.log(values)
-        window.alert("successfully submited");
+        // console.log(values)
+        // window.alert("successfully submited");
+        console.log(user);
+        if (validate()) {
+          axios
+            .post("http://localhost:5000/skill/"+params.basicId, user, {
+              headers: { "Content-Type": "application/json" },
+            })
+            .then(function (response) {
+              console.log(response);
+                window.alert("successfully submited");
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
     };
   return (
     <>
