@@ -5,6 +5,7 @@ import useForm from "./Validation/useForm";
 import {
   getDepartmentname,
   getPosition,
+  getUsertype,
 } from "./Dropdowndata/getDepartmentname";
 import Textfield from "./Reusablecomponents/Textfield";
 import Btn from "./Reusablecomponents/Btn";
@@ -45,6 +46,7 @@ function Vaccancyform() {
       })
 
     }
+  
  
   const { values, setValues, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
@@ -68,9 +70,9 @@ function Vaccancyform() {
     return Object.values(temp).every((x) => x === "");
   };
   const data = {
-    departmentname: values.departmentname,
+    dp_id: values.departmentname,
     designation: values.position,
-    vaccancynumber: values.vaccancynumber,
+    vacancynumber: values.vaccancynumber,
     yoeneeded: values.yoeneeded,
     neededwithin: values.neededwithin,
   };
@@ -81,7 +83,10 @@ function Vaccancyform() {
         headers: { "Content-Type": "application/json" },
       }).then(function(response){
         console.log(response)
-        window.alert("successfully updated");
+        if(response.data.message==="success")
+        {
+        window.alert("successfully submited");
+      }
       })
       .catch(function(error){
         console.log(error)
@@ -119,22 +124,14 @@ function Vaccancyform() {
           pl: "5%",
         }}
       >
-        {/* <Dropdownlist
+        <Dropdownlist
           name="departmentname"
           label="Department Name"
           value={values.departmentname}
           handleInputChange={handleInputChange}
           options={depart}
           error={errors.departmentname}
-        /> */}
-        <Textfield
-            label="Department Name"
-            name="departmentname"
-            value={values.departmentname}
-            error={errors.departmentname}
-            onChange={handleInputChange}
-          />
-
+        />
         {/* <AutocompletePosition
           options={getPosition()}
           value={values.position}

@@ -86,7 +86,7 @@ function Skills() {
           <Btn
             text="Next"
             click={() => {
-              navigate("/jobdetails");
+              navigate("/jobdetails/"+params.basicId);
             }}
           />
         </Box>

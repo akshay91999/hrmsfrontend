@@ -21,7 +21,7 @@ import axios from "axios";
 const initialFvalues = {
   position: "",
   departmentname: "",
-  branch: "",
+  usertype: "",
   package: "",
   jobtype: "",
   doj: "",
@@ -56,7 +56,7 @@ function JobDetails() {
     let temp = {};
     temp.position = values.position ? "" : "This field is required";
     temp.departmentname = values.departmentname ? "" : "This field is required";
-    temp.branch = values.branch ? "" : "This field is required";
+    temp.usertype = values.usertype ? "" : "This field is required";
     temp.package = values.package ? "" : "This field is required";
     temp.jobtype = values.jobtype ? "" : "This field is required";
     temp.doj = values.doj ? "" : "This field is required";
@@ -81,7 +81,7 @@ function JobDetails() {
   const user = {
     ds_id: values.position,
     dp_id: values.departmentname,
-    branch: values.branch,
+    user_type: values.usertype,
     package: values.package,
     jobtype: values.jobtype,
     doj: values.doj,
@@ -141,13 +141,21 @@ function JobDetails() {
             options={depart}
             error={errors.departmentname}
           />
-          <Textfield
+          <Dropdownlist
+            name="usertype"
+            label="User Type"
+            value={values.usertype}
+            handleInputChange={handleInputChange}
+            options={depart}
+            error={errors.usertype}
+          />
+          {/* <Textfield
             label="Branch"
             name="branch"
             value={values.branch}
             error={errors.branch}
             onChange={handleInputChange}
-          />
+          /> */}
           <Textfield
             label="Package"
             name="package"

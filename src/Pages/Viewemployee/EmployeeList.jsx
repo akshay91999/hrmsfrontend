@@ -5,122 +5,6 @@ import Avatar from "@mui/material/Avatar";
 import ViewUpdateDeleteEmp from "../../Components/Reusablecomponents/ViewUpdateDeleteEmp";
 import axios from "axios";
 
-// const rows = [
-//   {
-//     id: 1220,
-//     employee: {
-//       avatar:
-//         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-//     },
-//     employeename: "David",
-//     // employeename: {
-//     //   username: "David",
-//     //   avatar:
-//     //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-//     // },
-//     // VisitorName: "David",
-//     contact:"9876543210",
-//     email:"d@gmail.com",
-//     department: "Development",
-//     designation: "Project Manager"
-   
-//   },
-
-//   {
-//     id: 1221,
-//     employee: {
-//       avatar:
-//         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLe5PABjXc17cjIMOibECLM7ppDwMmiDg6Dw&usqp=CAU",
-//     },
-//     employeename: "Ramsan",
-//     // employeename: {
-//     //   username: "Ramsan",
-//     //   avatar:
-//     //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLe5PABjXc17cjIMOibECLM7ppDwMmiDg6Dw&usqp=CAU",
-//     // },
-//     // VisitorName: "David",
-//     contact:"9876543210",
-//     email:"d@gmail.com",
-//     department: "Marketing",
-//     designation: "CEO"
-//   },
-
-//   {
-//     id: 1222,
-//     employee: {
-//       avatar:
-//         "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-//     },
-//     employeename: "David",
-//     // employeename: {
-//     //   username: "David",
-//     //   avatar:
-//     //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-//     // },
-//     // VisitorName: "David",
-//     contact:"9876543210",
-//     email:"d@gmail.com",
-//     department: "Advertising",
-//     designation: "CTO"
-//   },
-
-//   {
-//     id: 1223,
-//     employee: {
-//       avatar:
-//         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-//     },
-//     employeename: "David",
-//     // employeename: {
-//     //   username: "David",
-//     //   avatar:
-//     //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-//     // },
-//     // VisitorName: "David",
-//     contact:"9876543210",
-//     email:"d@gmail.com",
-//     department: "Marketing",
-//     designation: "Product Manager"
-//   },
-
-//   {
-//     id: 1224,
-//     employee: {
-//       avatar:
-//         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-//     },
-//     employeename: "aarooo",
-//     // employeename: {
-//     //   username: "aarooo",
-//     //   avatar:
-//     //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-//     // },
-//     // VisitorName: "David",
-//     contact:"9876543210",
-//     email:"d@gmail.com",
-//     department: "Marketing",
-//     designation: "Chief Architect"
-//   },
-//   {
-//     id: 1225,
-//     employee: {
-//       avatar:
-//         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-//     },
-//     employeename: "Daviddddd",
-//     // employeename: {
-//     //   username: "Daviddddd",
-//     //   avatar:
-//     //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-//     // },
-//     // VisitorName: "David",
-//     contact:"9876543210",
-//     email:"d@gmail.com",
-//     department: "Advertising",
-//     designation: "Product Manager"
-//   },
-// ];
-
 const columns = [
   { field: "id", width: 120, headerClassName: "super-app-theme--header" },
   // {
@@ -176,18 +60,18 @@ const columns = [
     headerClassName: "super-app-theme--header",
   },
   // { field: "VisitorName", width: 250, headerClassName: "super-app-theme--header" },
-  // {
-  //   field: "department",
-  //   headerName: "Department",
-  //   width: 200,
-  //   headerClassName: "super-app-theme--header",
-  // },
-  // {
-  //   field: "designation",
-  //   headerName: "Designation",
-  //   width: 170,
-  //   headerClassName: "super-app-theme--header",
-  // },
+  {
+    field: "departmentname",
+    headerName: "Department",
+    width: 200,
+    headerClassName: "super-app-theme--header",
+  },
+  {
+    field: "designation",
+    headerName: "Designation",
+    width: 170,
+    headerClassName: "super-app-theme--header",
+  },
   {
     field: "View/Edit/Delete",
     width: 180,
@@ -206,21 +90,23 @@ export default function LeaveApprovedList() {
   // const [tableData2,setTableData2]=useState([])
   const [rows,setRows]=useState([])
   useEffect(()=>{
-    axios.get("http://localhost:5000/report")
+    axios.get("http://localhost:5000/basics")
     .then(function(response){
       console.log(response)
       console.log(response.data.base)
       var tableData1=response.data.base
       var tableData2=response.data.contact
+      var tableData3=response.data.job
       // setTableData2(response.data.contact)
       var employee=[]
       for(let i=0;i<tableData1.length;i++){
         var personal=tableData1[i]
         var cont=tableData2[i]
-        employee[i]={...personal,...cont}
+        var job=tableData3[i]
+        employee[i]={...personal,...cont,...job}
       }
       console.log(employee)  
-      var row=employee.map(({id,firstName,gender,contactnumber,email})=>({id,firstName,gender,contactnumber,email}))
+      var row=employee.map(({id,firstName,gender,contactnumber,email,departmentname,designation})=>({id,firstName,gender,contactnumber,email,departmentname,designation}))
       // console.log(rows)
       setRows(row)
       console.log(row)

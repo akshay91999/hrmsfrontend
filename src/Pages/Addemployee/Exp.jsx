@@ -7,9 +7,10 @@ import { Box } from "@mui/system";
 import FormControl from "@mui/material/FormControl";
 import { useState } from "react";
 import Expdtl from "./Expdtl";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Btn from "../../Components/Reusablecomponents/Btn";
 function Exp() {
+  const params=useParams()
   let navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const formOpen = () => {setOpen(true);};
@@ -56,7 +57,7 @@ function Exp() {
       </fieldset>
       <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2,p:'1%',m:'2%' }}>
             <Btn text="Back" click={() => navigate(-1)} />
-            <Btn text='Next'click={()=>{navigate("/skill")}}/>
+            <Btn text='Next'click={()=>{navigate("/skill/"+params.basicId)}}/>
           </Box>
     </>
   );
