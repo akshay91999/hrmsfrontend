@@ -14,6 +14,8 @@ import { getDepartmentname } from '../../Components/Dropdowndata/getDepartmentna
 import Btn from '../../Components/Reusablecomponents/Btn';
 import { useNavigate } from 'react-router-dom'
 import {Typography} from '@mui/material';
+import axios from "axios";
+
 const initialFvalues = {
     name: '',
     address: '',
@@ -27,6 +29,9 @@ const initialFvalues = {
     // img:''
 }
 export default function VisitorPassForm() {
+    const [file,selectedFile]=useState(null)
+
+
     let navigate = useNavigate()
     const { values, errors, setErrors, handleInputChange } =
         useForm(initialFvalues)
@@ -45,12 +50,97 @@ export default function VisitorPassForm() {
         setErrors({ ...temp })
         return Object.values(temp).every(x => x === "")
     }
+
+    // const handlephotoupload=(e)=>{
+    //     e.preventDefault();
+    //     if(file.type!="image/jpg" && file.type!="image/jpeg" && file.type!="image/png"){
+    //       window.alert("File does not support. You must use .png or .jpg")
+    //       return(false)
+    //     } 
+    //     else if(file.size>100000){
+    //       window.alert("Please upload a file smaller than 1mb")
+    //       return(false)
+    //     }
+    //     else{
+    //       const formData=new FormData()
+    //       formData.append("photo",file)
+         
+    //       axios.post("http://localhost:5000/visitor",formData,{
+    //         headers:{"Content-Type":"application/json"},
+    //       })
+    //       .then(function(response){
+    //         console.log(response);
+    //         // setPhoto(response.data.message)
+    //         // if(response.data.message==="success"){
+    //         //   window.alert("successfully uploaded")
+    //         // }
+    //         // else{
+    //         //   window.alert(response.data.message)
+    //         // }
+            
+    //       })
+    //       .catch(function(error){
+    //         console.log(error)
+    //       })
+    //   }
+    //   }
+
+
+
+    // const user = {
+    //     name: values.name,
+    //     address: values.address,
+    //     idproof_no: values.idproofnum,
+    //     time_in: values.timein,
+    //     time_out: values.timeout,
+    //     contact_person: values.contactperson,
+    //     departmentname: values.departmentname,
+    
+
+    
+  
+    //   };
+
+    
     const handlesubmit = () => {
         // loging values
-        console.log(values)
+        // console.log(values)
+        // if (validate()) {
+        //     window.alert("successfully submited")
+        //     navigate('/VisitorCard')
+        // }
+        console.log();
         if (validate()) {
-            window.alert("successfully submited")
-            navigate('/VisitorCard')
+            const formData=new FormData()
+           formData.append("photo",file)
+           formData.append("name",values.name)
+           formData.append("address",values.address)
+           formData.append("idproof_no",values.idproofnum)
+           formData.append("time_in",values.timein)
+           formData.append("time_out",values.timeout)
+           formData.append("contact_person",values.contactperson)
+           formData.append("departmentname",values.departmentname)
+           console.log(formData)
+          axios
+            .post("http://localhost:5000/visitor", formData, {
+              headers: { "Content-Type": "application/json" },
+            })
+            .then(function (response) {
+              console.log(response);
+    
+            //   let id = response.data.data;
+            //   console.log(id);
+            //   if (response.data.message === "success") {
+                window.alert("successfully submited");
+            //     navigate("/jobdetails/" + id);
+            //   }
+            //   else{
+            //     window.alert(response.data.message)
+            //   }
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         }
     }
 
@@ -61,8 +151,9 @@ export default function VisitorPassForm() {
     const onImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
             setImage(URL.createObjectURL(event.target.files[0]));
-        }
-    }
+            selectedFile(event.target.files[0])
+        } console.log(image)
+    } 
     const [value, setValue] = React.useState(new Date('2018-01-01T00:00:00.000Z'));
     return (
         <>
@@ -87,7 +178,7 @@ export default function VisitorPassForm() {
                         }}
                     >
                         <img src={image} width="100" height="100" />
-                        <input type="file" onChange={onImageChange} className="filetype" />
+                        <input type="file" onChange={onImageChange} className="filetype"/>
                         <Textfield label="Name" name="name" value={values.name} error={errors.name} onChange={handleInputChange} />
                         <Textfield label="Address" name="address" value={values.address} error={errors.address} onChange={handleInputChange} />
                     </Box>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
-import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
+import { Box, Button, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import Eyeiconbutton from "../../../Components/Reusablecomponents/Eyeiconbutton";
 import DeleteCandidateButton from "../../../Components/DeleteCandidateButton";
 import Btn from "../../../Components/Reusablecomponents/Btn";
@@ -157,8 +157,8 @@ export default function TableSelectedList() {
           }}
         />
           <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2,pt:'2%',m:'2%' }}>
-            <Btn text="Accept" />
-            <Btn text='Reject'/>
+          <Button variant="outlined" color="success">Accept</Button>
+          <Button variant="outlined" color="error">Reject</Button>
           </Box>
       </Box>
     </Paper>

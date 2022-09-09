@@ -126,14 +126,18 @@ function Routing() {
               {/* dashboard employee  and add and view employ*/}
               <Route path="/dashboard" element={<DashboardEmploy />} />
               <Route path="/addemployee" element={<Basic />} />
+              <Route path="/addemployee/:basicId" element={<Basic />} />
               <Route path="/academic/:basicId" element={<Academic />} />
               <Route path="/experience/:basicId" element={<Exp />} />
               <Route path="/upload/:basicId" element={<Upld />} />
               <Route path="/skill/:basicId" element={<Skills />} />
               <Route path="/jobdetails/:basicId" element={<Job />} />
               {/* <Route path="/register" element={<Register/>} /> */}
-              <Route path="/viewemployee" element={<EmployeeDetail />} />
+              <Route path="/viewemployee/:basicId" element={<EmployeeDetail />} />
               <Route path="/employeelist" element={<EmployeeList />} />
+
+
+
               {/* Recruitment management */}
 
               <Route path="/adddepartment" element={<AddDepartment />} />

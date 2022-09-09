@@ -36,7 +36,7 @@ function Upld() {
       window.alert("File does not support. You must use .png or .jpg")
       return(false)
     } 
-    else if(file.size>100000){
+    else if(file.size>1000000){
       window.alert("Please upload a file smaller than 1mb")
       return(false)
     }
@@ -70,7 +70,7 @@ function Upld() {
       window.alert("File does not support You must use pdf")
       return(false)
     } 
-    else if(file.size>100000){
+    else if(file.size>1000000){
       window.alert("Please upload a file smaller than 1mb")
       return(false)
     }
@@ -106,7 +106,7 @@ function Upld() {
       >
         File Uploads
       </Typography>
-      <fieldset>
+      <fieldset style={{ margin:'1%' }}>
         <legend>
           <Typography
             variant="h6"

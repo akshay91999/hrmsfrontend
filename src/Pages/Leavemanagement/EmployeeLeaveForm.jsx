@@ -16,6 +16,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Dropdownlist from "../../Components/Reusablecomponents/Dropdownlist";
 import { getDepartmentname } from "../../Components/Dropdowndata/getDepartmentname";
 import Textfield from "../../Components/Reusablecomponents/Textfield";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+
 const initialFvalues = {
   departmentid: "",
   leavefrom: "",
@@ -25,27 +28,57 @@ const initialFvalues = {
   departmentname: "",
 };
 function EmployeeLeaveForm() {
-
-    const regnum=/\-?\d*\.?\d{1,2}/
+  const params=useParams();
+  console.log(params)
+    // const regnum=/\-?\d*\.?\d{1,2}/
 
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
   const validate = () => {
     let temp = {};
     temp.leavefrom = values.leavefrom ? "" : "This field is required";
-    temp.numberofleave = regnum.test(values.numberofleave) ? "" : "Enter a valid number";
+    temp.leaveupto = values.leaveupto ? "" : "This field is required";
     temp.leavetype = values.leavetype ? "" : "This field is required";
     temp.reasonleave = values.reasonleave ? "" : "This field is required";
 
     setErrors({ ...temp });
     return Object.values(temp).every((x) => x === "");
   };
+  const user = {
+    leave_from: values.leavefrom,
+    leave_to: values.leaveupto,
+    leave_type: values.leavetype,
+    reason: values.reasonleave,
+  };
   const handlesubmit = () => {
     // loging values
-    console.log(values);
+    // console.log(values);
+    // if (validate()) {
+    //   window.alert("successfully submited");
+     
+    // }
+    console.log(user);
     if (validate()) {
-      window.alert("successfully submited");
-      //navigate("/Upload")
+      axios
+        .post("http://localhost:5000/request/2", user, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then(function (response) {
+          console.log(response);
+
+          // let id = response.data.data;
+          // console.log(id);
+          // if (response.data.message === "success") {
+            window.alert("successfully submited");
+          
+          // }
+          // else{
+          //   window.alert(response.data.message)
+          // }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   };
   return (
@@ -73,15 +106,22 @@ function EmployeeLeaveForm() {
           onChange={handleInputChange}
           error={errors.leavefrom}
         />
-
-        <Textfield
+<Calender
+          text="Leave Upto"
+          name="leaveupto"
+          value={values.leaveupto}
+          errors={errors}
+          onChange={handleInputChange}
+          error={errors.leaveupto}
+        />
+        {/* <Textfield
           label="Number Of Leave"
           name="numberofleave"
           id="scl"
           value={values.numberofleave}
           error={errors.numberofleave}
           onChange={handleInputChange}
-        />
+        /> */}
 
         <RadioGroup
           row
@@ -143,3 +183,4 @@ function EmployeeLeaveForm() {
 }
 
 export default EmployeeLeaveForm;
+

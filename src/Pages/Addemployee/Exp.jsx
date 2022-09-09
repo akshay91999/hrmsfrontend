@@ -19,14 +19,14 @@ function Exp() {
   };
   return (
     <>
-      <fieldset>
+      <fieldset style={{ margin:'1%' }}>
         <legend>
           <Typography variant="h6" gutterBottom component="div">
             Experience Details
           </Typography>
         </legend>
         <Box>
-          <FormControl sx={{ ml: "8%" }}>
+          <FormControl sx={{ ml: "2%" }}>
             <label id="demo-row-radio-buttons-group-label">
               Do you have any relevant work experience?
             </label>

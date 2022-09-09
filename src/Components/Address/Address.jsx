@@ -2,6 +2,10 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Textfeild from "../Reusablecomponents/Textfield";
+import Dropdownlisttitle from "../Reusablecomponents/DropdownlistTitle";
+import { getCountry, getDepartmentname } from "../Dropdowndata/getDepartmentname";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function Address(props) {
   const {
@@ -13,6 +17,7 @@ function Address(props) {
     errors,
     handleInputChange,
   } = props;
+
   return (
     <>
       <fieldset>
@@ -34,7 +39,6 @@ function Address(props) {
             gridTemplateColumns: { sm: "1fr 1fr" },
             gap: 2,
             width: "100%",
-            textAlign: "center",
             pt: "2%",
             pb: "2%",
           }}
@@ -47,6 +51,15 @@ function Address(props) {
             onChange={handleInputChange}
             error={errors[address]}
           />
+          <Dropdownlisttitle
+            name={props.country}
+            label="Country"
+            value={values[country]}
+            handleInputChange={handleInputChange}
+            options={getCountry()}
+            error={errors[country]}
+          />
+         
           <Textfeild
             label="State"
             name={state}
@@ -54,13 +67,13 @@ function Address(props) {
             onChange={handleInputChange}
             error={errors[state]}
           />
-          <Textfeild
+          {/* <Textfeild
             label="Country"
             name={props.country}
             value={values[country]}
             onChange={handleInputChange}
             error={errors[country]}
-          />
+          /> */}
           <Textfeild
             label="PinCode"
             name={props.pincode}

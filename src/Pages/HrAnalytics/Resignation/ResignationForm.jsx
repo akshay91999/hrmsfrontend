@@ -1,6 +1,9 @@
 import { Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import {
   getDepartmentname,
   getPosition,
@@ -22,6 +25,51 @@ const initialFvalues = {
 function ResignationForm() {
   const { values, setValues, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
+    const [depart, setDepart] = useState([]);
+    const [position, setPosition] = useState([]);
+    useEffect(() => {
+      axios
+        .get("http://localhost:5000/depart")
+        .then(function (response) {
+          console.log(response);
+          let dep = response.data.viewAlldep;
+          const newdep = dep.map(
+            ({ dp_id: id, departmentname: title, ...rest }) => ({
+              id,
+              title,
+              ...rest,
+            })
+          );
+          setDepart(newdep);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }, []);
+  
+    useEffect(() => {
+      if(values.departmentname==="")
+      {
+        setPosition([])
+      }
+      else{
+        axios
+          .get("http://localhost:5000/depart/" + values.departmentname)
+          .then(function (response) {
+            console.log(response.data.viewDesignation);
+            let des = response.data.viewDesignation;
+            const newdes = des.map(
+              ({ ds_id: id, designation: title, ...rest }) => ({
+                id,
+                title,
+                ...rest,
+              })
+            );
+            setPosition(newdes)
+          });
+        }
+      
+    }, [values.departmentname]);
   const validate = () => {
     const temp = {};
     temp.empid = values.empid ? "" : "please enter your employee id";
@@ -90,7 +138,7 @@ function ResignationForm() {
             label="Department Name"
             value={values.departmentname}
             handleInputChange={handleInputChange}
-            options={getDepartmentname()}
+            options={depart}
             error={errors.departmentname}
           />
          <Dropdownlist
@@ -98,7 +146,7 @@ function ResignationForm() {
           label="Position"
           value={values.position}
           handleInputChange={handleInputChange}
-          options={getPosition()}
+          options={position}
           error={errors.position}
         />
 

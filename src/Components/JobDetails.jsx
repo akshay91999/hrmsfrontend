@@ -13,6 +13,7 @@ import {
   getBranchtype,
   getDepartmentname,
   getPosition,
+  getUsertype,
 } from "./Dropdowndata/getDepartmentname";
 import Dropdownlist from "./Reusablecomponents/Dropdownlist";
 import { useNavigate, useParams } from "react-router-dom";
@@ -28,29 +29,54 @@ const initialFvalues = {
 };
 function JobDetails() {
   const params = useParams();
+  const { values, errors, setErrors, handleInputChange } =
+    useForm(initialFvalues);
 
-  const [depart,setDepart]=useState([])
-  useEffect(()=>{
-    axios.get("http://localhost:5000/depart")
-    .then(function(response){
-      console.log(response)
-      let dep=response.data.viewAlldep
-      const newdep=dep.map(({
-        dp_id:id,
-        departmentname:title,
-        ...rest
-      })=>({
-        id,
-        title,
-        ...rest
-      }))
-        console.log(newdep)
-        setDepart(newdep)
+  const [depart, setDepart] = useState([]);
+  const [position, setPosition] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/depart")
+      .then(function (response) {
+        console.log(response);
+        let dep = response.data.viewAlldep;
+        const newdep = dep.map(
+          ({ dp_id: id, departmentname: title, ...rest }) => ({
+            id,
+            title,
+            ...rest,
+          })
+        );
+        setDepart(newdep);
       })
-      
-      // setDepart(response)
-      // console.log(depart)
-  },[])
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if(values.departmentname==="")
+    {
+      setPosition([])
+    }
+    else{
+      axios
+        .get("http://localhost:5000/depart/" + values.departmentname)
+        .then(function (response) {
+          console.log(response.data.viewDesignation);
+          let des = response.data.viewDesignation;
+          const newdes = des.map(
+            ({ ds_id: id, designation: title, ...rest }) => ({
+              id,
+              title,
+              ...rest,
+            })
+          );
+          setPosition(newdes)
+        });
+      }
+    
+  }, [values.departmentname]);
 
   const validate = () => {
     let temp = {};
@@ -66,9 +92,6 @@ function JobDetails() {
     return Object.values(temp).every((x) => x === "");
   };
 
-  const { values, errors, setErrors, handleInputChange } =
-    useForm(initialFvalues);
-
   // const handleSubmit = (e) => {
   //   e.preventDefault();
   //   if (validate()) {
@@ -76,7 +99,6 @@ function JobDetails() {
   //     window.alert("testing");
   //   }
   // };
-
 
   const user = {
     ds_id: values.position,
@@ -86,7 +108,6 @@ function JobDetails() {
     jobtype: values.jobtype,
     doj: values.doj,
   };
-
 
   const handlesubmit = () => {
     console.log(user);
@@ -116,73 +137,74 @@ function JobDetails() {
   return (
     <div>
       {/* <form onSubmit={handleSubmit}> */}
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { sm: "1fr 1fr" },
-            gap: 2,
-            width: "100%",
-          }}
-        >
-          <Dropdownlist
-            name="position"
-            label="Position"
-            value={values.position}
-            handleInputChange={handleInputChange}
-            options={getPosition()}
-            error={errors.position}
-          />
-           
-          <Dropdownlist
-            name="departmentname"
-            label="Department Name"
-            value={values.departmentname}
-            handleInputChange={handleInputChange}
-            options={depart}
-            error={errors.departmentname}
-          />
-          <Dropdownlist
-            name="usertype"
-            label="User Type"
-            value={values.usertype}
-            handleInputChange={handleInputChange}
-            options={depart}
-            error={errors.usertype}
-          />
-          {/* <Textfield
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { sm: "1fr 1fr" },
+          gap: 2,
+          width: "100%",
+        }}
+      >
+        
+
+        <Dropdownlist
+          name="departmentname"
+          label="Department Name"
+          value={values.departmentname}
+          handleInputChange={handleInputChange}
+          options={depart}
+          error={errors.departmentname}
+        />
+        <Dropdownlist
+          name="position"
+          label="Position"
+          value={values.position}
+          handleInputChange={handleInputChange}
+          options={position}
+          error={errors.position}
+        />
+        <Dropdownlist
+          name="usertype"
+          label="User Type"
+          value={values.usertype}
+          handleInputChange={handleInputChange}
+          options={getUsertype()}
+          error={errors.usertype}
+        />
+        {/* <Textfield
             label="Branch"
             name="branch"
             value={values.branch}
             error={errors.branch}
             onChange={handleInputChange}
           /> */}
-          <Textfield
-            label="Package"
-            name="package"
-            value={values.package}
-            error={errors.package}
-            onChange={handleInputChange}
-          />
-          <Dropdownlist
-            name="jobtype"
-            label="Type"
-            value={values.jobtype}
-            handleInputChange={handleInputChange}
-            options={getBranchtype()}
-            error={errors.jobtype}
-          />
+        <Textfield
+          label="Package"
+          name="package"
+          value={values.package}
+          error={errors.package}
+          onChange={handleInputChange}
+        />
+        <Dropdownlist
+          name="jobtype"
+          label="Type"
+          value={values.jobtype}
+          handleInputChange={handleInputChange}
+          options={getBranchtype()}
+          error={errors.jobtype}
+        />
 
-          <Calender
-            text="Date Of Joining"
-            name="doj"
-            value={values.doj}
-            error={errors.doj}
-            onChange={handleInputChange}
-          />
-        </Box>
-        <Box sx={{ display: "flex", justifyContent: "flex-end", m: "1%" }}>
-          <Btn text="Save" click={handlesubmit} />
-        </Box>
+        <Calender
+          text="Date Of Joining"
+          name="doj"
+          value={values.doj}
+          error={errors.doj}
+          onChange={handleInputChange}
+        />
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "flex-end", m: "1%" }}>
+        <Btn text="Save" click={handlesubmit} />
+      </Box>
       {/* </form> */}
     </div>
   );

@@ -2,111 +2,113 @@ import * as React from "react";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import AcceptrejectbuttonVaccancyView from "./AcceptrejectbuttonVacancyView";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 
-const rows = [
-  {
-    id: 1220,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 4,
-    neededwithin: '22-05-2022',
-  },
+// const rows = [
+//   {
+//     id: 1220,
+//     departmentname: "front-end devolopment",
+//     position:'python devoloper',
+//     numberofvacancy:45,
+//     yoeneeded: 4,
+//     neededwithin: '22-05-2022',
+//   },
 
-  {
-    id: 1221,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 4,
-    neededwithin: '22-05-2022',
-  },
+//   {
+//     id: 1221,
+//     departmentname: "front-end devolopment",
+//     position:'python devoloper',
+//     numberofvacancy:45,
+//     yoeneeded: 4,
+//     neededwithin: '22-05-2022',
+//   },
 
-  {
-    id: 1222,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 4,
-    neededwithin: '22-05-2022',
-  },
+//   {
+//     id: 1222,
+//     departmentname: "front-end devolopment",
+//     position:'python devoloper',
+//     numberofvacancy:45,
+//     yoeneeded: 4,
+//     neededwithin: '22-05-2022',
+//   },
 
-  {
-    id: 1223,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 3,
-    neededwithin: '22-05-2022',
-  },
+//   {
+//     id: 1223,
+//     departmentname: "front-end devolopment",
+//     position:'python devoloper',
+//     numberofvacancy:45,
+//     yoeneeded: 3,
+//     neededwithin: '22-05-2022',
+//   },
 
-  {
-    id: 1224,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 2,
-    neededwithin: '22-05-2022',
-  },
-  {
-    id: 1224,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 1,
-    neededwithin: '22-05-2022',
-  },
-];
+//   {
+//     id: 1224,
+//     departmentname: "front-end devolopment",
+//     position:'python devoloper',
+//     numberofvacancy:45,
+//     yoeneeded: 2,
+//     neededwithin: '22-05-2022',
+//   },
+//   {
+//     id: 1224,
+//     departmentname: "front-end devolopment",
+//     position:'python devoloper',
+//     numberofvacancy:45,
+//     yoeneeded: 1,
+//     neededwithin: '22-05-2022',
+//   },
+// ];
 
 const columns = [
   {
     field: "id",
     width: 100,
     headerClassName: "super-app-theme--header",
-    headerAlign: "center",
+  
   },
   {
     field: "departmentname",
     headerName: 'Department Name',
     width: 250,
     headerClassName: "super-app-theme--header",
-    headerAlign: "center",
+  
   },
   {
-    field: "position",
+    field: "designation",
     headerName: 'Position',
     width: 250,
     headerClassName: "super-app-theme--header",
-    headerAlign: "center",
+  
   },
   {
-    field: "numberofvacancy",
+    field: "vacancynumber",
     headerName: 'Number Of Vacancy',
     width: 150,
     headerClassName: "super-app-theme--header",
-    headerAlign: "center",
+  
   },
   {
     field: "yoeneeded",
     headerName: 'Year Of Experience',
-    width: 250,
+    width: 200,
     headerClassName: "super-app-theme--header",
-    headerAlign: "center",
+  
   },
   {
     field: "neededwithin",
     headerName: 'Needed Within',
-    width: 250,
+    width: 240,
     headerClassName: "super-app-theme--header",
-    headerAlign: "center",
+  
   },
   {
     field: "acceptorreject",
     headerName:'Accepet/Reject',
     width: 150,
     headerClassName: "super-app-theme--header",
-    headerAlign: 'center',
     renderCell: (params) => (
         <strong>
         <AcceptrejectbuttonVaccancyView />
@@ -117,6 +119,20 @@ const columns = [
 ];
 
 export default function Vaccancyviewform() {
+  const [rows,setRows]=useState([])
+  useEffect(()=>{
+    axios.get("http://localhost:5000/vacancy")
+    .then(function(response){
+      console.log(response.data.viewVacancy)
+      var tableData1=response.data.viewVacancy
+      var row=tableData1.map(({v_id:id,departmentname,designation,vacancynumber,yoeneeded,neededwithin})=>({id,departmentname,designation,vacancynumber,yoeneeded,neededwithin}))
+      console.log(row)
+      setRows(row)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
   const [pageSize, setPageSize] = React.useState(5);
   return (
     <Paper elevation={4} sx={{ m: "2%", p: "2%" }}>

@@ -4,10 +4,14 @@ import Grid from "@mui/material/Grid";
 import AddressCalling from "../../Components/Address/AddressCalling";
 import { Paper, Typography } from "@mui/material";
 import Btn from "../../Components/Reusablecomponents/Btn";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useForm from "../../Components/Validation/useForm";
 import { Box } from "@mui/material";
 import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
+import { createContext } from "react";
+
 
 const initialFvalues = {
   firstname: "",
@@ -17,8 +21,8 @@ const initialFvalues = {
   nationality: "",
   contactnumber: "",
   altcontactnumber: "",
-  emailid: "",
-  altemailid: "",
+  email: "",
+  altemail: "",
   fathername: "",
   fcontactnumber: "",
   mothername: "",
@@ -26,10 +30,10 @@ const initialFvalues = {
   martialstatus: "single",
   spousename: "",
   scontactnumber: "",
-  permanantaddress: "",
-  permanantstate: "",
-  permanantcountry: "",
-  permanantpincode: "",
+  e_address: "",
+  state: "",
+  country: "",
+  pincode: "",
   ispermanantequal: "No",
   currentaddress: "",
   currentstate: "",
@@ -37,9 +41,35 @@ const initialFvalues = {
   currentpincode: "",
 };
 
+
+
 function Basic() {
+  const params=useParams()
+  console.log(params)
+
+    // const[base,setBase]=useState({})
+  useEffect(()=>{
+    if(Object.keys(params).length !== 0)
+    {
+    axios.get("http://localhost:5000/basics/"+params.basicId)
+    .then(function(response){
+      console.log(response.data)
+      // setBase(response.data.base)
+
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  }
+  },[])
+
+  // const initial=Object.keys(base).length!==0?base:initialFvalues
+  // console.log(initial)
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
+
+  
+
   const {
     nationality,
     fathername,
@@ -64,8 +94,8 @@ function Basic() {
     temp.altcontactnumber = regmob.test(values.altcontactnumber)
       ? ""
       : "contact number requires minimum 9 numbers";
-    temp.emailid = regex.test(values.emailid) ? "" : "email is not valid";
-    temp.altemailid = regex.test(values.emailid) ? "" : "email is not valid";
+    temp.email = regex.test(values.email) ? "" : "email is not valid";
+    temp.altemail = regex.test(values.altemail) ? "" : "email is not valid";
     temp.fathername = values.fathername ? "" : "father's name is required";
     temp.fcontactnumber = regmob.test(values.fcontactnumber)
       ? ""
@@ -86,14 +116,14 @@ function Basic() {
           ? ""
           : "contact number requires minimum 9 numbers"
         : "";
-    temp.permanantaddress = values.permanantaddress
+    temp.e_address = values.e_address
       ? ""
       : "This field is required";
-    temp.permanantstate = values.permanantstate ? "" : "This field is required";
-    temp.permanantcountry = values.permanantcountry
+    temp.state = values.state ? "" : "This field is required";
+    temp.country = values.country
       ? ""
       : "This field is required";
-    temp.permanantpincode = regpin.test(values.permanantpincode)
+    temp.pincode = regpin.test(values.pincode)
       ? ""
       : "6 digit required";
     temp.currentaddress =
@@ -125,15 +155,15 @@ function Basic() {
   };
 
   const user = {
-    firstName: values.firstname,
-    lastName: values.lastname,
+    firstname: values.firstname,
+    lastname: values.lastname,
     gender: values.gender,
     dob: values.dob,
     nationality,
-    e_address: values.permanantaddress,
-    state: values.permanantstate,
-    country: values.permanantcountry,
-    pincode: values.permanantpincode,
+    e_address: values.e_address,
+    state: values.state,
+    country: values.country,
+    pincode: values.pincode,
     currentaddress: values.currentaddress,
     currentstate: values.currentstate,
     currentpincode: values.currentpincode,
@@ -147,8 +177,8 @@ function Basic() {
     scontactnumber: values.scontactnumber,
     contactnumber,
     altcontactnumber,
-    email: values.emailid,
-    altemail: values.altemailid,
+    email: values.email,
+    altemail: values.altemail,
   };
 
   const handlesubmit = () => {
@@ -189,13 +219,13 @@ function Basic() {
       >
         Details
       </Typography>
-      <Grid container spacing={2} sx={{ pt: "1%" }}>
+      <Grid container spacing={2} sx={{ p: "1%" }}>
         <Grid item xs={12} sm={12} md={6} lg={6}>
           <Personal
             values={values}
             errors={errors}
             setErrors={setErrors}
-            handleInputChange={handleInputChange}
+            handleInputChange={handleInputChange}    
           />
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6}>
@@ -219,7 +249,8 @@ function Basic() {
           </Typography>
         </Grid>
       </Grid>
-    </>
+      </>
+      
   );
 }
 export default Basic;

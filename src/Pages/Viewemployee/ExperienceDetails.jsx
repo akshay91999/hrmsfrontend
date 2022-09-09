@@ -1,3 +1,4 @@
+import { PartyModeSharp } from "@mui/icons-material";
 import {
     Card,
     Divider,
@@ -9,15 +10,33 @@ import {
     Typography,
   } from "@mui/material";
   import { Box } from "@mui/system";
-  import React from "react";
+import axios from "axios";
+  import React, { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
   
   export default function PersonalDetails() {
+    const params=useParams()
+    console.log(params)
+    const [exp,setExp]=useState([])
+    useEffect(()=>{
+      axios.get("http://localhost:5000/exp/"+params.basicId)
+      .then(function(response){
+        console.log(response.data)
+        setExp(response.data)
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+    },[])
     return (
       <>
+      {
+        exp.map(exp=>(
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Card sx={{ width: "90%", p: "2%" }}>
           <Typography gutterBottom variant="h5" component="div">
-                        EXPERIENCE DETAILS
+                        EXPERIENCE DETAILS 
                     </Typography><Divider/>
             <Box
               sx={{ width: "100%", maxWidth: 900, bgcolor: "background.paper" }}
@@ -30,7 +49,7 @@ import {
                         <ListItemText primary="Employee ID" />
                       </Grid>
                       <Grid item lg={4} sm={6} xs={6} md={6}>
-                        <ListItemText primary="Emp1123" />
+                        <ListItemText primary={exp.employeeid} />
                       </Grid>
                     </ListItem>
                     <ListItem disablePadding>
@@ -38,7 +57,7 @@ import {
                         <ListItemText primary="Employee Type" />
                       </Grid>
                       <Grid item lg={4} sm={6} xs={6} md={6}>
-                        <ListItemText primary="FullTime" />
+                        <ListItemText primary={exp.employeetype} />
                       </Grid>
                     </ListItem>
                     <ListItem disablePadding>
@@ -46,7 +65,7 @@ import {
                         <ListItemText primary="Designation" />
                       </Grid>
                       <Grid item lg={4} sm={6} xs={6} md={6}>
-                        <ListItemText primary="Junior Project Manager" />
+                        <ListItemText primary={exp.designation} />
                       </Grid>
                     </ListItem>
                     <ListItem disablePadding>
@@ -54,7 +73,7 @@ import {
                         <ListItemText primary="Annual Salary" />
                       </Grid>
                       <Grid item lg={4} sm={6} xs={6} md={6}>
-                        <ListItemText primary="2 LPA" />
+                        <ListItemText primary={exp.annualsalary} />
                       </Grid>
                     </ListItem>
                     <ListItem disablePadding>
@@ -62,7 +81,7 @@ import {
                         <ListItemText primary="Duration From" />
                       </Grid>
                       <Grid item lg={4} sm={6} xs={6} md={6}>
-                        <ListItemText primary="06-08-2020" />
+                        <ListItemText primary={exp.durationfrom} />
                       </Grid>
                     </ListItem>
                     <ListItem disablePadding>
@@ -70,18 +89,16 @@ import {
                         <ListItemText primary="Duration To" />
                       </Grid>
                       <Grid item lg={4} sm={6} xs={6} md={6}>
-                        <ListItemText primary="06-08-2020" />
+                        <ListItemText primary={exp.durationto} />
                       </Grid>
                     </ListItem>
-                   
-                  
-  
                   </Grid>
                 </List>
               </nav>
             </Box>
           </Card>
         </Box>
+        ))}
       </>
     );
   }

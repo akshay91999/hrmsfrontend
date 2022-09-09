@@ -12,6 +12,7 @@ import { Box } from "@mui/system";
 import React from "react";
 
 export default function PersonalDetails() {
+  
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "center" }}>

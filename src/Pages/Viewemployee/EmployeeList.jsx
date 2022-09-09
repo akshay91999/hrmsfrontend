@@ -6,7 +6,7 @@ import ViewUpdateDeleteEmp from "../../Components/Reusablecomponents/ViewUpdateD
 import axios from "axios";
 
 const columns = [
-  { field: "id", width: 120, headerClassName: "super-app-theme--header" },
+  { field: "id", width: 100, headerClassName: "super-app-theme--header",align:"center",headerAlign: "center"},
   // {
   //   field: "employeename", headerClassName: "super-app-theme--header",
   //   headerName: "Employee Name",
@@ -36,28 +36,37 @@ const columns = [
   //   headerClassName: "super-app-theme--header",
   // },
   {
-    field: "firstName",
+    field: "name",
     headerName: "Employee Name",
     width: 250,
     headerClassName: "super-app-theme--header",
+    align:"center",
+    headerAlign: "center"
   },
   {
     field: "gender",
     headerName: "Gender",
     width: 250,
     headerClassName: "super-app-theme--header",
+    hide: true,
+    align:"center",
+    headerAlign: "center"
   },
   {
     field: "contactnumber",
     headerName: "Contact",
     width: 170,
     headerClassName: "super-app-theme--header",
+    align:"center",
+    headerAlign: "center"
   },
   {
     field: "email",
     headerName: "Email",
-    width: 200,
+    width: 250,
     headerClassName: "super-app-theme--header",
+    align:"center",
+    headerAlign: "center"
   },
   // { field: "VisitorName", width: 250, headerClassName: "super-app-theme--header" },
   {
@@ -65,57 +74,49 @@ const columns = [
     headerName: "Department",
     width: 200,
     headerClassName: "super-app-theme--header",
+    align:"center",
+    headerAlign: "center"
   },
   {
     field: "designation",
     headerName: "Designation",
     width: 170,
     headerClassName: "super-app-theme--header",
+    align:"center",
+    headerAlign: "center"
   },
   {
     field: "View/Edit/Delete",
-    width: 180,
+    width: 200,
     headerClassName: "super-app-theme--header",
+    align:'center',
     headerAlign: "center",
     renderCell: (params) => (
       <strong>
-        <ViewUpdateDeleteEmp />
+        <ViewUpdateDeleteEmp id={params.id} />
       </strong>
     ),
   },
 ];
 export default function LeaveApprovedList() {
+  const [rows, setRows] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/basics")
+      .then(function (response) {
+        console.log(response.data.person);
+        var employee = response.data.person;
+        setRows(employee);
 
-  // const [tableData1,setTableData1]=useState([])
-  // const [tableData2,setTableData2]=useState([])
-  const [rows,setRows]=useState([])
-  useEffect(()=>{
-    axios.get("http://localhost:5000/basics")
-    .then(function(response){
-      console.log(response)
-      console.log(response.data.base)
-      var tableData1=response.data.base
-      var tableData2=response.data.contact
-      var tableData3=response.data.job
-      // setTableData2(response.data.contact)
-      var employee=[]
-      for(let i=0;i<tableData1.length;i++){
-        var personal=tableData1[i]
-        var cont=tableData2[i]
-        var job=tableData3[i]
-        employee[i]={...personal,...cont,...job}
-      }
-      console.log(employee)  
-      var row=employee.map(({id,firstName,gender,contactnumber,email,departmentname,designation})=>({id,firstName,gender,contactnumber,email,departmentname,designation}))
-      // console.log(rows)
-      setRows(row)
-      console.log(row)
-    })
-    .catch(function(error){
-      console.log(error)
-    })
-   
-  },[])
+        // var row=employee.map(({id,firstName,gender,contactnumber,email,departmentname,designation})=>({id,firstName,gender,contactnumber,email,departmentname,designation}))
+        // // console.log(rows)
+        // setRows(row)
+        // console.log(row)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  },[]);
   const [pageSize, setPageSize] = React.useState(5);
   return (
     <>

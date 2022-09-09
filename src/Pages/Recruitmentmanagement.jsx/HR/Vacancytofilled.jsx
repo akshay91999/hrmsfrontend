@@ -1,7 +1,7 @@
 import * as React from "react";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
-import DeletePositionButton from "../../../Components/DeletePositionButton";
+import DeletePositionButton from "../../../Components/DeleteConfirmationVaccancyList";
 
 
 

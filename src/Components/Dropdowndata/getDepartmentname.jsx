@@ -46,11 +46,13 @@ export const getMarkid=()=>(
 )
 export const getUsertype=()=>(
     [
-        {id:"1",title:"Employ"},
-        {id:"2",title:"Hr"},
-        {id:"3",title:"Admin"},
+        {id:"1",title:"Superadmin"},
+        {id:"2",title:"Admin"},
+        {id:"3",title:"HR"},
         {id:"4",title:"Superadmin"},
-        {id:"5",title:"Recruiters"},
+        {id:"5",title:"HOD"},
+        {id:"6",title:"Recruiters"},
+        {id:"7",title:"Security"}
         
     ]
 )
@@ -73,4 +75,9 @@ export const getShift=()=>(
         
     ]
 )
-
+export const getCountry=()=>(
+    [
+    { id:"1",title:"India"},
+    { id:"2",title:"Others"}
+    ]
+)

@@ -14,7 +14,7 @@ export default function Academic() {
   return (
     <>
     <Typography variant='h4' align='center' sx={{ color:'#1565C0',mt:'1%'}} >Academic Details</Typography>
-      <fieldset sx={{ m: "50%" }}>
+      <fieldset style={{ margin:'1%' }}>
         <legend>
           <Typography variant="h6" gutterBottom component="div">
             Academic Qualifications(Highest Qualification First)

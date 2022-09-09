@@ -4,11 +4,15 @@ import { Paper,Box } from "@mui/material";
 import useForm from "../../Components/Validation/useForm";
 import Btn from "../../Components/Reusablecomponents/Btn";
 import {Typography} from "@mui/material";
+import axios from "axios";
+
 const initialFvalues = {
     paidleavenumber: "",
     unpaidleavenumber:''
   };
 export default function NumberOfLeaveAllot() {
+  // const params=useParams();
+
     const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
     const validate = () => {
@@ -18,11 +22,44 @@ export default function NumberOfLeaveAllot() {
         setErrors({ ...temp });
         return Object.values(temp).every((x) => x === "");
       };
+
+      const user = {
+        total_paid: values.paidleavenumber,
+        total_unpaid: values.unpaidleavenumber,
+      
+    
+  
+      };
+
+
       const handlesubmit = () => {
         // loging values
-        console.log(values);
+        // console.log(values);
+        // if (validate()) {
+        //   window.alert("Succesfully Added");
+        // }
+        console.log(user);
         if (validate()) {
-          window.alert("Succesfully Added");
+          axios
+            .post("http://localhost:5000/leavepackage", user, {
+              headers: { "Content-Type": "application/json" },
+            })
+            .then(function (response) {
+              console.log(response);
+    
+              // let id = response.data.data;
+              // console.log(id);
+              // if (response.data.message === "success") {
+                window.alert("successfully submited");
+              //   navigate("/jobdetails/" + id);
+              // }
+              // else{
+              //   window.alert(response.data.message)
+              // }
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         }
       };
   return (

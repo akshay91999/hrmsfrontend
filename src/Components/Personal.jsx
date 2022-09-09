@@ -10,9 +10,10 @@ import Marital from "./Marital";
 import { useState } from "react";
 import Textfield from "./Reusablecomponents/Textfield";
 import Calender from "./Reusablecomponents/Calender";
+import { useContext } from "react";
 
 function Personal(props) {
-  const { values, errors,  handleInputChange } = props;
+  const { values, errors,  handleInputChange,} = props;
 
   const [open, setOpen] = useState(false);
   const formOpen = () => {
@@ -42,7 +43,7 @@ function Personal(props) {
             gridTemplateColumns: { sm: "1fr 1fr" },
             gap: 2,
             width: "100%",
-            textAlign: "center",
+           
           }}
         >
           <Textfield
@@ -102,7 +103,7 @@ function Personal(props) {
             gridTemplateColumns: { sm: "1fr 1fr" },
             gap: 2,
             width: "100%",
-            textAlign: "center",
+            
           }}
         >
           <Calender
@@ -131,7 +132,6 @@ function Personal(props) {
             gap: 2,
             width: "100%",
             mt: "2%",
-            textAlign: "center",
           }}
         >
           <Textfield
@@ -139,7 +139,7 @@ function Personal(props) {
             id="contact-no"
             name="contactnumber"
             type="number"
-            value={values.component}
+            value={values.contactnumber}
             onChange={handleInputChange}
             error={errors.contactnumber}
           />
@@ -155,19 +155,18 @@ function Personal(props) {
           <Textfield
             label="Email id"
             id="email-id"
-            name="emailid"
-            value={values.emailid}
+            name="email"
+            value={values.email}
             onChange={handleInputChange}
-            errors={errors.emailid}
-            error={errors.emailid}
+            error={errors.email}
           />
           <Textfield
             label="Alternate Email id"
             id="alt-email-id"
-            name="altemailid"
-            value={values.altemailid}
+            name="altemail"
+            value={values.altemail}
             onChange={handleInputChange}
-            error={errors.altemailid}
+            error={errors.altemail}
           />
           <Textfield
             label="Father's Name"
@@ -178,7 +177,7 @@ function Personal(props) {
             error={errors.fathername}
           />
           <Textfield
-            label="Contact Number"
+            label="Father Contact Number"
             id="father's-cntno"
             type="number"
             name="fcontactnumber"
@@ -195,7 +194,7 @@ function Personal(props) {
             error={errors.mothername}
           />
           <Textfield
-            label="Contact Number"
+            label="Mother Contact Number"
             id="mother's-cntno"
             name="mcontactnumber"
             type="number"

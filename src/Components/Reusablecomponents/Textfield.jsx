@@ -22,13 +22,14 @@ function Textfield(props) {
     <div>
       <CssTextField
         size="small"
-        
         sx={{ width: '90%' }}
-        label={label} id={id}
+        label={label} 
+        id={id}
         name={name}
         value={value}
         onChange={onChange}
         type={type}
+       
         {...(error && { error: true, helperText: error })}
       />
     </div>

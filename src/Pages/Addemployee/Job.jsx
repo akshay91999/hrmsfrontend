@@ -9,7 +9,7 @@ function Job() {
   let navigate=useNavigate()
   return (
     <div>
-       <Box sx={{m:"3%"}}>
+       <Box sx={{m:"1%"}}>
        <Typography variant='h4' align='center' sx={{ color:'#1565C0',mt:'1%'}} >Job Details</Typography>
        <fieldset sx={{ m: "50%" }}>
         <legend>

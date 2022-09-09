@@ -9,9 +9,24 @@ import {
     Typography,
   } from "@mui/material";
   import { Box } from "@mui/system";
-  import React from "react";
+import axios from "axios";
+  import React, { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
   
   export default function PersonalDetails() {
+    const params=useParams()
+    const [job,setJob]=useState({})
+    useEffect(()=>{
+      axios.get("http://localhost:5000/job/"+params.basicId)
+      .then(function(response){
+        console.log(response.config.data)
+        setJob(response.data)
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+    })
     return (
       <>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -30,7 +45,7 @@ import {
                         <ListItemText primary="Designation" />
                       </Grid>
                       <Grid item lg={4} sm={6} xs={6} md={6}>
-                        <ListItemText primary="Project Manager" />
+                        <ListItemText primary={job.designation} />
                       </Grid>
                     </ListItem>
                     <ListItem disablePadding>
@@ -38,15 +53,7 @@ import {
                         <ListItemText primary="Department" />
                       </Grid>
                       <Grid item lg={4} sm={6} xs={6} md={6}>
-                        <ListItemText primary="IT Department" />
-                      </Grid>
-                    </ListItem>
-                    <ListItem disablePadding>
-                      <Grid item lg={8} sm={6} xs={6} md={6}>
-                        <ListItemText primary="Branch" />
-                      </Grid>
-                      <Grid item lg={4} sm={6} xs={6} md={6}>
-                        <ListItemText primary="Thalassery" />
+                        <ListItemText primary={job.departmentname} />
                       </Grid>
                     </ListItem>
                     <ListItem disablePadding>
@@ -54,7 +61,7 @@ import {
                         <ListItemText primary="Package" />
                       </Grid>
                       <Grid item lg={4} sm={6} xs={6} md={6}>
-                        <ListItemText primary="3 LPA" />
+                        <ListItemText primary={job.package} />
                       </Grid>
                     </ListItem>
                     <ListItem disablePadding>
@@ -62,7 +69,7 @@ import {
                         <ListItemText primary="Type" />
                       </Grid>
                       <Grid item lg={4} sm={6} xs={6} md={6}>
-                        <ListItemText primary="Full Time" />
+                        <ListItemText primary={job.jobtype} />
                       </Grid>
                     </ListItem>
                     <ListItem disablePadding>
@@ -70,7 +77,7 @@ import {
                         <ListItemText primary="Date Of Joining" />
                       </Grid>
                       <Grid item lg={4} sm={6} xs={6} md={6}>
-                        <ListItemText primary="06-08-2020" />
+                        <ListItemText primary={job.doj} />
                       </Grid>
                     </ListItem>
                    

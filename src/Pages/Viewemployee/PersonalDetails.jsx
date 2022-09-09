@@ -2,7 +2,8 @@ import {Card,Divider,Grid,List,ListItem,ListItemButton,ListItemText, Typography,
 import { Box } from "@mui/system";
 import React from "react";
 
-export default function PersonalDetails() {
+export default function PersonalDetails(props) {
+  const {basics}=props
   return (
     <>
     <Box sx={{ display: "flex", justifyContent: "center"}}>
@@ -19,15 +20,7 @@ export default function PersonalDetails() {
                   <ListItemText primary="First Name" />
                 </Grid>
                 <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary="Ram" />
-                </Grid>
-              </ListItem>
-              <ListItem disablePadding>
-                <Grid item lg={8} sm={6} xs={6} md={6}>
-                  <ListItemText primary="Last Name" />
-                </Grid>
-                <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary="Shankar" />
+                  <ListItemText primary={basics.name} />
                 </Grid>
               </ListItem>
               <ListItem disablePadding>
@@ -35,7 +28,7 @@ export default function PersonalDetails() {
                   <ListItemText primary="Gender" />
                 </Grid>
                 <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary="Male" />
+                  <ListItemText primary={basics.gender} />
                 </Grid>
               </ListItem>
               <ListItem disablePadding>
@@ -43,7 +36,7 @@ export default function PersonalDetails() {
                   <ListItemText primary="DOB" />
                 </Grid>
                 <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary="12/02/2020" />
+                  <ListItemText primary={basics.dob} />
                 </Grid>
               </ListItem>
               <ListItem disablePadding>
@@ -51,15 +44,15 @@ export default function PersonalDetails() {
                   <ListItemText primary="Contact Number" />
                 </Grid>
                 <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary="7790369226" />
+                  <ListItemText primary={basics.contactnumber} />
                 </Grid>
               </ListItem>
               <ListItem disablePadding>
                 <Grid item lg={8} sm={6} xs={6} md={6}>
-                  <ListItemText primary="Email  id" />
+                  <ListItemText primary="Email id" />
                 </Grid>
                 <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary="ramshankar@gmail.com" />
+                  <ListItemText primary={basics.email} />
                 </Grid>
               </ListItem>
               <ListItem disablePadding>
@@ -67,7 +60,7 @@ export default function PersonalDetails() {
                   <ListItemText primary="Fathers Name" />
                 </Grid>
                 <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary="Shankar" />
+                  <ListItemText primary={basics.fathername} />
                 </Grid>
               </ListItem>
               <ListItem disablePadding>
@@ -75,7 +68,7 @@ export default function PersonalDetails() {
                   <ListItemText primary="MotherS Name" />
                 </Grid>
                 <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary="Rani" />
+                  <ListItemText primary={basics.mothername} />
                 </Grid>
               </ListItem>
               <ListItem disablePadding>
@@ -83,7 +76,7 @@ export default function PersonalDetails() {
                   <ListItemText primary="Marital Status" />
                 </Grid>
                 <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary="Single" />
+                  <ListItemText primary={basics.maritalstatus} />
                 </Grid>
               </ListItem>
               <ListItem disablePadding>
@@ -91,15 +84,15 @@ export default function PersonalDetails() {
                   <ListItemText primary="Address" />
                 </Grid>
                 <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary="House No.1" />
+                  <ListItemText primary={basics.e_address} />
                 </Grid>
               </ListItem>
               <ListItem disablePadding>
                 <Grid item lg={8} sm={6} xs={6} md={6}>
-                  <ListItemText primary="City" />
+                  <ListItemText primary="State" />
                 </Grid>
                 <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary="Kannur" />
+                  <ListItemText primary={basics.state} />
                 </Grid>
               </ListItem>
               <ListItem disablePadding>
@@ -107,7 +100,7 @@ export default function PersonalDetails() {
                   <ListItemText primary="Country" />
                 </Grid>
                 <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary="India" />
+                  <ListItemText primary={basics.country}/>
                 </Grid>
               </ListItem>
               <ListItem disablePadding>
@@ -115,7 +108,7 @@ export default function PersonalDetails() {
                   <ListItemText primary="Pincode" />
                 </Grid>
                 <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary="687456" />
+                  <ListItemText primary={basics.pincode} />
                 </Grid>
               </ListItem>
              

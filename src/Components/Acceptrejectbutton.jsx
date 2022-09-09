@@ -1,5 +1,5 @@
 import React from 'react'
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Box, Button, IconButton, Tooltip } from '@mui/material';
 
@@ -8,10 +8,10 @@ function Acceptrejectbutton() {
     <>
       <Box>
       <Tooltip title="Accept" placement="top">
-        <IconButton sx={{ color:'#1565C0' }}><CheckCircleOutlineIcon/></IconButton>
+        <IconButton sx={{ color:'green' }}><CheckCircleIcon/></IconButton>
         </Tooltip>
         <Tooltip title="Reject" placement="top">
-        <IconButton sx={{  color:'#1565C0' }}><CancelIcon/></IconButton>
+        <IconButton sx={{  color:'red' }}><CancelIcon/></IconButton>
         </Tooltip>
       </Box>
     </>

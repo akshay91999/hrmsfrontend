@@ -16,6 +16,7 @@ import Dropdownlist from "../../Components/Reusablecomponents/Dropdownlist";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Upload from "../../Components/Upload";
+import Dropdownlisttitle from "../../Components/Reusablecomponents/DropdownlistTitle";
 const initialFvalues = {
   employeeid: "",
   employeetype: "",
@@ -200,7 +201,7 @@ function Expdtl() {
             onChange={handleInputChange}
             error={errors.employeeid}
           />
-          <Dropdownlist
+          <Dropdownlisttitle
             name="employeetype"
             label="Type"
             value={values.employeetype}

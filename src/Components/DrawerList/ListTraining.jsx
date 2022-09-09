@@ -56,67 +56,67 @@ function ListTraining() {
                 <ListItemIcon>
                     <ModelTrainingIcon/>
                 </ListItemIcon>
-                <ListItemText primary="TRAINING REQUEST" />
+                <ListItemText primary="Training Request" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/EmpFeedback")}>
                 <ListItemIcon>
                     <ModelTrainingIcon/>
                 </ListItemIcon>
-                <ListItemText primary="EMPLOYEES FEEDBACK" />
+                <ListItemText primary="Employee Feedback" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/TrainingDetailsEmp")}>
                 <ListItemIcon>
                     <ModelTrainingIcon/>
                 </ListItemIcon>
-                <ListItemText primary="TRAINING DETAILS(EMP)" />
+                <ListItemText primary="Training Details(EMP)" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/AddTrainerTrainingTimeHod")}>
                 <ListItemIcon>
                     <ModelTrainingIcon/>
                 </ListItemIcon>
-                <ListItemText primary="ADD TRAINING" />
+                <ListItemText primary="Add Training" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/AllotingTrainer")}>
                 <ListItemIcon>
                     <ModelTrainingIcon/>
                 </ListItemIcon>
-                <ListItemText primary="ALLOT TRAINER" />
+                <ListItemText primary="Allot Trainer" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/AttendanceViewHod")}>
                 <ListItemIcon>
                     <ModelTrainingIcon/>
                 </ListItemIcon>
-                <ListItemText primary="ATTENDANCE(VIEW BY HOD)" />
+                <ListItemText primary="Attendance(VIEW BY HOD)" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/TrainingdetailsHod")}>
                 <ListItemIcon>
                     <ModelTrainingIcon/>
                 </ListItemIcon>
-                <ListItemText primary="TRAINING DETAILS (HOD)" />
+                <ListItemText primary="Training Details (HOD)" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/ViewFeedback")}>
                 <ListItemIcon>
                     <ModelTrainingIcon/>
                 </ListItemIcon>
-                <ListItemText primary="FEEDBACK(VIEW HOD)" />
+                <ListItemText primary="Feedback(VIEW HOD)" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/AcceptTraining")}>
                 <ListItemIcon>
                     <ModelTrainingIcon/>
                 </ListItemIcon>
-                <ListItemText primary="ACCEPT TRAINING(HR)" />
+                <ListItemText primary="Accept Training(HR)" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/TrainingdetailsHr")}>
                 <ListItemIcon>
                     <ModelTrainingIcon/>
                 </ListItemIcon>
-                <ListItemText primary="TRAINING DETAILS(VIEW HR)" />
+                <ListItemText primary="Training Details(VIEW HR)" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/ViewFeedbackHr")}>
                 <ListItemIcon>
                     <ModelTrainingIcon/>
                 </ListItemIcon>
-                <ListItemText primary="FEEDBACK(VIEW HR)" />
+                <ListItemText primary="Feedback(VIEW HR)" />
             </ListItemButton>
 
 

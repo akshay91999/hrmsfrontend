@@ -61,62 +61,20 @@ function ListGrievance() {
                 <ListItemIcon>
                     <DynamicFormIcon/>
                 </ListItemIcon>
-                <ListItemText primary="ADD GRIEVANCE" />
+                <ListItemText primary="Add Grievance" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/HrGrievanceTable")}>
                 <ListItemIcon>
                     <PreviewIcon/>
                 </ListItemIcon>
-                <ListItemText primary="GRIEVANCE TABLE" />
+                <ListItemText primary="Grievance Table" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/GrievanceList")}>
                 <ListItemIcon>
                     <PreviewIcon/>
                 </ListItemIcon>
-                <ListItemText primary="GRIEVANCE LIST" />
+                <ListItemText primary="Grievance List" />
             </ListItemButton>
-        {/* <ListItemButton onClick={() => navigate("/candidatelist")}>
-                <ListItemIcon>
-                    <FormatListBulletedIcon/>
-                </ListItemIcon>
-                <ListItemText primary="CANDIDATE LIST" />
-            </ListItemButton>
-        <ListItemButton onClick={() => navigate("/selectedcandidatelist")}>
-                <ListItemIcon>
-                    <FormatListBulletedIcon/>
-                </ListItemIcon>
-                <ListItemText primary="SELECTED LIST" />
-            </ListItemButton>
-        <ListItemButton onClick={() => navigate("/selectedlist")}>
-                <ListItemIcon>
-                    <FormatListBulletedIcon/>
-                </ListItemIcon>
-                <ListItemText primary="SELECTED LIST (HR)" />
-            </ListItemButton>
-        <ListItemButton onClick={() => navigate("/addcandidate")}>
-                <ListItemIcon>
-                <AddIcon/>
-                </ListItemIcon>
-                <ListItemText primary="ADD CANDIDATE" />
-            </ListItemButton>
-        <ListItemButton onClick={() => navigate("/vacancytobefilled")}>
-                <ListItemIcon>
-                <PlaylistAddCheckIcon/>
-                </ListItemIcon>
-                <ListItemText primary="VACANCY TO BE FILLED" />
-            </ListItemButton>
-        <ListItemButton onClick={() => navigate("/vacancytobefilledrecruiters")}>
-                <ListItemIcon>
-                <PlaylistAddCheckIcon/>
-                </ListItemIcon>
-                <ListItemText primary="VACANCY TO BE FILLED" />
-            </ListItemButton>
-        <ListItemButton onClick={() => navigate("/blacklistedcandidate")}>
-                <ListItemIcon>
-                <ContrastIcon/>
-                </ListItemIcon>
-                <ListItemText primary="BLACKLISTED CANDIDATE" />
-            </ListItemButton> */}
         </List>
         </Collapse>
     </>

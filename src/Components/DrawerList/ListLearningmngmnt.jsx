@@ -54,19 +54,19 @@ function ListLearningmngmnt() {
                 <ListItemIcon>
                     <LocalLibraryIcon/>
                 </ListItemIcon>
-                <ListItemText primary="VIEW LINK" />
+                <ListItemText primary="View Link" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/AddLinkHod")}>
                 <ListItemIcon>
                     <LocalLibraryIcon/>
                 </ListItemIcon>
-                <ListItemText primary="ADD LINK(HOD)" />
+                <ListItemText primary="Add Link(HOD)" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/AddLinkHr")}>
                 <ListItemIcon>
                     <LocalLibraryIcon/>
                 </ListItemIcon>
-                <ListItemText primary="ADD LINK(HR)" />
+                <ListItemText primary="Add Link(HR)" />
             </ListItemButton>
           </List>
           </Collapse>

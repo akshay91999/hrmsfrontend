@@ -42,7 +42,8 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs() {
+export default function BasicTabs(props) {
+  const {basics}=props
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -64,7 +65,7 @@ export default function BasicTabs() {
         </Tabs>  
       </Box>
       <TabPanel value={value} index={0}>
-      <PersonalDetails/>
+      <PersonalDetails basics={basics}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
       <AcademicDetails/>

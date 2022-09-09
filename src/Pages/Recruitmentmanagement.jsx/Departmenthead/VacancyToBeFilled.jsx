@@ -1,67 +1,67 @@
 import * as React from "react";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
-import DeletePositionButton from "../../../Components/DeletePositionButton";
+import DeletePositionButton from "../../../Components/DeleteConfirmationVaccancyList";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 
 
 
-// const rows = [
-//   {
-//     id: 1220,
-//     departmentname: "front-end devolopment",
-//     position:'python devoloper',
-//     numberofvacancy:45,
-//     yoeneeded: 4,
-//     neededwithin: '22-05-2022',
-//   },
+const rows = [
+  {
+    id: 1220,
+    departmentname: "front-end devolopment",
+    position:'python devoloper',
+    numberofvacancy:45,
+    yoeneeded: 4,
+    neededwithin: '22-05-2022',
+  },
 
-//   {
-//     id: 1221,
-//     departmentname: "front-end devolopment",
-//     position:'python devoloper',
-//     numberofvacancy:45,
-//     yoeneeded: 4,
-//     neededwithin: '22-05-2022',
-//   },
+  {
+    id: 1221,
+    departmentname: "front-end devolopment",
+    position:'python devoloper',
+    numberofvacancy:45,
+    yoeneeded: 4,
+    neededwithin: '22-05-2022',
+  },
 
-//   {
-//     id: 1222,
-//     departmentname: "front-end devolopment",
-//     position:'python devoloper',
-//     numberofvacancy:45,
-//     yoeneeded: 4,
-//     neededwithin: '22-05-2022',
-//   },
+  {
+    id: 1222,
+    departmentname: "front-end devolopment",
+    position:'python devoloper',
+    numberofvacancy:45,
+    yoeneeded: 4,
+    neededwithin: '22-05-2022',
+  },
 
-//   {
-//     id: 1223,
-//     departmentname: "front-end devolopment",
-//     position:'python devoloper',
-//     numberofvacancy:45,
-//     yoeneeded: 3,
-//     neededwithin: '22-05-2022',
-//   },
+  {
+    id: 1223,
+    departmentname: "front-end devolopment",
+    position:'python devoloper',
+    numberofvacancy:45,
+    yoeneeded: 3,
+    neededwithin: '22-05-2022',
+  },
 
-//   {
-//     id: 1224,
-//     departmentname: "front-end devolopment",
-//     position:'python devoloper',
-//     numberofvacancy:45,
-//     yoeneeded: 2,
-//     neededwithin: '22-05-2022',
-//   },
-//   {
-//     id: 1224,
-//     departmentname: "front-end devolopment",
-//     position:'python devoloper',
-//     numberofvacancy:45,
-//     yoeneeded: 1,
-//     neededwithin: '22-05-2022',
-//   },
-// ];
+  {
+    id: 1224,
+    departmentname: "front-end devolopment",
+    position:'python devoloper',
+    numberofvacancy:45,
+    yoeneeded: 2,
+    neededwithin: '22-05-2022',
+  },
+  {
+    id: 1224,
+    departmentname: "front-end devolopment",
+    position:'python devoloper',
+    numberofvacancy:45,
+    yoeneeded: 1,
+    neededwithin: '22-05-2022',
+  },
+];
 
 const columns = [
   {
@@ -111,16 +111,7 @@ const columns = [
 
 export default function VacancyToBeFilled() {
 
-  const [rows,setRows]=useState([])
-  useEffect(()=>{
-    axios.get("http://localhost:5000/vacancy")
-    .then(function(response){
-      console.log(response)
-    })
-    .catch(function(error){
-      console.log(error)
-    })
-  },[])
+  
 
   const [pageSize, setPageSize] = React.useState(5);
   return (

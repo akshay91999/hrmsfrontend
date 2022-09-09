@@ -19,14 +19,15 @@ function AddressCalling(props) {
     <>
       <Address
         text="Permanant Address"
-        address="permanantaddress"
-        state="permanantstate"
-        country="permanantcountry"
-        pincode="permanantpincode"
+        address="e_address"
+        state="state"
+        country="country"
+        pincode="pincode"
         values={values}
         errors={errors}
         setErrors={setErrors}
         handleInputChange={handleInputChange}
+        
       />
       <Typography variant="h6">
         Are the permanent and current address same?

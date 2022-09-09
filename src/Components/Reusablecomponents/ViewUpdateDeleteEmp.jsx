@@ -9,8 +9,12 @@ import {DialogActions} from '@mui/material';
 import {DialogContent} from '@mui/material';
 import {Dialog} from '@mui/material';
 import EmployeeRemove from '../../Pages/Viewemployee/EmployeeRemove';
+import Textarea from './Textarea';
+import MultiLineTextfield from './MultiLineTextfield';
+import MultilineTextFields from './Multiline';
 
-export default function ViewUpdateDeleteEmp() {
+export default function ViewUpdateDeleteEmp(props) {
+    const {id}=props
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -23,13 +27,12 @@ export default function ViewUpdateDeleteEmp() {
     let navigate=useNavigate()
     return (
         <>
-            <Button onClick={()=>{navigate("/viewemployee")}}><VisibilityIcon /></Button>
+            <Button onClick={()=>{navigate("/viewemployee/"+id)}}><VisibilityIcon /></Button>
             <Button onClick={()=>{navigate("/addemployee")}}><EditIcon /></Button>
             <Button onClick={handleClickOpen}><DeleteIcon /></Button>
             <Dialog open={open} onClose={handleClose}>
-
                     <DialogContent>
-                        <EmployeeRemove/>
+                        <Textarea/>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose}>Cancel</Button>
