@@ -21,7 +21,7 @@ import axios from "axios";
 
 const initialFvalues = {
   position: "",
-  departmentname: "",
+  departmentname:"",
   usertype: "",
   package: "",
   jobtype: "",

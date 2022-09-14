@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';import CancelIcon from '@mui/icons-material/Cancel';
+import React from 'react'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { Box, Button, IconButton, Tooltip } from '@mui/material';
 import axios from 'axios';
 
-function AcceptrejectbuttonVaccancyView(props) {
+function AcceptrejectbuttonCandidate(props) {
   const {id}=props
+ 
+
   const handleAccept=()=>{
-    axios.put("http://localhost:5000/vacancy/"+id,{status:"accept"},{headers:{"Content-Type":"application/json"}})
+    axios.put("http://localhost:5000/candidate/"+id,{selection:true},{headers:{"Content-Type":"application/json"}})
     .then(function(response){
       window.alert(response.data.message)
-      window.location.reload(false);
+        window.location.reload(false);
      
     })
     .catch(function(error){
@@ -17,7 +20,7 @@ function AcceptrejectbuttonVaccancyView(props) {
     })
   }
   const handleReject=()=>{
-    axios.put("http://localhost:5000/vacancy/"+id,{status:"reject"},{headers:{"Content-Type":"application/json"}})
+    axios.put("http://localhost:5000/candidate/"+id,{selection:false},{headers:{"Content-Type":"application/json"}})
     .then(function(response){
       window.alert(response.data.message)
       window.location.reload(false);
@@ -42,4 +45,4 @@ function AcceptrejectbuttonVaccancyView(props) {
   )
 }
 
-export default AcceptrejectbuttonVaccancyView
+export default AcceptrejectbuttonCandidate

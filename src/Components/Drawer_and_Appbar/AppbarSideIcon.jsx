@@ -36,6 +36,7 @@ function AppbarSideIcon(props) {
     handleMobileMenuClose();
   };
   const logout = () => {
+    localStorage.clear()
     setLoggedIn(false)
     navigate("/")
   };

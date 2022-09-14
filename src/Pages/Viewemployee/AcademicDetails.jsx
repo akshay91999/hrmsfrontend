@@ -9,13 +9,31 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function PersonalDetails() {
+  const params=useParams()
+  const [academic,setAcademic]=useState([])
+  useEffect(()=>{
+    axios.get("http://localhost:5000/accademic/"+params.basicId)
+    .then(function(response){
+      console.log(response.data.acdemic)
+      setAcademic(response.data.acdemic)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
   
   return (
     <>
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+    {
+      academic.map(academic=>(
+<Box sx={{ display: "flex", justifyContent: "center" }}>
         <Card sx={{ width: "90%", p: "2%" }}>
         <Typography gutterBottom variant="h5" component="div">
                         ACADEMIC DETAILS
@@ -31,7 +49,7 @@ export default function PersonalDetails() {
                       <ListItemText primary="Institution/School" />
                     </Grid>
                     <Grid item lg={4} sm={6} xs={6} md={6}>
-                      <ListItemText primary="School of Information Science and Technology" />
+                      <ListItemText primary={academic.school} />
                     </Grid>
                   </ListItem>
                   <ListItem disablePadding>
@@ -39,7 +57,7 @@ export default function PersonalDetails() {
                       <ListItemText primary="Board/University" />
                     </Grid>
                     <Grid item lg={4} sm={6} xs={6} md={6}>
-                      <ListItemText primary="Kannur University" />
+                      <ListItemText primary={academic.board} />
                     </Grid>
                   </ListItem>
                   <ListItem disablePadding>
@@ -47,7 +65,7 @@ export default function PersonalDetails() {
                       <ListItemText primary="Courses" />
                     </Grid>
                     <Grid item lg={4} sm={6} xs={6} md={6}>
-                      <ListItemText primary="Master of Computer Application" />
+                      <ListItemText primary={academic.courseid} />
                     </Grid>
                   </ListItem>
                   <ListItem disablePadding>
@@ -55,7 +73,7 @@ export default function PersonalDetails() {
                       <ListItemText primary="Branch" />
                     </Grid>
                     <Grid item lg={4} sm={6} xs={6} md={6}>
-                      <ListItemText primary="Computer Science" />
+                      <ListItemText primary={academic.branchid}/>
                     </Grid>
                   </ListItem>
                   <ListItem disablePadding>
@@ -63,7 +81,7 @@ export default function PersonalDetails() {
                       <ListItemText primary="Type" />
                     </Grid>
                     <Grid item lg={4} sm={6} xs={6} md={6}>
-                      <ListItemText primary="Full Time" />
+                      <ListItemText primary={academic.coursetype} />
                     </Grid>
                   </ListItem>
                   <ListItem disablePadding>
@@ -71,7 +89,7 @@ export default function PersonalDetails() {
                       <ListItemText primary="Duration From" />
                     </Grid>
                     <Grid item lg={4} sm={6} xs={6} md={6}>
-                      <ListItemText primary="06-08-2020" />
+                      <ListItemText primary={academic.durtnfrm} />
                     </Grid>
                   </ListItem>
                   <ListItem disablePadding>
@@ -79,7 +97,7 @@ export default function PersonalDetails() {
                       <ListItemText primary="Duration To" />
                     </Grid>
                     <Grid item lg={4} sm={6} xs={6} md={6}>
-                      <ListItemText primary="30-09-2022" />
+                      <ListItemText primary={academic.durtnto} />
                     </Grid>
                   </ListItem>
                 
@@ -90,6 +108,9 @@ export default function PersonalDetails() {
           </Box>
         </Card>
       </Box>
+      ))
+    }
+      
     </>
   );
 }

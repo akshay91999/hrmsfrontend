@@ -11,23 +11,18 @@ import NoteAltSharpIcon from '@mui/icons-material/NoteAltSharp';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 function ListVisitormngmnt() {
+  const user=JSON.parse(localStorage.getItem('user'))
     let navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
 
     const handleClick = () => {
       setOpen(!open);
     };
-  return (
-    <>
-       <ListItemButton onClick={handleClick}>
-                <ListItemIcon>
-                    <ElderlyIcon/>
-                </ListItemIcon>
-                <ListItemText primary="VISITOR" />
-                {open ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding sx={{ pl: 1 }}>
+    const renderList=()=>{
+      if(user.user_type===7)
+      {
+      return (
+        <List component="div" disablePadding sx={{ pl: 1 }}>
             <ListItemButton onClick={() => navigate("/VisitorPassForm")}>
             <ListItemIcon>
             <NoteAltSharpIcon />
@@ -47,9 +42,39 @@ function ListVisitormngmnt() {
             <ListItemText primary="Visitor  CheckOut " />
           </ListItemButton>
             </List>
+      )
+    }
+    else if(user.user_type===1||user.user_type===2||user.user_type===3)
+    {
+      return (
+        <List component="div" disablePadding sx={{ pl: 1 }}>
+           <ListItemButton onClick={() => navigate("/VisitorList")}>
+             <ListItemIcon>
+               <FormatListBulletedIcon />
+             </ListItemIcon>
+             <ListItemText primary="Visitor List " />
+           </ListItemButton>
+             </List>
+       )
+   }
+  }
+    
+  return (
+    <>
+       <ListItemButton onClick={handleClick}>
+                <ListItemIcon>
+                    <ElderlyIcon/>
+                </ListItemIcon>
+                <ListItemText primary="VISITOR" />
+                {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              {renderList()}
       </Collapse>
     </>
   )
+    
+    
 }
 
 export default ListVisitormngmnt

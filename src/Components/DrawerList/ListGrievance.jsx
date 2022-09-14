@@ -44,7 +44,63 @@ import ContrastIcon from '@mui/icons-material/Contrast';
 function ListGrievance() {
     let navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
-
+    const user=JSON.parse(localStorage.getItem('user'))
+    const renderList=()=>{
+      if(user.user_type===1){
+        return(
+        <List component="div" disablePadding sx={{ pl: 1 }}>
+        <ListItemButton onClick={() => navigate("/EmployeeGrievance")}>
+                <ListItemIcon>
+                    <DynamicFormIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Add Grievance" />
+            </ListItemButton>
+        <ListItemButton onClick={() => navigate("/HrGrievanceTable")}>
+                <ListItemIcon>
+                    <PreviewIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Grievance Table" />
+            </ListItemButton>
+            <ListItemButton onClick={() => navigate("/GrievanceList")}>
+                <ListItemIcon>
+                    <PreviewIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Grievance List" />
+            </ListItemButton>
+        </List>
+        )
+      }
+      else if(user.user_type===2||user.user_type===3){
+        return(
+        <List component="div" disablePadding sx={{ pl: 1 }}>
+        <ListItemButton onClick={() => navigate("/HrGrievanceTable")}>
+                <ListItemIcon>
+                    <PreviewIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Grievance Table" />
+            </ListItemButton>
+            <ListItemButton onClick={() => navigate("/GrievanceList")}>
+                <ListItemIcon>
+                    <PreviewIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Grievance List" />
+            </ListItemButton>
+        </List>
+        )
+      }
+      else if(user.user_type===4||user.user_type===5||user.user_type===7||user.user_type===6){
+        return(
+        <List component="div" disablePadding sx={{ pl: 1 }}>
+         <ListItemButton onClick={() => navigate("/EmployeeGrievance")}>
+                <ListItemIcon>
+                    <DynamicFormIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Add Grievance" />
+            </ListItemButton>
+        </List>
+        )
+      }
+    }
   const handleClick = () => {
     setOpen(!open);
   };

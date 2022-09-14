@@ -152,6 +152,7 @@ function Vaccancyform() {
           value={values.vaccancynumber}
           onChange={handleInputChange}
           error={errors.vaccancynumber}
+          type="number"
         />
         <Textfield
           label="Year Of Experience Needed"
@@ -159,6 +160,7 @@ function Vaccancyform() {
           value={values.yoeneeded}
           onChange={handleInputChange}
           error={errors.yoeneeded}
+          type="number"
         />
         <Calender
           text="Needed Within"

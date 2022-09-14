@@ -8,60 +8,6 @@ import { useState } from "react";
 
 
 
-const rows = [
-  {
-    id: 1220,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 4,
-    neededwithin: '22-05-2022',
-  },
-
-  {
-    id: 1221,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 4,
-    neededwithin: '22-05-2022',
-  },
-
-  {
-    id: 1222,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 4,
-    neededwithin: '22-05-2022',
-  },
-
-  {
-    id: 1223,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 3,
-    neededwithin: '22-05-2022',
-  },
-
-  {
-    id: 1224,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 2,
-    neededwithin: '22-05-2022',
-  },
-  {
-    id: 1224,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 1,
-    neededwithin: '22-05-2022',
-  },
-];
 
 const columns = [
   {
@@ -69,6 +15,7 @@ const columns = [
     width: 100,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
+    align:'center'
   },
   {
     field: "departmentname",
@@ -76,20 +23,23 @@ const columns = [
     width: 250,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
+    align:'center'
   },
   {
-    field: "position",
+    field: "designation",
     headerName: 'Position',
     width: 250,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
+    align:'center'
   },
   {
-    field: "numberofvacancy",
+    field: "vacancynumber",
     headerName: 'Number Of Vacancy',
-    width: 150,
+    width: 240,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
+    align:'center'
   },
   {
     field: "yoeneeded",
@@ -97,6 +47,7 @@ const columns = [
     width: 250,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
+    align:'center'
   },
   {
     field: "neededwithin",
@@ -104,6 +55,7 @@ const columns = [
     width: 250,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
+    align:'center'
   },
  
   
@@ -111,6 +63,24 @@ const columns = [
 
 export default function VacancyToBeFilled() {
 
+  const [rows,setRows]=useState([])
+ 
+  useEffect(()=>{
+    axios.get("http://localhost:5000/vacancy/approved")
+    .then(function(response){
+      console.log(response.data)
+      var row=[]
+      row=response.data
+      var newrow=row.map(({v_id:id,...rest})=>({
+        id,...rest
+      }))
+      setRows(newrow)
+      // setRows(row)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
   
 
   const [pageSize, setPageSize] = React.useState(5);

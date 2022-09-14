@@ -28,7 +28,7 @@ export default function ViewUpdateDeleteEmp(props) {
     return (
         <>
             <Button onClick={()=>{navigate("/viewemployee/"+id)}}><VisibilityIcon /></Button>
-            <Button onClick={()=>{navigate("/addemployee")}}><EditIcon /></Button>
+            <Button onClick={()=>{navigate("/updateemployee/"+id)}}><EditIcon /></Button>
             <Button onClick={handleClickOpen}><DeleteIcon /></Button>
             <Dialog open={open} onClose={handleClose}>
                     <DialogContent>

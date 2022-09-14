@@ -2,7 +2,7 @@ import * as React from "react";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import Eyeiconbutton from "../../../Components/Reusablecomponents/Eyeiconbutton";
-import Acceptrejectbutton from "../../../Components/Acceptrejectbutton";
+import Acceptrejectbutton from "../../../Components/AcceptrejectbuttonCandidate";
 import Dropdownlist from "../../../Components/Reusablecomponents/Dropdownlist";
 import useForm from "../../../Components/Validation/useForm";
 import { getDepartmentname, getPosition } from "../../../Components/Dropdowndata/getDepartmentname";

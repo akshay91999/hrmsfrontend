@@ -7,7 +7,7 @@ function Marital(props) {
   const { values, errors,  handleInputChange } = props;
   return (
     <div>
-      <FormControl>
+      
         <Box
           component="form"
           noValidate
@@ -37,7 +37,7 @@ function Marital(props) {
             onChange={handleInputChange}
           />
         </Box>
-      </FormControl>
+      
     </div>
   );
 }

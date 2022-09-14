@@ -7,9 +7,11 @@ import axios from "axios";
 // const rows = [
 //   {
 //     id: 1220,
-
+//     employeeid: 45,
+//     employeename: "David",
+//     department:"Marketing",
 //     date: "12/02/2022",
-//     time:"02.30",
+//     time: "02.30",
 //     status: "Pending",
 //     location: "home",
 //     pickupdrop: "pickup",
@@ -17,9 +19,11 @@ import axios from "axios";
 
 //   {
 //     id: 1221,
-
+//     employeeid: 45,
+//     employeename: "David",
+//     department:"Marketing",
 //     date: "12/02/2022",
-//     time:"02.30",
+//     time: "02.30",
 //     status: "Approved",
 //     location: "town",
 //     pickupdrop: "pickup",
@@ -27,8 +31,11 @@ import axios from "axios";
 
 //   {
 //     id: 1222,
+//     employeeid: 45,
+//     employeename: "David",
+//     department:"Marketing",
 //     date: "12/02/2022",
-//     time:"02.30",
+//     time: "02.30",
 //     status: "Approved",
 //     location: "home",
 //     pickupdrop: "pickup",
@@ -36,9 +43,11 @@ import axios from "axios";
 
 //   {
 //     id: 1223,
-
+//     employeeid: 45,
+//     employeename: "David",
+//     department:"Marketing",
 //     date: "12/02/2022",
-//     time:"02.30",
+//     time: "02.30",
 //     status: "Approved",
 //     location: "town",
 //     pickupdrop: "drop",
@@ -46,18 +55,22 @@ import axios from "axios";
 
 //   {
 //     id: 1224,
-
+//     employeeid: 45,
+//     employeename: "David",
+//     department:"Marketing",
 //     date: "12/02/2022",
-//     time:"02.30",
+//     time: "02.30",
 //     status: "Approved",
 //     location: "home",
 //     pickupdrop: "pickup",
 //   },
 //   {
 //     id: 1225,
-
+//     employeeid: 45,
+//     employeename: "David",
+//     department:"Marketing",
 //     date: "12/02/2022",
-//     time:"02.30",
+//     time: "02.30",
 //     status: "Approved",
 //     location: "home",
 //     pickupdrop: "pickup",
@@ -66,8 +79,32 @@ import axios from "axios";
 const columns = [
   {
     field: "id",
-    headerName: "Id",
+    headerName: "Sl.No",
     width: 80,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "basic_id",
+    headerName: "Employee Id",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "name",
+    headerName: "Employee Name",
+    width: 180,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "departmentname",
+    headerName: "Department",
+    width: 180,
     headerClassName: "super-app-theme--header",
     align: "center",
     headerAlign: "center",
@@ -75,7 +112,7 @@ const columns = [
   {
     field: "date",
     headerName: "Date",
-    width: 190,
+    width: 160,
     headerClassName: "super-app-theme--header",
     align: "center",
     headerAlign: "center",
@@ -99,44 +136,24 @@ const columns = [
   {
     field: "trip_for",
     headerName: "Pick up/ Drop",
-    width: 180,
+    width: 160,
     headerClassName: "super-app-theme--header",
     align: "center",
     headerAlign: "center",
-  },
-  {
-    field: "status",
-    headerName: "Status",
-    width: 180,
-    headerClassName: "super-app-theme--header",
-    align: "center",
-    headerAlign: "center",
-  },
-  {
-    field: "Edit/Delete",
-    width: 200,
-    headerClassName: "super-app-theme--header",
-    align: "center",
-    headerAlign: "center",
-    renderCell: (params) => (
-      <strong>
-        <EditDeleteTrip id={params.id}/>
-      </strong>
-    ),
   },
 ];
-export default function MyTransport() {
+export default function TripApprovedList() {
   const [rows,setRows]=useState([])
   useEffect(()=>{
-    axios.get("http://localhost:5000/travel/"+1)
+    axios.get("http://localhost:5000/approvedtrip")
     .then(function(response){
       console.log(response.data)
-      var trip=response.data.travel
+      const trip=response.data
       setRows(trip)
     })
-    .catch(function(error){
-      console.log(error)
-    })
+.catch(function(error){
+  console.log(error)
+})
   },[])
   const [pageSize, setPageSize] = React.useState(5);
   return (
@@ -147,7 +164,7 @@ export default function MyTransport() {
           align="center"
           sx={{ color: "#1565C0", pb: "2%" }}
         >
-          My Transport
+          Trip Approved List
         </Typography>
         <Box
           sx={{

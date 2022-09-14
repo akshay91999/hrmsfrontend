@@ -104,7 +104,7 @@ export default function LeaveApprovedList() {
     axios
       .get("http://localhost:5000/basics")
       .then(function (response) {
-        console.log(response.data.person);
+        console.log(response);
         var employee = response.data.person;
         setRows(employee);
 

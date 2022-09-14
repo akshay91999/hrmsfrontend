@@ -27,7 +27,7 @@ const initialFvalues = {
   fcontactnumber: "",
   mothername: "",
   mcontactnumber: "",
-  martialstatus: "single",
+  maritalstatus: "single",
   spousename: "",
   scontactnumber: "",
   e_address: "",
@@ -43,33 +43,42 @@ const initialFvalues = {
 
 
 
-function Basic() {
-  const params=useParams()
-  console.log(params)
 
-    // const[base,setBase]=useState({})
+function Basic() {
+  
+  const params=useParams()
+    const[base,setBase]=useState({})
   useEffect(()=>{
     if(Object.keys(params).length !== 0)
     {
     axios.get("http://localhost:5000/basics/"+params.basicId)
     .then(function(response){
-      console.log(response.data)
-      // setBase(response.data.base)
+      // console.log(response.data)
+      var obj=response.data;
+      ['basic_id','createdAt','deletedAt','document','id','updatedAt'].forEach(e=>delete obj[e])
+      setBase(obj)
+      if(Object.keys(obj).length!==0)
+      {
+      setValues(obj)
+    }
+    else{
+      setValues(initialFvalues)
+    }
 
     })
     .catch(function(error){
       console.log(error)
     })
+    
   }
   },[])
 
-  // const initial=Object.keys(base).length!==0?base:initialFvalues
+  // var initial=(Object.keys(base).length!==0)?base:initialFvalues
   // console.log(initial)
-  const { values, errors, setErrors, handleInputChange } =
+  const { values,setValues,errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
-
-  
-
+    
+ 
   const {
     nationality,
     fathername,
@@ -105,13 +114,13 @@ function Basic() {
       ? ""
       : "mother's contact is required";
     temp.spousename =
-      values.martialstatus === "married"
+      values.maritalstatus === "married"
         ? values.spousename
           ? ""
           : "spouse name is required"
         : "";
     temp.scontactnumber =
-      values.martialstatus === "married"
+      values.maritalstatus === "married"
         ? values.scontactnumber.length > 9
           ? ""
           : "contact number requires minimum 9 numbers"
@@ -172,7 +181,7 @@ function Basic() {
     fcontactnumber,
     mothername,
     mcontactnumber,
-    maritalstatus: values.martialstatus,
+    maritalstatus: values.maritalstatus,
     spousename: values.spousename,
     scontactnumber: values.scontactnumber,
     contactnumber,
@@ -192,12 +201,35 @@ function Basic() {
         })
         .then(function (response) {
           console.log(response);
-
           let id = response.data.data;
           console.log(id);
           if (response.data.message === "success") {
             window.alert("successfully submited");
             navigate("/upload/" + id);
+          }
+          else{
+            window.alert(response.data.message)
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  };
+  const handleupdate = () => {
+    // loging values
+    // console.log(values)
+    console.log(user);
+    if (validate()) {
+      axios
+        .put("http://localhost:5000/basics/"+params.basicId, user, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then(function (response) {
+          console.log(response);
+          if (response.data.message === "Updated successfully") {
+            window.alert(response.data.message);
+            navigate("/upload/" + params.basicId);
           }
           else{
             window.alert(response.data.message)
@@ -243,9 +275,14 @@ function Basic() {
                 mt: "5%",
                 mb: "5%",
               }}
-            >
-              <Btn text="Next" click={handlesubmit} />
+            >{
+              Object.keys(base).length!==0?
+              <Btn text="Next" click={handleupdate}/>
+              :<Btn text="Next" click={handlesubmit} />
+              
+            }
             </Box>
+          
           </Typography>
         </Grid>
       </Grid>

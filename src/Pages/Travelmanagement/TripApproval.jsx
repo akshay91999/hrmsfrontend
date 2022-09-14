@@ -1,118 +1,144 @@
 import { Box, Paper, Typography } from '@mui/material'
-import React from 'react'
-import ApproveRejectIcon from '../../Components/ApproveRejectIcon';
+import React, { useEffect, useState } from 'react'
 import { DataGrid,GridToolbar } from "@mui/x-data-grid";
-const rows = [
-    {
-      id: 1220,    
-      employeename: "David",
-      department: "Marketing",
-      date: "12/02/2022",
-      time: "12.00",
-      location: "home",
-      pickupdrop:"pickup"
-    },
+import axios from 'axios';
+import ApproveRejectIconTravel from '../../Components/ApproveRejectIconTravel';
+// const rows = [
+//     {
+//       id: 1220,    
+//       employeename: "David",
+//       department: "Marketing",
+//       date: "12/02/2022",
+//       time: "12.00",
+//       location: "home",
+//       pickupdrop:"pickup"
+//     },
   
-    {
-      id: 1221,
-      employeename: "David",
-      department: "Advertising",
-      date: "12/02/2022",
-      time: "02.00",
-      location: "town",
-      pickupdrop:"pickup"
-    },
+//     {
+//       id: 1221,
+//       employeename: "David",
+//       department: "Advertising",
+//       date: "12/02/2022",
+//       time: "02.00",
+//       location: "town",
+//       pickupdrop:"pickup"
+//     },
   
-    {
-      id: 1222,
-      employeename: "David",
-      department: "Development",
-      date: "12/02/2022",
-      time: "01.00",
-      location: "home",
-      pickupdrop:"pickup"
-    },
+//     {
+//       id: 1222,
+//       employeename: "David",
+//       department: "Development",
+//       date: "12/02/2022",
+//       time: "01.00",
+//       location: "home",
+//       pickupdrop:"pickup"
+//     },
   
-    {
-      id: 1223,
-      employeename: "David",
-      department: "Development",
-      date: "12/02/2022",
-      time: "03.00",
-      location: "town",
-      pickupdrop:"drop"
-    },
+//     {
+//       id: 1223,
+//       employeename: "David",
+//       department: "Development",
+//       date: "12/02/2022",
+//       time: "03.00",
+//       location: "town",
+//       pickupdrop:"drop"
+//     },
   
-    {
-      id: 1224,
-      employeename: "David",
-      department: "Development",
-      date: "12/02/2022",
-      time: "08.00",
-      location: "home",
-      pickupdrop:"pickup"
-    },
-    {
-      id: 1225,
-      employeename: "David",
-      department: "Marketing",
-      date: "12/02/2022",
-      time: "07.00",
-      location: "home",
-      pickupdrop:"pickup"
-    },
-  ];
+//     {
+//       id: 1224,
+//       employeename: "David",
+//       department: "Development",
+//       date: "12/02/2022",
+//       time: "08.00",
+//       location: "home",
+//       pickupdrop:"pickup"
+//     },
+//     {
+//       id: 1225,
+//       employeename: "David",
+//       department: "Marketing",
+//       date: "12/02/2022",
+//       time: "07.00",
+//       location: "home",
+//       pickupdrop:"pickup"
+//     },
+//   ];
   const columns = [
-    { field: "id",headerName: "Employee Id", width: 130, headerClassName: "super-app-theme--header" },
+    { field: "id",headerName: "Employee Id", width: 130, headerClassName: "super-app-theme--header", align: "center",
+    headerAlign: "center", },
     {
-      field: "employeename",
+      field: "name",
       headerName: "Employee Name",
       width: 250,
-      headerClassName: "super-app-theme--header",
+      headerClassName: "super-app-theme--header", align: "center",
+      headerAlign: "center",
     },
     {
-      field: "department",
+      field: "departmentname",
       headerName: "Department",
       width: 180,
-      headerClassName: "super-app-theme--header",
+      headerClassName: "super-app-theme--header", align: "center",
+      headerAlign: "center",
     },
     {
       field: "date",
       headerName: "Date",
       width: 150,
-      headerClassName: "super-app-theme--header",
+      headerClassName: "super-app-theme--header", align: "center",
+      headerAlign: "center",
     },
     {
       field: "time",
       headerName: "Time",
       width: 200,
-      headerClassName: "super-app-theme--header",
+      headerClassName: "super-app-theme--header", align: "center",
+      headerAlign: "center",
     },
     {
       field: "location",
       headerName: "Location",
       width: 150,
-      headerClassName: "super-app-theme--header",
+      headerClassName: "super-app-theme--header", align: "center",
+      headerAlign: "center",
     },
     {
-        field: "pickupdrop",
+        field: "trip_for",
         headerName: "Pickup/Drop",
         width: 150,
-        headerClassName: "super-app-theme--header",
+        headerClassName: "super-app-theme--header", align: "center",
+        headerAlign: "center",
       },
     {
       field: "Approve/Reject",
       width: 180,
-      headerClassName: "super-app-theme--header",
+      headerClassName: "super-app-theme--header", align: "center",
       headerAlign: "center",
+      
       renderCell: (params) => (
         <strong>
-          <ApproveRejectIcon />
+          <ApproveRejectIconTravel id={params.id}/>
         </strong>
       ),
     },
   ];
 export default function TripApproval() {
+  const [rows,setRows]=useState([])
+  useEffect(()=>{
+    axios.get("http://localhost:5000/travel")
+    .then(function(response){
+      console.log(response.data)
+      var trip=response.data
+      setRows(trip)
+      // var employee = response.data.person;
+      //   setRows(employee);
+
+    })
+.catch(function(error){
+  console.log(error)
+})
+    
+
+  },[])
     const [pageSize, setPageSize] = React.useState(5);
   return (
     <>

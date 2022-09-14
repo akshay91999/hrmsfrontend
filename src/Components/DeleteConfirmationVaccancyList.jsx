@@ -10,8 +10,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import axios from 'axios';
 
-export default function DeleteConfirmationVaccancyList() {
+export default function DeleteConfirmationVaccancyList(props) {
+  const {id}=props
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -22,6 +24,20 @@ export default function DeleteConfirmationVaccancyList() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleDelete = () => {
+    const current=new Date();
+    console.log(current)
+    axios.put("http://localhost:5000/vacancy/"+id,{deletedat:current})
+    .then(function(response){
+      console.log(response)
+      window.alert(response.data.message)
+      window.location.reload(false);
+      setOpen(false)
+    })
+    .catch(function(response){
+      console.log(response)
+    })
   };
 
   return (
@@ -42,7 +58,7 @@ export default function DeleteConfirmationVaccancyList() {
           <Button autoFocus onClick={handleClose}>
             No
           </Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={handleDelete} autoFocus>
             Yes
           </Button>
         </DialogActions>

@@ -8,13 +8,6 @@ import { useState } from "react";
 
 function AddressCalling(props) {
   const {values,errors,setErrors,handleInputChange}=props
-  const [check, setCheck] = useState(false);
-  const Sameaddress = () => {
-    setCheck(true);
-  };
-  const Diffaddress = () => {
-    setCheck(false);
-  };
   return (
     <>
       <Address
@@ -44,17 +37,17 @@ function AddressCalling(props) {
             id="check"
             control={<Radio />}
             label="Yes"
-            onClick={Sameaddress}
+            
           />
           <FormControlLabel
             value="No"
             control={<Radio />}
             label="No"
-            onClick={Diffaddress}
+           
           />
         </RadioGroup>
       </Typography>
-      {check ? null : (
+      {values.ispermanantequal==="Yes" ? null : (
         <Address
           text="Current Address"
           address="currentaddress"

@@ -25,50 +25,54 @@ const initialFvalues = {
 function AddCandidate() {
   const { values, setValues, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
-    const [depart,setDepart]=useState([])
-  const [position,setPosition]=useState([])
-    useEffect(()=>{
-      axios.get("http://localhost:5000/depart")
-      .then(function(response){
-        console.log(response)
-        let dep=response.data.viewAlldep
-        let pos=response.data.viewAlldes
-        const newdep=dep.map(({
-          dp_id:id,
-          departmentname:title,
-          ...rest
-        })=>({
-          id,
-          title,
-          ...rest
-        }))
-        const newpos=pos.map(({
-          ds_id:id,
-          designation:title,
-          ...rest
-        })=>({
-          id,
-          title,
-          ...rest
-        }))
-          console.log(newdep)
-          console.log(newpos)
-          setDepart(newdep)
-          setPosition(newpos)
-        })
-        
-        // setDepart(response)
-        // console.log(depart)
-    },[])
+    const [depart, setDepart] = useState([]);
+  const [position, setPosition] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/depart")
+      .then(function (response) {
+        console.log(response);
+        let dep = response.data.viewAlldep;
+        const newdep = dep.map(
+          ({ dp_id: id, departmentname: title, ...rest }) => ({
+            id,
+            title,
+            ...rest,
+          })
+        );
+        setDepart(newdep);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if(values.departmentname==="")
+    {
+      setPosition([])
+    }
+    else{
+      axios
+        .get("http://localhost:5000/depart/" + values.departmentname)
+        .then(function (response) {
+          console.log(response.data.viewDesignation);
+          let des = response.data.viewDesignation;
+          const newdes = des.map(
+            ({ ds_id: id, designation: title, ...rest }) => ({
+              id,
+              title,
+              ...rest,
+            })
+          );
+          setPosition(newdes)
+        });
+      }
+    
+  }, [values.departmentname]);
+
   
-  const data = {
-    candidatename: values.candidatename,
-    dp_id: values.departmentname,
-    ds_id: values.position,
-    email: values.email,
-    mobile: values.mobile,
-    yoe: values.yoe,
-  };
+  
   const regex = /\S+@\S+\.\S+/;
   const regmob = /(0|91)?[7-9][0-9]{9}/;
 
@@ -89,14 +93,38 @@ function AddCandidate() {
   };
   const handlesubmit = () => {
     if (validate()) {
-      axios.post("http://localhost:5000/candidate", data, {
+      if(file.type!="image/jpg" && file.type!="image/jpeg" && file.type!="image/png"){
+        window.alert("File does not support. You must use .png or .jpg")
+        return(false)
+      } 
+      else if(file.size>1000000){
+        window.alert("Please upload a file smaller than 1mb")
+        return(false)
+      }
+      else{
+      const formData=new FormData()
+      formData.append("candidatename",values.candidatename)
+      formData.append("dp_id",values.departmentname)
+      formData.append("ds_id",values.position)
+      formData.append("email",values.email)
+      formData.append("mobile",values.mobile)
+      formData.append("yoe",values.yoe)
+      formData.append("cv",file)
+      axios.post("http://localhost:5000/candidate",formData , {
       headers: { "Content-Type": "application/json" },
     }).then(function(response){
       console.log(response)
+      if(response.data.message==="success")
+      {
       window.alert("successfully submited");
+    }
+    else{
+      window.alert(response.data.message)
+    }
     }).catch(function(error){
       console.log(error)
     })
+  }
      
     }
   };
@@ -111,6 +139,10 @@ function AddCandidate() {
       yoe: "",
     });
   };
+  const [file,selectedFile]=useState(null)
+  const handleFilechange=(e)=>{
+    selectedFile(e.target.files[0])
+  }
   return (
     <>
       <Paper elevation={4} sx={{ m: "1%", p: "1%" }}>
@@ -168,6 +200,7 @@ function AddCandidate() {
             value={values.mobile}
             onChange={handleInputChange}
             error={errors.mobile}
+            type="number"
           />
           <Textfield
             label="Year Of Experience"
@@ -175,6 +208,7 @@ function AddCandidate() {
             value={values.yoe}
             onChange={handleInputChange}
             error={errors.yoe}
+            type="number"
           />
           <Box sx={{ width: "90%" }}>
             <fieldset style={{ borderColor: "#1565C0" }}>
@@ -184,7 +218,7 @@ function AddCandidate() {
                 </Typography>
               </legend>
               Upload a file:
-              <input type="file" style={{ marginLeft: "1%" }} />
+              <input type="file" onChange={handleFilechange} style={{ marginLeft: "1%" }} />
             </fieldset>
           </Box>
         </Box>

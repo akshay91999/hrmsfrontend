@@ -4,111 +4,48 @@ import { Box, Button, IconButton, Paper, Tooltip, Typography } from "@mui/materi
 import Eyeiconbutton from "../../../Components/Reusablecomponents/Eyeiconbutton";
 import DeleteCandidateButton from "../../../Components/DeleteCandidateButton";
 import Btn from "../../../Components/Reusablecomponents/Btn";
+import { useEffect } from "react";
+import axios from "axios";
+import { useState } from "react";
+import AcceptCandidateByHrButton from "../../../Components/AcceptCandidateByHrButton";
 
-
-
-
-const rows = [
-  {
-    id: 1220,
-    Name: "Akshayp",
-    Department:'front end devolopment',
-    Position:'python',
-    Email: "akshaysudhakaran99@gamil.com",
-    Mobile: 9947395724,
-    Highest_Qualification: "akshaysudhakaran99@gamil.com",
-    Year_Of_Experience: 0,
-   
-  },
-
-  {
-    id: 1221,
-    Name: "Akshays",
-    Department:'front end devolopment',
-    Position:'python',
-    Email: "akshaysudhakaran99@gamil.com",
-    Mobile: 9947395724,
-    Highest_Qualification: "akshaysudhakaran99@gamil.com",
-    Year_Of_Experience: 1,
-   
-  },
-
-  {
-    id: 1222,
-    Name: "Akshayd",
-    Department:'front end devolopment',
-    Position:'python',
-    Email: "akshaysudhakaran99@gamil.com",
-    Mobile: 9947395724,
-    Highest_Qualification: "akshaysudhakaran99@gamil.com",
-    Year_Of_Experience: 3,
-   
-  },
-
-  {
-    id: 1223,
-    Name: "Akshaye",
-    Department:'front end devolopment',
-    Position:'python',
-    Email: "akshaysudhakaran99@gamil.com",
-    Mobile: 9947395724,
-    Highest_Qualification: "akshaysudhakaran99@gamil.com",
-    Year_Of_Experience: 3,
-   
-  },
-
-  {
-    id: 1224,
-    Name: "Akshayl",
-    Department:'front end devolopment',
-    Position:'python',
-    Email: "akshaysudhakaran99@gamil.com",
-    Mobile: 9947395724,
-    Highest_Qualification: "akshaysudhakaran99@gamil.com",
-    Year_Of_Experience: 3,
-   
-  },
-  {
-    id: 1224,
-    Name: "Akshayl",
-    Department:'front end devolopment',
-    Position:'python',
-    Email: "akshaysudhakaran99@gamil.com",
-    Mobile: 9947395724,
-    Highest_Qualification: "akshaysudhakaran99@gamil.com",
-    Year_Of_Experience: 3,
-   
-  },
- 
-];
 
 const columns = [
-  { field: "id", width: 100, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "Name", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "Department", width: 150, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "Position", width: 150, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "Email", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "Mobile", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "id", width: 100, headerClassName: "super-app-theme--header",headerAlign: 'center',align:'center' },
+  { field: "candidatename",headerName:'Candidate Name' ,align:'center',width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "departmentname", width: 150,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "designation", width: 200,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "email", width: 250,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "mobile", width: 250,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center',hide:'true' },
+ 
   {
-    field: "Highest_Qualification",
+    field: "yoe",
     width: 150,
     headerClassName: "super-app-theme--header",
-    headerAlign: 'center'
-  },
-  {
-    field: "Year_Of_Experience",
-    width: 150,
-    headerClassName: "super-app-theme--header",
-    headerAlign: 'center'
+    headerAlign: 'center',
+    align:'center'
   },
   {
     field: "Cv",
     width: 100,
     headerClassName: "super-app-theme--header",
     headerAlign: 'center',
+    align:'center',
     renderCell: (params) => (
       <strong> 
         <Eyeiconbutton/>
+      </strong>
+    ),
+  },
+  {
+    field: "Action",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
+    renderCell: (params) => (
+      <strong> 
+        <AcceptCandidateByHrButton id={params.id}/>
       </strong>
     ),
   },
@@ -117,6 +54,25 @@ const columns = [
 ];
 
 export default function TableSelectedList() {
+ 
+  const [rows,setRows]=useState([])
+ 
+  useEffect(()=>{
+    axios.get("http://localhost:5000/candidate/selected")
+    .then(function(response){
+      console.log(response.data)
+      var row=[]
+      row=response.data
+      var newrow=row.map(({v_id:id,...rest})=>({
+        id,...rest
+      }))
+      setRows(newrow)
+      // setRows(row)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
  
 
     const [pageSize, setPageSize] = React.useState(5);
@@ -156,10 +112,7 @@ export default function TableSelectedList() {
             },
           }}
         />
-          <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2,pt:'2%',m:'2%' }}>
-          <Button variant="outlined" color="success">Accept</Button>
-          <Button variant="outlined" color="error">Reject</Button>
-          </Box>
+        
       </Box>
     </Paper>
   );

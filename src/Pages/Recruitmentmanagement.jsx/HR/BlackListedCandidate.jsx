@@ -4,82 +4,20 @@ import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import Eyeiconbutton from "../../../Components/Reusablecomponents/Eyeiconbutton";
 import DeleteCandidateButton from "../../../Components/DeleteCandidateButton";
 import BlackListedReasonView from "../../../Components/BlackListedReasonView";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 
 
-const rows = [
-  {
-    id: 1220,
-    Name: "Akshayp",
-    Department:'front end devolopment',
-    Position:'python',
-    Email: "akshaysudhakaran99@gamil.com",
-    Reason: "blu",
-    
-   
-  },
-
-  {
-    id: 1221,
-    Name: "Akshays",
-    Department:'front end devolopment',
-    Position:'python',
-    Email: "akshaysudhakaran99@gamil.com",
-    Reason: "bed",
-   
-  },
-
-  {
-    id: 1222,
-    Name: "Akshayd",
-    Department:'front end devolopment',
-    Position:'python',
-    Email: "akshaysudhakaran99@gamil.com",
-    Reason: "all the ",
-    
-   
-  },
-
-  {
-    id: 1223,
-    Name: "Akshaye",
-    Department:'front end devolopment',
-    Position:'python',
-    Email: "akshaysudhakaran99@gamil.com",
-    Reason: "complaints",
-   
-   
-  },
-
-  {
-    id: 1224,
-    Name: "Akshayl",
-    Department:'front end devolopment',
-    Position:'python',
-    Email: "akshaysudhakaran99@gamil.com",
-    Reason: 'bad behaviour',
-
-   
-  },
-  {
-    id: 1224,
-    Name: "Akshayl",
-    Department:'front end devolopment',
-    Position:'python',
-    Email: "akshaysudhakaran99@gamil.com",
-    Reason: "bad behaviour",
-   
-  },
- 
-];
 
 const columns = [
-  { field: "id", width: 100, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "Name", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "Department", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "Position", width: 150, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "Email", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "Reason", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "id",headerName:"C_Id", width: 100, headerClassName: "super-app-theme--header",headerAlign: 'center',align:'center' },
+  { field: "candidatename",headerName:"Name", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center',align:'center' },
+  { field: "departmentname",headerName:'Department Name', width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center',align:'center' },
+  { field: "designation",headerName:'Position', width: 150, headerClassName: "super-app-theme--header",headerAlign: 'center',align:'center' },
+  { field: "email",headerName:'Email', width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center',align:'center' },
+  { field: "mobile",headerName:'Mobile', width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center',align:'center' },
   {
     field: "View",
     width: 100,
@@ -87,7 +25,7 @@ const columns = [
     headerAlign: 'center',
     renderCell: (params) => (
       <strong> 
-        <BlackListedReasonView/>
+        <BlackListedReasonView id={params.id}/>
       </strong>
     ),
   },
@@ -97,6 +35,20 @@ const columns = [
 ];
 
 export default function BlackListedCandidate() {
+  const [rows,setRows]=useState([])
+ 
+  useEffect(()=>{
+    axios.get("http://localhost:5000/blacklist")
+    .then(function(response){
+      console.log(response.data)
+      setRows(response.data)
+
+      // setRows(row)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
  
 
     const [pageSize, setPageSize] = React.useState(5);

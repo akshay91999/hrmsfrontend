@@ -49,7 +49,7 @@ export const getUsertype=()=>(
         {id:"1",title:"Superadmin"},
         {id:"2",title:"Admin"},
         {id:"3",title:"HR"},
-        {id:"4",title:"Superadmin"},
+        {id:"4",title:"Employee"},
         {id:"5",title:"HOD"},
         {id:"6",title:"Recruiters"},
         {id:"7",title:"Security"}

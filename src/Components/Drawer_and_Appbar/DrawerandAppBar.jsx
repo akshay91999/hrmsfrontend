@@ -129,7 +129,7 @@ function DrawerandAppBar(props) {
          <AppbarSideIcon setLoggedIn={setLoggedIn}/>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={open}  PaperProps={{sx: { minHeight:'100vh',background: "linear-gradient(#8B8B8B,#1565C0)"}}}>
         <DrawerHeader sx={{ background:'#8B8B8B' }}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}

@@ -15,13 +15,7 @@ import { useContext } from "react";
 function Personal(props) {
   const { values, errors,  handleInputChange,} = props;
 
-  const [open, setOpen] = useState(false);
-  const formOpen = () => {
-    setOpen(true);
-  };
-  const formClose = () => {
-    setOpen(false);
-  };
+  
   return (
     
       <fieldset>
@@ -211,27 +205,26 @@ function Personal(props) {
             <RadioGroup
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
-              name="martialstatus"
-              value={values.martialstatus}
+              name="maritalstatus"
+              value={values.maritalstatus}
               onChange={handleInputChange}
             >
               <FormControlLabel
                 value="single"
                 control={<Radio />}
                 label="Single"
-                onClick={formClose}
               />
               <FormControlLabel
                 value="married"
                 control={<Radio />}
                 label="Married"
-                onClick={formOpen}
+                
               />
             </RadioGroup>
           </FormControl>
           {/* <div className="marital">
                         { */}
-          {open ? (
+          {values.maritalstatus==="married" ? (
             <Marital
               sx={{ textAlign: "center" }}
               values={values}

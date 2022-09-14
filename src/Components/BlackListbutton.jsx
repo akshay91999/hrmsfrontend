@@ -12,12 +12,14 @@ import {
   Tooltip,
 } from "@mui/material";
 import useForm from "./Validation/useForm";
+import axios from "axios";
 
 const initialFvalues = {
   blacklistreason: "",
 };
 
-function BlackListbutton() {
+function BlackListbutton(props) {
+  const {id}=props
   const { values, setValues, handleInputChange } = useForm(initialFvalues);
   const [open, setOpen] = React.useState(false);
 
@@ -28,6 +30,25 @@ function BlackListbutton() {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleBlacklist=()=>{
+    axios.post("http://localhost:5000/blacklist/"+id,{reason:values.blacklistreason})
+    .then(function(response){
+      console.log(response)
+      if(response.data.message=="success")
+      {
+        window.alert("blacklisted")
+        setOpen(false)
+        window.location.reload(false);
+      }
+      else{
+        window.alert(response.data.message)
+      }
+      
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  }
   return (
     <>
       <Box>
@@ -53,7 +74,7 @@ function BlackListbutton() {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleClose}>Submit</Button>
+            <Button onClick={handleBlacklist}>Submit</Button>
           </DialogActions>
         </Dialog>
       </Box>

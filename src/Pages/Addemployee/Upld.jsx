@@ -4,17 +4,29 @@ import Upload from "../../Components/Upload";
 import Btn from "../../Components/Reusablecomponents/Btn";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
 
 
 function Upld() {
   const params=useParams();
   console.log(params)
+  // const[base,setBase]=useState({})
+  // useEffect(()=>{
+  //   axios.get("http://localhost:5000/upload/"+params.basicId)
+  //   .then(function(response){
+  //     console.log(response)
+  //     setBase(response.data.uploads)
+  //   })
+  //   .catch(function(error){
+  //     console.log(error)
+  //   })
+  // },[])
 
   const [file,selectedFile]=useState(null)
   
   // for setting response message 
-  const [photo,setPhoto]=useState(null)
-  const [cv,setCv]=useState(null)
+  const [photo,setPhoto]=useState(1)
+  const [cv,setCv]=useState(1)
 
   let navigate = useNavigate();
 
@@ -44,6 +56,8 @@ function Upld() {
       const formData=new FormData()
       formData.append("document",file)
       formData.append("doc_type",'photo')
+      if(photo===1)
+      {
       axios.post("http://localhost:5000/upload/"+params.basicId,formData,{
         headers:{"Content-Type":"application/json"},
       })
@@ -61,6 +75,7 @@ function Upld() {
       .catch(function(error){
         console.log(error)
       })
+    }
   }
   }
 
@@ -78,6 +93,8 @@ function Upld() {
       const formData=new FormData()
       formData.append("document",file)
       formData.append("doc_type","cv")
+      if(cv===1)
+      {
       axios.post("http://localhost:5000/upload/"+params.basicId,formData,{
         headers:{"Content-Type":"application/json"},
       })
@@ -95,6 +112,7 @@ function Upld() {
       .catch(function(error){
         console.log(error)
       })
+    }
   }
   }
   return (
@@ -117,8 +135,15 @@ function Upld() {
             File Uploads
           </Typography>
         </legend>
+        {/* {Object.keys(base).length!==0?<> */}
+        {/* <Upload text="Upload photo" onChange={handlefilechange} onSubmit={handlephotoupdate} />
+        <Upload text="Upload CV" onChange={handlefilechange} onSubmit={handlecvupdate}/> */}
+        {/* </>: */}
+        {/* <> */}
         <Upload text="Upload photo" onChange={handlefilechange} onSubmit={handlephotoupload} />
-        <Upload text="Upload CV" onChange={handlefilechange} onSubmit={handlecvupload}/>
+        <Upload text="Upload CV" onChange={handlefilechange} onSubmit={handlecvupload}/>  
+        {/* </>    */}
+      {/* } */}
       </fieldset>
       {/* <Box sx={{ p: "2%" }}>
         <Btn text="Save" />

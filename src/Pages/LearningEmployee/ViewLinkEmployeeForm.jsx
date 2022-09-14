@@ -102,9 +102,9 @@ export default function ViewLinkEmployeeForm() {
                 <CardContent>
                   <iframe
                     src="https://www.youtube.com/embed/E7wJTI-1dvQ"
-                    frameborder="0"
+                    frameBorder="0"
                     allow="autoplay; encrypted-media"
-                    allowfullscreen
+                    allowFullScreen
                     title="video"
                   />{" "}
                   <Typography variant='body2'>This Video is a react tutorial</Typography>

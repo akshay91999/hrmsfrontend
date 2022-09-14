@@ -20,6 +20,7 @@ import { DialogContent, IconButton } from '@mui/material';
 function DashProfile() {
   const [state, setState] = useState(true)
   const [open, setOpen] = useState(false);
+  const user=JSON.parse(localStorage.getItem('user'))
 
   // const handleClickOpen = () => {
   //   setOpen(true);
@@ -54,7 +55,7 @@ function DashProfile() {
             variant="h5"
             sx={{ fontWeight: "bold", textAlign: "center" }}
           >
-            Nevina Acantaza
+            {user.name}
           </Typography>
 
           <Typography variant="h6" sx={{ textAlign: "center" }}>

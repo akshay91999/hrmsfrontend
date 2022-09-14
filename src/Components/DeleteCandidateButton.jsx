@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, IconButton, TextField } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField } from "@mui/material";
 import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useForm from "./Validation/useForm";
@@ -27,23 +27,18 @@ function DeleteCandidateButton() {
       <Dialog
         open={open}
         onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
       >
-        <DialogContent>
-        <Box sx={{ display: "flex", justifyContent: "center", mt: "10%" }}>
-        <TextField
-           name="deletecandidate"
-          label="reason"
-          multiline
-          rows={4}
-          value={values.deletecandidate}
-          onChange={handleInputChange}
-          sx={{ width:500 }}
-        />
-         </Box>
-        </DialogContent>
+        <DialogTitle id="responsive-dialog-title">
+          {"Are You Sure Do You Want To Delete?"}
+        </DialogTitle>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Submit</Button>
+          <Button autoFocus onClick={handleClose}>
+            No
+          </Button>
+          <Button onClick={handleClose} autoFocus>
+            Yes
+          </Button>
         </DialogActions>
       </Dialog>
     </>

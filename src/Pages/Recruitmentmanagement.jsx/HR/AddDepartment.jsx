@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Btn from "../../../Components/Reusablecomponents/Btn";
@@ -44,6 +44,7 @@ function AddDepartment() {
   };
   return (
     <>
+    <Paper elevation={4} sx={{ m: "2%", p: "2%" }}>
       <Typography
         variant="h4"
         align="center"
@@ -88,6 +89,7 @@ function AddDepartment() {
           }}
         />
       </Box>
+      </Paper>
     </>
   );
 }

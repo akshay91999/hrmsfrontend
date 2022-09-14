@@ -20,7 +20,15 @@ export default function PersonalDetails(props) {
                   <ListItemText primary="First Name" />
                 </Grid>
                 <Grid item lg={4} sm={6} xs={6} md={6}>
-                  <ListItemText primary={basics.name} />
+                  <ListItemText primary={basics.firstname} />
+                </Grid>
+              </ListItem>
+              <ListItem disablePadding>
+                <Grid item lg={8} sm={6} xs={6} md={6}>
+                  <ListItemText primary="Last Name" />
+                </Grid>
+                <Grid item lg={4} sm={6} xs={6} md={6}>
+                  <ListItemText primary={basics.lastname} />
                 </Grid>
               </ListItem>
               <ListItem disablePadding>

@@ -23,9 +23,12 @@ import Textfield from "../Components/Reusablecomponents/Textfield";
 import Dropdownlist from "../Components/Reusablecomponents/Dropdownlist";
 import useForm from "../Components/Validation/useForm";
 import { getCourseid } from "../Components/Dropdowndata/getDepartmentname";
+import axios from "axios";
+import {UserContext} from '../App'
+import { useContext } from "react";
 
 const initialFvalues = {
-  usertype: "",
+  // usertype: "",
   email: "",
   password: "",
 };
@@ -34,6 +37,7 @@ const initialFvalues = {
  
 
 function LoginPage(props) {
+  const  {state,dispatch}=useContext(UserContext)
   const {setLoggedIn}=props
   const navigate=useNavigate()
     const options=[{id:1,title:'super admin'}]
@@ -43,7 +47,7 @@ function LoginPage(props) {
 
     const validate=()=>{
         let temp={}
-        temp.usertype=values.usertype?"":"please select an user type"
+        // temp.usertype=values.usertype?"":"please select an user type"
         temp.email=values.email?(regex.test(values.email)?"":"please enter a valid mail"):"please enter your email id"
         temp.password=values.password?"":"please enter password"
         setErrors({...temp})
@@ -52,16 +56,33 @@ function LoginPage(props) {
     const handlesubmit=()=>{
       
         if(validate()){
+          axios.post("http://localhost:5000/signin",{email:values.email,password:values.password},{headers:{"Content-Type":"application/json"}})
+          .then(function(response){
+            console.log(response)
+            if(response.data.token)
+            {
+            localStorage.setItem("jwt",response.data.token)
+            localStorage.setItem("user",JSON.stringify(response.data.user))
+            dispatch({type:"USER",payload:response.data.user})
             window.alert('signed in successfully')
             setLoggedIn(true)
             navigate("/dashboard")
+            }
+            else{
+              window.alert("please check your emailid or password")
+            }
+
+          })
+          .catch(function(error){
+            console.log(error)
+          })
            
         }
     }
   return (
     <>
       <Container component="main" maxWidth="sm">
-        {localStorage.setItem('Name','Login')}
+        {/* {localStorage.setItem('Name','Login')} */}
         <CssBaseline />
         <Card sx={{mt:10,p:"5%"}}>
         <Box
@@ -79,7 +100,7 @@ function LoginPage(props) {
             Sign in
           </Typography>
 
-          <FormControl
+          {/* <FormControl
             sx={{ width:'100%' }}
             size="large"
             margin="normal"
@@ -104,7 +125,7 @@ function LoginPage(props) {
               ))}
             </Select>
             {errors.usertype && <FormHelperText>{errors.usertype}</FormHelperText>}
-          </FormControl>
+          </FormControl> */}
           <TextField
             margin="normal"
             required

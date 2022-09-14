@@ -11,8 +11,49 @@ import FingerprintIcon from "@mui/icons-material/Fingerprint";
 
 function ListAttmngmnt() {
     let navigate = useNavigate();
+    const user=JSON.parse(localStorage.getItem('user'))
     const [open, setOpen] = React.useState(false);
-
+  const renderList=()=>{
+    if(user.user_type===1||user.user_type===5)
+    {
+      return(
+        <List component="div" disablePadding sx={{ pl: 1 }}>
+        <ListItemButton onClick={() => navigate("/attandance")}>
+        <ListItemIcon>
+        <FingerprintIcon />
+        </ListItemIcon>
+        <ListItemText primary=" Employee Attendance" />
+      </ListItemButton>
+      <ListItemButton onClick={() => navigate("/hodassignshift")}>
+        <ListItemIcon>
+          <FingerprintIcon />
+        </ListItemIcon>
+        <ListItemText primary="Assign Shift" />
+      </ListItemButton>
+      <ListItemButton onClick={() => navigate("/hodassignovertime")}>
+        <ListItemIcon>
+          <FingerprintIcon />
+        </ListItemIcon>
+        <ListItemText primary="Assign over-time" />
+      </ListItemButton>
+      
+        </List>
+      )
+    }
+    else if(user.user_type===2||user.user_type===3)
+    {
+      return(
+        <List component="div" disablePadding sx={{ pl: 1 }}>
+        <ListItemButton onClick={() => navigate("/attandance")}>
+        <ListItemIcon>
+        <FingerprintIcon />
+        </ListItemIcon>
+        <ListItemText primary=" Employee Attendance" />
+      </ListItemButton>
+      </List>
+      )
+    }
+  }
     const handleClick = () => {
       setOpen(!open);
     };
@@ -28,33 +69,7 @@ function ListAttmngmnt() {
             </ListItemButton>
 
             <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding sx={{ pl: 1 }}>
-            <ListItemButton onClick={() => navigate("/attandance")}>
-            <ListItemIcon>
-            <FingerprintIcon />
-            </ListItemIcon>
-            <ListItemText primary=" Employee Attendance" />
-          </ListItemButton>
-          {/* <ListItemButton onClick={() => navigate("/hodattandance")}>
-            <ListItemIcon>
-              <FingerprintIcon />
-            </ListItemIcon>
-            <ListItemText primary="ATTANDANCE BY HOD" />
-          </ListItemButton> */}
-          <ListItemButton onClick={() => navigate("/hodassignshift")}>
-            <ListItemIcon>
-              <FingerprintIcon />
-            </ListItemIcon>
-            <ListItemText primary="Assign Shift" />
-          </ListItemButton>
-          <ListItemButton onClick={() => navigate("/hodassignovertime")}>
-            <ListItemIcon>
-              <FingerprintIcon />
-            </ListItemIcon>
-            <ListItemText primary="Assign over-time" />
-          </ListItemButton>
-          
-            </List>
+           {renderList()}
       </Collapse>
     </>
   )

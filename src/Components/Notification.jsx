@@ -15,10 +15,11 @@ import {
 } from "@mui/material";
 import React from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import { useState } from "react";
 
 function Notification(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
   const [placement, setPlacement] = React.useState();
 
   const handleClick = (newPlacement) => (event) => {
@@ -34,7 +35,7 @@ function Notification(props) {
         anchorEl={anchorEl}
         placement={placement}
         transition
-        disablePortal="true"
+        disablePortal={true}
       >
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>

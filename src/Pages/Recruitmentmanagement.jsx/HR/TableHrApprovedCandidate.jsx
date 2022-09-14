@@ -1,29 +1,30 @@
 import * as React from "react";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
-import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
+import { Box, Button, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import Eyeiconbutton from "../../../Components/Reusablecomponents/Eyeiconbutton";
 import DeleteCandidateButton from "../../../Components/DeleteCandidateButton";
-import axios from "axios";
+import Btn from "../../../Components/Reusablecomponents/Btn";
 import { useEffect } from "react";
+import axios from "axios";
 import { useState } from "react";
-
-
+import AcceptCandidateByHrButton from "../../../Components/AcceptCandidateByHrButton";
 
 
 const columns = [
   { field: "id", width: 100, headerClassName: "super-app-theme--header",headerAlign: 'center',align:'center' },
   { field: "candidatename",headerName:'Candidate Name' ,align:'center',width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "departmentname", width: 150,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "departmentname", width: 200,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "designation", width: 200,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "email", width: 250,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "mobile", width: 250,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center',hide:'true' },
+  { field: "mobile", width: 242,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center', },
  
   {
     field: "yoe",
     width: 150,
     headerClassName: "super-app-theme--header",
     headerAlign: 'center',
-    align:'center'
+    align:'center',
+    hide:'true'
   },
   {
     field: "Cv",
@@ -37,27 +38,16 @@ const columns = [
       </strong>
     ),
   },
-  {
-    field: "delete",
-    width: 150,
-    headerClassName: "super-app-theme--header",
-    headerAlign: 'center',
-    align:'center',
-    renderCell: (params) => (
-        <strong>
-        <DeleteCandidateButton/>
-        </strong>
-      ),
-  },
   
  
 ];
 
-export default function TableSelectedCandidate() {
+export default function TableHrApprovedCandidate() {
+ 
   const [rows,setRows]=useState([])
  
   useEffect(()=>{
-    axios.get("http://localhost:5000/candidate/selected")
+    axios.get("http://localhost:5000/candidate/candidate_approved")
     .then(function(response){
       console.log(response.data)
       var row=[]
@@ -82,12 +72,12 @@ export default function TableSelectedCandidate() {
         align="center"
         sx={{ color: "#1565C0", pb: "2%" }}
       >
-        Shortlisted Candidate
+        Selected List
       </Typography>
      
       <Box
         sx={{
-          height: "60vh",
+          height: "55vh",
           width: "100%",
           "& .super-app-theme--header": {
             background: "linear-gradient(#8B8B8B,#1565C0)",
@@ -111,7 +101,7 @@ export default function TableSelectedCandidate() {
             },
           }}
         />
-
+        
       </Box>
     </Paper>
   );

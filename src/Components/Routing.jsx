@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import Basic from "../Pages/Addemployee/Basic";
 import Footer from "./Footer/Footer";
@@ -16,13 +16,13 @@ import Vaccancy from "../Pages/Recruitmentmanagement.jsx/Departmenthead/Vaccancy
 import Vaccancyview from "../Pages/Recruitmentmanagement.jsx/HR/Vaccancyview";
 import Datagridfilter from "../Pages/Recruitmentmanagement.jsx/Departmenthead/Gatagridfilter";
 import DashboardEmploy from "../Pages/Employee/Dashboard/DashboardEmploy";
-import Tableshortlisted from "../Pages/Recruitmentmanagement.jsx/Recruiters/Tableshortlisted";
+import Tableshortlisted from "../Pages/Recruitmentmanagement.jsx/Recruiters/TableCandidateList";
 import TableSelectedCandidate from "../Pages/Recruitmentmanagement.jsx/Recruiters/TableSelectedCandidate";
 import LeaveUsedRemainInDetail from "./LeaveUsedRemainInDetail";
 import TableSelectedList from "../Pages/Recruitmentmanagement.jsx/HR/TableSelectedList";
 import AddCandidate from "../Pages/Recruitmentmanagement.jsx/Recruiters/AddCandidate";
 import Vacancytofilled from "../Pages/Recruitmentmanagement.jsx/HR/Vacancytofilled";
-import VacancyToBeFilled from "../Pages/Recruitmentmanagement.jsx/Departmenthead/VacancyToBeFilled";
+import VacancyToBeFilled from "../Pages/Recruitmentmanagement.jsx/Recruiters/VacancyToBeFilled";
 import EmployMovements from "../Pages/HrAnalytics/EmployMovements";
 import BlackListedCandidate from "../Pages/Recruitmentmanagement.jsx/HR/BlackListedCandidate";
 import ResignationForm from "../Pages/HrAnalytics/Resignation/ResignationForm";
@@ -38,7 +38,9 @@ import LeaveRejectedList from "../Pages/Leavemanagement/LeaveRejectedList";
 import NumberOfLeaveAllot from "../Pages/Leavemanagement/NumberOfLeaveAllot";
 import BookTrips from "../Pages/Travelmanagement/BookTrips";
 import MyTransport from "../Pages/Travelmanagement/MyTransport";
+import EditTrips from "../Pages/Travelmanagement/EditTrips";
 import TripApproval from "../Pages/Travelmanagement/TripApproval";
+import TripApprovedList from "../Pages/Travelmanagement/TripApprovedList";
 import VisitorPassForm from "../Pages/Visitormanagement/VisitorPassForm";
 import VisitorCard from "../Pages/Visitormanagement/VisitorCard";
 import VisitorList from "../Pages/Visitormanagement/VisitorList";
@@ -86,26 +88,47 @@ import AddLinkHr from "../Pages/LearningHr/AddLinkHr";
 import LoginPage from "../Pages/LoginPage";
 import DrawerandAppBar from "./Drawer_and_Appbar/DrawerandAppBar";
 import AddDepartment from "../Pages/Recruitmentmanagement.jsx/HR/AddDepartment";
+import TableCandidateList from "../Pages/Recruitmentmanagement.jsx/Recruiters/TableCandidateList";
+import { CoPresentOutlined } from "@mui/icons-material";
+import TableHrApprovedCandidate from "../Pages/Recruitmentmanagement.jsx/HR/TableHrApprovedCandidate";
+import ResetPassword from "../Pages/ResetPassword";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { UserContext } from "../App";
 
-const logged=localStorage.getItem('id');
+
+
 // const UserContext=createContext()
 function Routing() {
-  const [loggedin,setLoggedIn]=useState(true)
+  const {state,dispatch}=useContext(UserContext)
+  const navigate=useNavigate()
+  useEffect(()=>{
+    const user=JSON.parse(localStorage.getItem("user"))
+    if(user)
+    {
+      dispatch({type:"USER",payload:user})
+      navigate("/dashboard")
+    }
+    else{
+      navigate("/")
+    }
+  },[])
+  const logged=localStorage.getItem('jwt');
+  const [loggedin,setLoggedIn]=useState(logged?true:false)
   if(!loggedin)
   {
     return(
       <Routes>
-        <Route path='/' element={<LoginPage setLoggedIn={setLoggedIn}/>}></Route>
+        <Route path='/' element={<LoginPage setLoggedIn={setLoggedIn}/>}/>
+        <Route path="/resetpassword" element={<ResetPassword/>}/>
         <Route path="/*" element={<PageNotfound />} />
       </Routes>
     )
   }
   return (
     <>
-      <Box sx={{ display: "flex" }}>
-        {/* <UserContext.Provider value={setLoggedIn}> */}
+      <Box sx={{ display: "flex" }}>   
         <DrawerandAppBar setLoggedIn={setLoggedIn}/>
-        {/* </UserContext.Provider> */}
         <Box sx={{ width: "100%" }}>
           <Box
             className="content-container"
@@ -125,8 +148,8 @@ function Routing() {
               />
               {/* dashboard employee  and add and view employ*/}
               <Route path="/dashboard" element={<DashboardEmploy />} />
-              <Route path="/addemployee" element={<Basic />} />
-              <Route path="/addemployee/:basicId" element={<Basic />} />
+              <Route path="/addemployee" element={<Basic key={window.location.pathname}/>}  />
+              <Route path="/updateemployee/:basicId" element={<Basic key={window.location.pathname}/>}  />
               <Route path="/academic/:basicId" element={<Academic />} />
               <Route path="/experience/:basicId" element={<Exp />} />
               <Route path="/upload/:basicId" element={<Upld />} />
@@ -143,7 +166,7 @@ function Routing() {
               <Route path="/adddepartment" element={<AddDepartment />} />
               <Route path="/addvaccancy" element={<Vaccancy />} />
               <Route path="/viewvaccancy" element={<Vaccancyview />} />
-              <Route path="/candidatelist" element={<Tableshortlisted />} />
+              <Route path="/candidatelist" element={<TableCandidateList />} />
               <Route
                 path="/selectedcandidatelist"
                 element={<TableSelectedCandidate />}
@@ -151,6 +174,7 @@ function Routing() {
               <Route path="/selectedlist" element={<TableSelectedList />} />
               <Route path="/addcandidate" element={<AddCandidate />} />
               <Route path="/vacancytobefilled" element={<Vacancytofilled />} />
+              <Route path="/hrapprovedcandidates" element={<TableHrApprovedCandidate />} />
               <Route
                 path="/vacancytobefilledrecruiters"
                 element={<VacancyToBeFilled />}
@@ -159,6 +183,8 @@ function Routing() {
                 path="/blacklistedcandidate"
                 element={<BlackListedCandidate />}
               />
+
+              {/* recruitement management end */}
               <Route path="/*" element={<PageNotfound />} />
               {/* Hr analytics */}
               <Route path="/empmovements" element={<EmployMovements />} />
@@ -232,7 +258,9 @@ function Routing() {
               {/* Routing For Travel Management */}
               <Route path="/BookTrips" element={<BookTrips />} />
               <Route path="/MyTransport" element={<MyTransport />} />
+              <Route path="/EditTrips/:id" element={<EditTrips />} />
               <Route path="/TripApproval" element={<TripApproval />} />
+              <Route path="/TripApprovedList" element={<TripApprovedList />} />
               {/* Routing For Travel Management */}
               {/* Routing For Visitor Management */}
               <Route path="/VisitorPassForm" element={<VisitorPassForm />} />

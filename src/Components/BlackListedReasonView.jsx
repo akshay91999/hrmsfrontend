@@ -4,16 +4,22 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import useForm from "./Validation/useForm";
 import { Box } from "@mui/system";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import axios from "axios";
 
 const initialFvalues = {
   deletecandidate: "",
 };
 
-function BlackListedReasonView() {
+function BlackListedReasonView(props) {
+  const {id}=props
   const { values, setValues, handleInputChange } = useForm(initialFvalues);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
+    axios.get("http://localhost:5000/blacklist/"+id)
+    .then(function(response){
+      console.log(response)
+    })
     setOpen(true);
   };
 

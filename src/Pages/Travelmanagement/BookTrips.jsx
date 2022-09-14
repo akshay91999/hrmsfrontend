@@ -1,35 +1,74 @@
 import { Box, FormControlLabel, Grid, Paper, Radio, RadioGroup, TextField, Typography } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import Btn from "../../Components/Reusablecomponents/Btn";
 import Calender from "../../Components/Reusablecomponents/Calender";
 import Time from "../../Components/Reusablecomponents/Time";
 import useForm from "../../Components/Validation/useForm";
+import axios from "axios";
+
 const initialFvalues = {
-  selectdate: "",
+  date: "",
   time:'',
-  bookingtype:'pickup',
+  trip_for:'pickup',
   location:''
 };
 export default function BookTrips() {
+  const params=useParams();
+
     let navigate=useNavigate()
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
   const validate = () => {
     let temp = {};
-    temp.selectdate = values.selectdate ? "" : "This field is required";
+    temp.date = values.date ? "" : "This field is required";
     temp.time = values.time ? "" : "This field is required";
-    temp.bookingtype = values.bookingtype ? "" : "This field is required";
+    temp.trip_for = values.trip_for ? "" : "This field is required";
     temp.location = values.location ? "" : "This field is required";
     setErrors({ ...temp });
     return Object.values(temp).every((x) => x === "");
   };
+
+  const user = {
+    date: values.date,
+    time: values.time,
+    trip_for: values.trip_for,
+    location: values.location,
+
+  };
+
+
+
+
   const handlesubmit = () => {
     // loging values
-    console.log(values);
+    // console.log(values);
+    // if (validate()) {
+    //   window.alert("Booking Confirmed");
+    //   navigate("/MyTransport")
+    // }
+    console.log(user);
     if (validate()) {
-      window.alert("Booking Confirmed");
-      navigate("/MyTransport")
+      axios
+        .post("http://localhost:5000/travel/"+1, user, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then(function (response) {
+          console.log(response.data);
+
+          // let id = response.data.data;
+          // console.log(id);
+          // if (response.data.message === "success") {
+            window.alert("successfully submited");
+            navigate("/MyTransport");
+          // }
+          // else{
+          //   window.alert(response.data.message)
+          // }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   };
   return (
@@ -59,11 +98,11 @@ export default function BookTrips() {
         >
             <Calender
               text="Select Date "
-              name="selectdate"
-              value={values.selectdate}
+              name="date"
+              value={values.date}
               errors={errors}
               onChange={handleInputChange}
-              error={errors.selectdate}
+              error={errors.date}
             />
             <Time
               text="Time"
@@ -77,10 +116,10 @@ export default function BookTrips() {
             <RadioGroup
                     row
                     aria-labelledby="demo-row-radio-buttons-group-label"
-                    name="bookingtype"
-                    value={values.bookingtype}
+                    name="trip_for"
+                    value={values.trip_for}
                     onChange={handleInputChange}
-                    error={errors.bookingtype}
+                    error={errors.trip_for}
                     sx={{gap:"7%",pl:"7%"}}
                 >
                     <FormControlLabel

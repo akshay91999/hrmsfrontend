@@ -1,3 +1,4 @@
+
 import React from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -25,6 +26,7 @@ import {
 } from "./Dropdowndata/getDepartmentname";
 import Dropdownlist from "./Reusablecomponents/Dropdownlist";
 import Upload from "./Upload";
+import Dropdownlisttitle from "./Reusablecomponents/DropdownlistTitle";
 
 
 const initialFvalues = {
@@ -34,12 +36,13 @@ const initialFvalues = {
   branchid: "",
   coursetype: "",
   score: "",
-  markid: "",
   durtnfrm: "",
   durtnto: "",
 };
 
 function AcademicForm(props) {
+  const [file,selectedFile]=useState(null)
+
  const {params}=props
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
@@ -52,38 +55,55 @@ function AcademicForm(props) {
     temp.coursetype = values.coursetype ? "" : "This field is required";
     temp.score = values.score ? "" : "This field is required";
     temp.durtnfrm = values.durtnfrm ? "" : "This field is required";
-    temp.durtnto = values.durtnfrm ? "" : "This field is required";
-    temp.coursetype = values.coursetype ? "" : "this field is required";
-    temp.markid = values.markid ? "" : "this field is required";
+    temp.durtnto = values.durtnto ? "" : "This field is required";
     setErrors({
       ...temp,
     });
     return Object.values(temp).every((x) => x === "");
   };
-  // const data={
-  //   institution_name:values.school,
-  //   board:values.board,
-  //   programme:values.courseid,
-  //   branch:values.branchid,
-  //   coursetype:values.coursetype,
-  //   score:values.score,
-  //   duration:values.durtnfrm
-
-  // }
+  const data={
+    school:values.school,
+    board:values.board,
+    courseid:values.courseid,
+    branchid:values.branchid,
+    coursetype:values.coursetype,
+    score:values.score,
+    durtnfrm:values.durtnfrm,
+    durtnto:values.durtnto
+  }
 
   const handlesubmit = () => {
     if (validate()) {
       // logging values
       // axios.post("http://localhost:5000/accademic"+params,)
-      console.log(values);
-      window.alert("successfully submited");
-      setSave(false)
+      // console.log(values);
+      // window.alert("successfully submited");
+      // setSave(false)
+      if(academic=="success")
+      { 
+      axios.post("http://localhost:5000/accademic/"+1,data,{
+        headers:{"Content-Type":"application/json"},
+      })
+      .then(function(response){
+        console.log(response.data.academic)
+        window.alert("successfully submited")
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+    }
+    else{
+      window.alert("Please Upload the documents")
+    }
     }
   };
 
   const [add, setAdd] = useState(false);
   const [save,setSave]=useState(true)  //for disabling add button
-
+  const [academic,setAcademic]=useState(null)
+  const handlefilechange = (e) => {
+    selectedFile(e.target.files[0])
+  };
 
   const addfield = () => {
     if (validate()) {
@@ -108,6 +128,41 @@ function AcademicForm(props) {
   const handleClose = () => {
     setOpen(false);
   };
+  const handlequalificationupload=(e)=>{
+    e.preventDefault();
+    if(file.type!="image/jpg" && file.type!="image/jpeg" && file.type!="image/png" &&file.type!="application/pdf"){
+      window.alert("File does not support. You must use .png or .jpg or pdf")
+      return(false)
+    } 
+    else if(file.size>1000000){
+      window.alert("Please upload a file smaller than 1mb")
+      return(false)
+    }
+    else{
+      const formData=new FormData()
+      formData.append("document",file)
+      formData.append("doc_type",'highest qualification certificate')
+      axios.post("http://localhost:5000/upload/"+params.basicId,formData,{
+        headers:{"Content-Type":"application/json"},
+      })
+      .then(function(response){
+        console.log(response.data);
+        // if(response.data.message==="success"){
+          window.alert("successfully uploaded")
+          setAcademic(response.data.message)
+          setSave(false)
+        // }
+        // else{
+        //   window.alert(response.data.message)
+        // }
+        
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+  }
+  }
+  
   return (
     <>
       <Box
@@ -134,7 +189,7 @@ function AcademicForm(props) {
           error={errors.board}
           onChange={handleInputChange}
         />
-        <Dropdownlist
+        <Dropdownlisttitle
           name="courseid"
           label="Course"
           value={values.courseid}
@@ -143,7 +198,7 @@ function AcademicForm(props) {
           error={errors.courseid}
         />
 
-        <Dropdownlist
+        <Dropdownlisttitle
           name="branchid"
           label="Branch"
           value={values.branchid}
@@ -151,7 +206,7 @@ function AcademicForm(props) {
           options={getBranchid()}
           error={errors.branchid}
         />
-        <Dropdownlist
+        <Dropdownlisttitle
           name="coursetype"
           label="Type"
           value={values.coursetype}
@@ -204,11 +259,13 @@ function AcademicForm(props) {
           Upload a file:
           <input
             type="file"
+            onChange={handlefilechange}
             style={{ marginLeft: "1%", paddingBottom: "2%" }}
           />
           <Button
             variant="contained"
             sx={{ background: "linear-gradient(#1565C0,#8B8B8B)" }}
+           onClick={handlequalificationupload}
           >
             Upload!
           </Button>
@@ -256,3 +313,5 @@ function AcademicForm(props) {
 }
 
 export default AcademicForm;
+
+

@@ -13,7 +13,7 @@ import { useState } from 'react';
 export default function ViewEmployee() {
     const params=useParams()
     const [basics,setBasics]=useState({})
-    const [photo,setPhoto]=useState({})
+    const [photo,setPhoto]=useState(null)
 
     // console.log(params)
     let navigate=useNavigate();
@@ -28,7 +28,7 @@ export default function ViewEmployee() {
         })
         axios.get("http://localhost:5000/upload/"+params.basicId,)
         .then(function(response){
-            console.log(response.data.uploads.document)
+            console.log(response.data.uploads.document)  
             setPhoto(response.data.uploads.document)
         })
         .catch(function(error){
@@ -40,21 +40,29 @@ export default function ViewEmployee() {
             <Card sx={{ display: 'flex' }}>
             <CardMedia
                     component="img"
-                    sx={{ width: 151 }}
-                    image={photo}
+                    sx={{ width: 151,height:151 }}
+                    image={"http://localhost:5000/"+photo}
                     alt="Live from space album cover"
+                
                 />
+                   
+                
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                     <CardContent sx={{ flex: '1 0 auto' }}>
-                    <Typography variant="body1"><b>{basics.name}</b></Typography>
+                    <Typography variant="body1"><b>{basics.firstname} {basics.lastname}</b></Typography>
                             <Typography variant="body1"><b>Frontend Developer</b></Typography>
                             <Typography variant="body1"><b>{basics.contactnumber} | {basics.email}</b></Typography>
                             <Typography variant="body1"><b>{basics.e_address}</b></Typography>
+                            
                     </CardContent>
-
                 </Box>
+                 
                 
             </Card>
+           
+
+            
+           
           
             <BasicTab basics={basics}/>
             <Box sx={{display:"flex",justifyContent:"flex-end",p:'2%'}}>

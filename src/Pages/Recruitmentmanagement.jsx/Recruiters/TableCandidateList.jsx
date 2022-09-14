@@ -2,19 +2,20 @@ import * as React from "react";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import Eyeiconbutton from "../../../Components/Reusablecomponents/Eyeiconbutton";
-import DeleteCandidateButton from "../../../Components/DeleteCandidateButton";
-import axios from "axios";
+import Dropdownlist from "../../../Components/Reusablecomponents/Dropdownlist";
+import useForm from "../../../Components/Validation/useForm";
+import { getDepartmentname, getPosition } from "../../../Components/Dropdowndata/getDepartmentname";
+import BlackListbutton from "../../../Components/BlackListbutton";
 import { useEffect } from "react";
+import axios from "axios";
 import { useState } from "react";
-
-
-
+import AcceptrejectbuttonCandidate from "../../../Components/AcceptrejectbuttonCandidate";
 
 const columns = [
   { field: "id", width: 100, headerClassName: "super-app-theme--header",headerAlign: 'center',align:'center' },
   { field: "candidatename",headerName:'Candidate Name' ,align:'center',width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "departmentname", width: 150,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "designation", width: 200,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "designation", width: 150,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "email", width: 250,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "mobile", width: 250,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center',hide:'true' },
  
@@ -33,31 +34,43 @@ const columns = [
     align:'center',
     renderCell: (params) => (
       <strong> 
+        {/* calling Eyeiconbutton component which contain iconbutton */}
         <Eyeiconbutton/>
       </strong>
     ),
   },
   {
-    field: "delete",
+    field: "Short_List",
     width: 150,
     headerClassName: "super-app-theme--header",
     headerAlign: 'center',
-    align:'center',
     renderCell: (params) => (
         <strong>
-        <DeleteCandidateButton/>
+          {/* calling AcceptRejectbutton */}
+        <AcceptrejectbuttonCandidate id={params.id}/>
         </strong>
       ),
   },
-  
+  {
+    field: "Black_List",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    renderCell: (params) => (
+        <strong>
+          {/* calling Black list button */}
+        <BlackListbutton id={params.id}/>
+        </strong>
+      ),
+  },
  
 ];
 
-export default function TableSelectedCandidate() {
+export default function TableCandidateList() {
   const [rows,setRows]=useState([])
  
   useEffect(()=>{
-    axios.get("http://localhost:5000/candidate/selected")
+    axios.get("http://localhost:5000/candidate/pending")
     .then(function(response){
       console.log(response.data)
       var row=[]
@@ -72,7 +85,6 @@ export default function TableSelectedCandidate() {
       console.log(error)
     })
   },[])
- 
 
     const [pageSize, setPageSize] = React.useState(5);
   return (
@@ -82,7 +94,7 @@ export default function TableSelectedCandidate() {
         align="center"
         sx={{ color: "#1565C0", pb: "2%" }}
       >
-        Shortlisted Candidate
+        Candidate List
       </Typography>
      
       <Box
@@ -111,7 +123,6 @@ export default function TableSelectedCandidate() {
             },
           }}
         />
-
       </Box>
     </Paper>
   );

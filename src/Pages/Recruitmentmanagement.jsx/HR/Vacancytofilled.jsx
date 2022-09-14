@@ -2,63 +2,9 @@ import * as React from "react";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import DeletePositionButton from "../../../Components/DeleteConfirmationVaccancyList";
-
-
-
-const rows = [
-  {
-    id: 1220,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 4,
-    neededwithin: '22-05-2022',
-  },
-
-  {
-    id: 1221,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 4,
-    neededwithin: '22-05-2022',
-  },
-
-  {
-    id: 1222,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 4,
-    neededwithin: '22-05-2022',
-  },
-
-  {
-    id: 1223,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 3,
-    neededwithin: '22-05-2022',
-  },
-
-  {
-    id: 1224,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 2,
-    neededwithin: '22-05-2022',
-  },
-  {
-    id: 1224,
-    departmentname: "front-end devolopment",
-    position:'python devoloper',
-    numberofvacancy:45,
-    yoeneeded: 1,
-    neededwithin: '22-05-2022',
-  },
-];
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 const columns = [
   {
@@ -66,6 +12,7 @@ const columns = [
     width: 100,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
+    align:'center'
   },
   {
     field: "departmentname",
@@ -73,34 +20,39 @@ const columns = [
     width: 250,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
+    align:'center'
   },
   {
-    field: "position",
+    field: "designation",
     headerName: 'Position',
     width: 250,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
+    align:'center'
   },
   {
-    field: "numberofvacancy",
+    field: "vacancynumber",
     headerName: 'Number Of Vacancy',
     width: 150,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
+    align:'center'
   },
   {
     field: "yoeneeded",
     headerName: 'Year Of Experience',
-    width: 250,
+    width: 200,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
+    align:'center'
   },
   {
     field: "neededwithin",
     headerName: 'Needed Within',
-    width: 250,
+    width: 240,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
+    align:'center'
   },
   {
     field: "delete",
@@ -108,9 +60,10 @@ const columns = [
     width: 150,
     headerClassName: "super-app-theme--header",
     headerAlign: 'center',
+    align:'center',
     renderCell: (params) => (
         <strong>
-        <DeletePositionButton/>
+        <DeletePositionButton id={params.id}/>
         </strong>
       ),
   },
@@ -118,6 +71,24 @@ const columns = [
 ];
 
 export default function Vacancytofilled() {
+  const [rows,setRows]=useState([])
+ 
+  useEffect(()=>{
+    axios.get("http://localhost:5000/vacancy/approved")
+    .then(function(response){
+      console.log(response.data)
+      var row=[]
+      row=response.data
+      var newrow=row.map(({v_id:id,...rest})=>({
+        id,...rest
+      }))
+      setRows(newrow)
+      // setRows(row)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
   const [pageSize, setPageSize] = React.useState(5);
   return (
     <Paper elevation={4} sx={{ m: "2%", p: "2%" }}>

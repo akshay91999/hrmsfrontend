@@ -92,7 +92,7 @@ export default function LeaveApprovedList() {
           align="center"
           sx={{ color: "#1565C0", pb: "2%" }}
         >
-          Employee List
+        Resignation Request
         </Typography>
 
         <Box
