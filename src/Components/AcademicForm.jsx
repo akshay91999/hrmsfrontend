@@ -27,6 +27,7 @@ import {
 import Dropdownlist from "./Reusablecomponents/Dropdownlist";
 import Upload from "./Upload";
 import Dropdownlisttitle from "./Reusablecomponents/DropdownlistTitle";
+import { useParams } from "react-router-dom";
 
 
 const initialFvalues = {
@@ -40,10 +41,9 @@ const initialFvalues = {
   durtnto: "",
 };
 
-function AcademicForm(props) {
+function AcademicForm() {
+  const params=useParams()
   const [file,selectedFile]=useState(null)
-
- const {params}=props
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
   const validate = () => {
@@ -81,7 +81,7 @@ function AcademicForm(props) {
       // setSave(false)
       if(academic=="success")
       { 
-      axios.post("http://localhost:5000/accademic/"+1,data,{
+      axios.post("http://localhost:5000/accademic/"+params.basicId,data,{
         headers:{"Content-Type":"application/json"},
       })
       .then(function(response){

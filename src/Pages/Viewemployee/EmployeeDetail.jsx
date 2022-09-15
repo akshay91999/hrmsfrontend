@@ -10,6 +10,7 @@ import Btn from '../../Components/Reusablecomponents/Btn';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
+import { ConstructionOutlined } from '@mui/icons-material';
 export default function ViewEmployee() {
     const params=useParams()
     const [basics,setBasics]=useState({})
@@ -28,8 +29,12 @@ export default function ViewEmployee() {
         })
         axios.get("http://localhost:5000/upload/"+params.basicId,)
         .then(function(response){
-            console.log(response.data.uploads.document)  
-            setPhoto(response.data.uploads.document)
+            console.log(response.data.uploads) 
+            var arr=[]
+            arr=response.data.uploads
+            var result=arr.find(item=>item.doc_type==="photo")
+            console.log(result) 
+            setPhoto(result.document)
         })
         .catch(function(error){
             console.log(error)

@@ -29,7 +29,7 @@ const initialFvalues = {
   mcontactnumber: "",
   maritalstatus: "single",
   spousename: "",
-  scontactnumber: "",
+  scontactnumber: null,
   e_address: "",
   state: "",
   country: "",

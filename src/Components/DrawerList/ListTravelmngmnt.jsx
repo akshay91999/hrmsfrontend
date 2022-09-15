@@ -39,7 +39,7 @@ function ListTravelmngmnt() {
            </List>
         )
       }
-      else if(user.user_type===3)
+      else if(user.user_type===3||user.user_type===2)
       {
         return(
           <List component="div" disablePadding sx={{ pl: 1 }}>

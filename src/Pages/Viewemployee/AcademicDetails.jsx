@@ -21,7 +21,7 @@ export default function PersonalDetails() {
   useEffect(()=>{
     axios.get("http://localhost:5000/accademic/"+params.basicId)
     .then(function(response){
-      console.log(response.data.acdemic)
+      console.log(response)
       setAcademic(response.data.acdemic)
     })
     .catch(function(error){

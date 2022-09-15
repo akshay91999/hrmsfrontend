@@ -21,7 +21,7 @@ export default function Academic() {
           </Typography>
         </legend>
         {/* calling Academic form */}
-        <AcademicForm params={params}/>
+        <AcademicForm/>
        
       </fieldset>
       <Box sx={{ p: "1%" }}>
