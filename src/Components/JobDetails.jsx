@@ -118,16 +118,13 @@ function JobDetails() {
         })
         .then(function (response) {
           console.log(response);
-
-          // let id = response.data.data;
-          // console.log(id);
-          // if (response.data.message === "success") {
+          if (response.data.message === "success") {
           window.alert("successfully submited");
-          //   navigate("/jobdetails/" + id);
-          // }
-          // else{
-          //   window.alert(response.data.message)
-          // }
+        
+          }
+          else{
+            window.alert(response.data.message)
+          }
         })
         .catch(function (error) {
           console.log(error);

@@ -105,8 +105,9 @@ export default function LeaveApprovedList() {
       .get("http://localhost:5000/basics")
       .then(function (response) {
         console.log(response);
-        var employee = response.data.person;
+        var employee = response.data;
         setRows(employee);
+  
 
         // var row=employee.map(({id,firstName,gender,contactnumber,email,departmentname,designation})=>({id,firstName,gender,contactnumber,email,departmentname,designation}))
         // // console.log(rows)

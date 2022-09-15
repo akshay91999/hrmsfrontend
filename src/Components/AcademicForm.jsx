@@ -41,7 +41,8 @@ const initialFvalues = {
   durtnto: "",
 };
 
-function AcademicForm() {
+function AcademicForm(props) {
+  const {setAcad}=props
   const params=useParams()
   const [file,selectedFile]=useState(null)
   const { values, errors, setErrors, handleInputChange } =
@@ -72,21 +73,24 @@ function AcademicForm() {
     durtnto:values.durtnto
   }
 
+
   const handlesubmit = () => {
     if (validate()) {
-      // logging values
-      // axios.post("http://localhost:5000/accademic"+params,)
-      // console.log(values);
-      // window.alert("successfully submited");
-      // setSave(false)
+      
       if(academic=="success")
       { 
       axios.post("http://localhost:5000/accademic/"+params.basicId,data,{
         headers:{"Content-Type":"application/json"},
       })
       .then(function(response){
-        console.log(response.data.academic)
+        if(response.data.message==="success")
+        {
+        setAcad(response.data.message)
         window.alert("successfully submited")
+      }
+      else{
+        window.alert(response.data.message)
+      }
       })
       .catch(function(error){
         console.log(error)
@@ -142,25 +146,28 @@ function AcademicForm() {
       const formData=new FormData()
       formData.append("document",file)
       formData.append("doc_type",'highest qualification certificate')
+      if(academic===null)
+      {
       axios.post("http://localhost:5000/upload/"+params.basicId,formData,{
         headers:{"Content-Type":"application/json"},
       })
       .then(function(response){
         console.log(response.data);
-        // if(response.data.message==="success"){
+        if(response.data.message==="success"){
           window.alert("successfully uploaded")
           setAcademic(response.data.message)
-          setSave(false)
-        // }
-        // else{
-        //   window.alert(response.data.message)
-        // }
+          
+        }
+        else{
+          window.alert(response.data.message)
+        }
         
       })
       .catch(function(error){
         console.log(error)
       })
   }
+}
   }
   
   return (

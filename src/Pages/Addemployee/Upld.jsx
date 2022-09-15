@@ -10,17 +10,17 @@ import { useEffect } from "react";
 function Upld() {
   const params=useParams();
   console.log(params)
-  // const[base,setBase]=useState({})
-  // useEffect(()=>{
-  //   axios.get("http://localhost:5000/upload/"+params.basicId)
-  //   .then(function(response){
-  //     console.log(response)
-  //     setBase(response.data.uploads)
-  //   })
-  //   .catch(function(error){
-  //     console.log(error)
-  //   })
-  // },[])
+  const[base,setBase]=useState({})
+  useEffect(()=>{
+    axios.get("http://localhost:5000/upload/"+params.basicId)
+    .then(function(response){
+      console.log(response)
+      setBase(response.data.uploads)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
 
   const [file,selectedFile]=useState(null)
   
@@ -79,6 +79,43 @@ function Upld() {
   }
   }
 
+  const handlephotoupdate=(e)=>{
+    e.preventDefault();
+    if(file.type!="image/jpg" && file.type!="image/jpeg" && file.type!="image/png"){
+      window.alert("File does not support. You must use .png or .jpg")
+      return(false)
+    } 
+    else if(file.size>1000000){
+      window.alert("Please upload a file smaller than 1mb")
+      return(false)
+    }
+    else{
+      const formData=new FormData()
+      formData.append("document",file)
+      formData.append("doc_type",'photo')
+      if(photo===1)
+      {
+      axios.put("http://localhost:5000/upload/"+params.basicId,formData,{
+        headers:{"Content-Type":"application/json"},
+      })
+      .then(function(response){
+        console.log(response);
+        setPhoto(response.data.message)
+        if(response.data.message==="success"){
+          window.alert("successfully updated")
+        }
+        else{
+          window.alert(response.data.message)
+        }
+        
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+    }
+  }
+  }
+
   const handlecvupload=(e)=>{
     e.preventDefault();
     if(file.type!="application/pdf"){
@@ -96,6 +133,42 @@ function Upld() {
       if(cv===1)
       {
       axios.post("http://localhost:5000/upload/"+params.basicId,formData,{
+        headers:{"Content-Type":"application/json"},
+      })
+      .then(function(response){
+        console.log(response);
+        setCv(response.data.message)
+        if(response.data.message==="success"){
+          window.alert("successfully uploaded")
+        }
+        else{
+          window.alert(response.data.message)
+        }
+        
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+    }
+  }
+  }
+  const handlecvupdate=(e)=>{
+    e.preventDefault();
+    if(file.type!="application/pdf"){
+      window.alert("File does not support You must use pdf")
+      return(false)
+    } 
+    else if(file.size>1000000){
+      window.alert("Please upload a file smaller than 1mb")
+      return(false)
+    }
+    else{
+      const formData=new FormData()
+      formData.append("document",file)
+      formData.append("doc_type","cv")
+      if(cv===1)
+      {
+      axios.put("http://localhost:5000/upload/"+params.basicId,formData,{
         headers:{"Content-Type":"application/json"},
       })
       .then(function(response){
@@ -135,15 +208,15 @@ function Upld() {
             File Uploads
           </Typography>
         </legend>
-        {/* {Object.keys(base).length!==0?<> */}
-        {/* <Upload text="Upload photo" onChange={handlefilechange} onSubmit={handlephotoupdate} />
-        <Upload text="Upload CV" onChange={handlefilechange} onSubmit={handlecvupdate}/> */}
-        {/* </>: */}
-        {/* <> */}
+        {Object.keys(base).length!==0?<>
+        <Upload text="Upload photo" onChange={handlefilechange} onSubmit={handlephotoupdate} />
+        <Upload text="Upload CV" onChange={handlefilechange} onSubmit={handlecvupdate}/> 
+        </>:
+        <> 
         <Upload text="Upload photo" onChange={handlefilechange} onSubmit={handlephotoupload} />
         <Upload text="Upload CV" onChange={handlefilechange} onSubmit={handlecvupload}/>  
-        {/* </>    */}
-      {/* } */}
+         </>  
+      }
       </fieldset>
       {/* <Box sx={{ p: "2%" }}>
         <Btn text="Save" />

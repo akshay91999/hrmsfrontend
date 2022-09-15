@@ -25,10 +25,12 @@ function DashProfile() {
   const [open, setOpen] = useState(false);
   const [photo,setPhoto]=useState(null)
   const user = JSON.parse(localStorage.getItem("user"));
-
+  
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log(user.id)
     axios
-      .get("http://localhost:5000/upload/" + user.id)
+      .get("http://localhost:5000/upload/" +user.id)
       .then(function (response) {
         console.log(response);
         var arr = [];
@@ -38,7 +40,7 @@ function DashProfile() {
         setPhoto(result.document);
       })
       .catch(function (error) {
-        CoPresentOutlined.log(error);
+       console.log(error);
       });
   }, []);
   // const handleClickOpen = () => {

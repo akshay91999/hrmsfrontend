@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import Textfield from "../../Components/Reusablecomponents/Textfield";
 import Dropdownlist from "../../Components/Reusablecomponents/Dropdownlist";
 import { Box, Typography } from "@mui/material";
@@ -6,14 +6,32 @@ import { getDepartmentname } from "../../Components/Dropdowndata/getDepartmentna
 // import { useState } from "react";
 import Btn from "../../Components/Reusablecomponents/Btn";
 import useForm from "../../Components/Validation/useForm"
+import axios from "axios"
 
 const initialFvalues = {
-  // department: "",
+  department: "",
   add_link: "",
   add_description: "",
 };
 
 function AddLinkHrForm() {
+  const [dep,setDep]=useState([])
+  useEffect(()=>{
+axios.get("http://localhost:5000/depart")
+.then(function(response){
+  console.log(response)
+  var depart=response.data.viewAlldep
+  var newdepart=depart.map(({
+    dp_id:id,departmentname:title,...rest
+  })=>({
+    id,title,...rest
+  }))
+  setDep(newdepart)
+})
+.catch(function(error){
+  console.log(error)
+})
+ },[])
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
 
@@ -26,11 +44,32 @@ function AddLinkHrForm() {
     setErrors({ ...temp });
     return Object.values(temp).every((x) => x === "");
   };
-  const handlesubmit = () => {
-    if (validate()) {
-      window.alert("successfully updated");
-    }
+  const lnk = {
+ 
+    link: values. add_link,
+    description: values.add_description,
+    
   };
+  
+  const handlesubmit = () => {
+    console.log (lnk)
+    if (validate()) {
+        axios
+        .post("http://localhost:5000/learning/"+values.department, lnk,{
+          header:{"Content-Type":"application/json"
+        },
+    
+        })
+        .then(function(response){
+          console.log(response);
+        
+        window.alert("successfully added");
+      })
+      .catch(function (error){
+        console.log(error);
+      });
+    }
+    };
 
   return (
     <>
@@ -60,7 +99,7 @@ function AddLinkHrForm() {
           label="Department"
           value={values.department}
           handleInputChange={handleInputChange}
-          options={getDepartmentname()}
+          options={dep}
           error={errors.department}
         />
         <Textfield label="Add Link" name="add_link" id="add_link" value={values.add_link} error={errors.add_link} onChange={handleInputChange} />
@@ -78,4 +117,3 @@ function AddLinkHrForm() {
 
 }
 export default AddLinkHrForm;
-

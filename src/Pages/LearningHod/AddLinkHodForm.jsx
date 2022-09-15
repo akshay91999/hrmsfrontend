@@ -4,6 +4,7 @@ import { Box, Typography } from "@mui/material";
 // import { useState } from "react";
 import Btn from "../../Components/Reusablecomponents/Btn";
 import useForm from "../../Components/Validation/useForm"
+import axios from "axios";
 
 const initialFvalues = {
   add_link: "",
@@ -21,11 +22,36 @@ function AddLinkHodForm() {
   setErrors({ ...temp });
   return Object.values(temp).every((x) => x === "");
 };
-const handlesubmit = () => {
-  if (validate()) {
-    window.alert("successfully updated");
-  }
+
+
+
+const lnkhod = {
+ 
+  link: values.add_link,
+  description: values.add_description,
+  
 };
+
+const handlesubmit = () => {
+  const user=JSON.parse(localStorage.getItem('user'))
+  console.log (lnkhod)
+  if (validate()) {
+      axios
+      .post("http://localhost:5000/learning/"+user.dp_id, lnkhod,{
+        header:{"Content-Type":"application/json"
+      },
+  
+      })
+      .then(function(response){
+        console.log(response);
+      
+      window.alert("successfully added");
+    })
+    .catch(function (error){
+      console.log(error);
+    });
+  }
+  };
 
 return (
   <>

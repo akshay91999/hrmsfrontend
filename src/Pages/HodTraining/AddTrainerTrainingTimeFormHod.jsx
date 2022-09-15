@@ -9,13 +9,14 @@ import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 import Btn from "../../Components/Reusablecomponents/Btn";
 import useForm from "../../Components/Validation/useForm";
+import axios from "axios"
 // import { FormHelperText } from "@mui/material";
 
 const initialFvalues = {
   trainingname: "",
   trainer: "",
-  timeschedular: "",
-  calender: "",
+  // timeschedular: "",
+  // calender: "",
 };
 
 function AddTrainerTrainingTimeFormHod() {
@@ -26,18 +27,37 @@ function AddTrainerTrainingTimeFormHod() {
     let temp = {};
     temp.trainingname = values.trainingname ? "" : "This field is required";
     temp.trainer = values.trainer ? "" : "This field is required";
-    temp.timeschedular = values.timeschedular ? "" : "This field is required";
-    temp.calender = values.calender ? "" : "This field is required";
+    // temp.timeschedular = values.timeschedular ? "" : "This field is required";
+    // temp.calender = values.calender ? "" : "This field is required";
     setErrors({
       ...temp,
     });
     return Object.values(temp).every((x) => x === "");
   };
-
+const trnr = {
+ 
+  training_name: values.trainingname,
+  trainer: values.trainer,
+  
+};
   const handlesubmit = () => {
+    console.log (trnr)
   if (validate()) {
+    axios
+    .post("http://localhost:5000/addtraining/"+1, trnr,{
+      header:{"Content-Type":"application/json"
+    },
+
+    })
+    .then(function(response){
+      console.log(response.data);
+    
     window.alert("successfully added");
-  }
+  })
+  .catch(function (error){
+    console.log(error);
+  });
+}
 };
 
 const [AddedList, setAdd] = useState(false);
@@ -71,10 +91,10 @@ return (
       >
         <Textfield label="Training Name" name="trainingname" id="trainingname" value={values.trainingname} error={errors.trainingname} onChange={handleInputChange} />
         <Textfield label="Trainer" name="trainer" id="trainer" value={values.trainer} error={errors.trainer} onChange={handleInputChange} />       
-        <Textfield label="Time Schedular" name="timeschedular" id="timeschedular" value={values.timeschedular} error={errors.trainingname} onChange={handleInputChange} />
+        {/* <Textfield label="Time Schedular" name="timeschedular" id="timeschedular" value={values.timeschedular} error={errors.trainingname} onChange={handleInputChange} />
 
 
-        <Calender text="Date" name="calender" value={values.calender} onChange={handleInputChange} error={errors.calender} />
+        <Calender text="Date" name="calender" value={values.calender} onChange={handleInputChange} error={errors.calender} /> */}
 
          
           {/* <Box sx={{ pt: "2%" }}>
