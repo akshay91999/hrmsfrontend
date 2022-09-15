@@ -36,11 +36,16 @@ function Upld() {
   console.log(file); 
 
   const nextButton=()=>{
-    console.log(photo)
-    console.log(cv)
+    console.log(Object.keys(base).length)
+   if(Object.keys(base).length===0)
+   {
    if(photo==="success" && cv==="success"){
       navigate("/academic/"+params.basicId);
     }
+  }
+  else{
+    navigate("/updateaccademic/"+params.basicId);
+  }
   }
   const handlephotoupload=(e)=>{
     e.preventDefault();

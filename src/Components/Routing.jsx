@@ -95,6 +95,7 @@ import ResetPassword from "../Pages/ResetPassword";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { UserContext } from "../App";
+import AcademicUpdate from "../Pages/UpdateEmployee/AcademicUpdate";
 
 
 
@@ -308,6 +309,9 @@ function Routing() {
               <Route path="/ViewLinkEmployee" element={<ViewLinkEmployee />} />
               <Route path="/AddLinkHod" element={<AddLinkHod />} />
               <Route path="/AddLinkHr" element={<AddLinkHr />} />
+
+              {/* update employee details */}
+              <Route path="/updateaccademic/:basicId" element={<AcademicUpdate/>}/>
             </Routes>
           </Box>
           <Footer />
