@@ -5,6 +5,7 @@ import useForm from "./Validation/useForm";
 import { Box } from "@mui/system";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import axios from "axios";
+import { useState } from "react";
 
 const initialFvalues = {
   deletecandidate: "",
@@ -14,13 +15,16 @@ function BlackListedReasonView(props) {
   const {id}=props
   const { values, setValues, handleInputChange } = useForm(initialFvalues);
   const [open, setOpen] = React.useState(false);
+  const [data,setData]=useState({})
 
   const handleClickOpen = () => {
     axios.get("http://localhost:5000/blacklist/"+id)
     .then(function(response){
       console.log(response)
+      setData(response.data)
+      setOpen(true)
     })
-    setOpen(true);
+   
   };
 
   const handleClose = () => {
@@ -40,7 +44,7 @@ function BlackListedReasonView(props) {
         </DialogTitle>
         <DialogContent>
         <DialogContentText id="alert-dialog-description">
-            very bad behaviour
+            {data.reason}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

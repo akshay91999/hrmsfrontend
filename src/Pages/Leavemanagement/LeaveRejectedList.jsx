@@ -1,154 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import Avatar from "@mui/material/Avatar";
-const rows = [
-  {
-    id: 1220,
-    employee:{
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
- employeename:"David",
-    // employeename: {
-    //   username: "David",
-    //   avatar:
-    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    // },
-    // VisitorName: "David",
-    department: "Development",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reasonforrejection: "Pending Work",
-  },
-
-  {
-    id: 1221,
-    employee:{
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
- employeename:"David",
-    // employeename: {
-    //   username: "Ramsan",
-    //   avatar:
-    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLe5PABjXc17cjIMOibECLM7ppDwMmiDg6Dw&usqp=CAU",
-    // },
-    // VisitorName: "David",
-    department: "Marketing",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reasonforrejection: "Pending Work",
-  },
-
-  {
-    id: 1222,
-    employee:{
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
- employeename:"David",
-    // employeename: {
-    //   username: "David",
-    //   avatar:
-    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-    // },
-    // VisitorName: "David",
-    department: "Advertising",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reasonforrejection: "Pending Work",
-  },
-
-  {
-    id: 1223,
-    employee:{
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
- employeename:"David",
-    // employeename: {
-    //   username: "David",
-    //   avatar:
-    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-    // },
-    // VisitorName: "David",
-    department: "Marketing",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reasonforrejection: "Pending Work",
-  },
-
-  {
-    id: 1224,
-    employee:{
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
- employeename:"David",
-    // employeename: {
-    //   username: "aarooo",
-    //   avatar:
-    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-    // },
-    // VisitorName: "David",
-    department: "Marketing",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reasonforrejection: "Pending Work",
-  },
-  {
-    id: 1225,
-    employee:{
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
- employeename:"David",
-    // employeename: {
-    //   username: "Daviddddd",
-    //   avatar:
-    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-    // },
-    // VisitorName: "David",
-    department: "Advertising",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reasonforrejection: "Pending Work",
-  },
-];
+import axios from "axios";
+import { PanoramaSharp } from "@mui/icons-material";
 
 const columns = [
-  { field: "id", width: 170, headerClassName: "super-app-theme--header" },
-  // {
-  //   field: "employeename", headerClassName: "super-app-theme--header",
-  //   headerName: "Employee Name",
-  //   width: 280,
-  //   renderCell: (params) => {
-  //     console.log(params);
-  //     return (
-  //       <>
-  //         <Avatar src={params.value.avatar} />&nbsp;&nbsp;&nbsp;
-  //         {params.value.username}
-  //       </>
-  //     );
-  //   },
-  // },
-  { field: "employee",  headerName: "Employee",width: 150, renderCell: (params) => {
-    console.log(params);
-    return (
-       <>
-         <Avatar src={params.value.avatar} />
-      </>
-   );
-  }, headerClassName: "super-app-theme--header" },
-  { field: "employeename",  headerName: "Employee Name",width: 250, headerClassName: "super-app-theme--header" },
+  {
+    field: "id",
+    width: 170,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+  },
+ 
+  {
+    field: "name",
+    headerName: "Employee Name",
+    width: 250,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+  },
   // { field: "VisitorName", width: 250, headerClassName: "super-app-theme--header" },
-  { field: "department",headerName: "Department", width: 230, headerClassName: "super-app-theme--header" },
-  {field: "leavetype",headerName: "Leave Type",width: 140,headerClassName: "super-app-theme--header",},
-  { field: "from_to",headerName: "From-To", width: 240, headerClassName: "super-app-theme--header" },
-  { field: "reasonforrejection",headerName: "Reason for Rejection", width: 200, headerClassName: "super-app-theme--header" },
+  {
+    field: "departmentname",
+    headerName: "Department",
+    width: 230,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "leave_type",
+    headerName: "Leave Type",
+    width: 140,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "date",
+    headerName: "From-To",
+    width: 240,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "rejectreason",
+    headerName: "Reason for Rejection",
+    width: 240,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+  },
 ];
 export default function LeaveRejectedList() {
+  const [rows,setRows]=useState([])
+  useEffect(()=>{
+    axios.get("http://localhost:5000/showleave/reject/"+1)
+    .then(function(response){
+      console.log(response)
+      var leave=response.data
+      setRows(leave)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
   const [pageSize, setPageSize] = React.useState(5);
   return (
     <>
@@ -160,11 +80,11 @@ export default function LeaveRejectedList() {
         >
           Leave Rejected List
         </Typography>
-
+      <Box sx={{ width:'100%',display:'flex',justifyContent:'center' }}>
         <Box
           sx={{
             height: "50vh",
-            width: "100%",
+            width: "95%",
             "& .super-app-theme--header": {
               background: "linear-gradient(#8B8B8B,#1565C0)",
             },
@@ -188,7 +108,9 @@ export default function LeaveRejectedList() {
             }}
           />
         </Box>
+        </Box>
       </Paper>
     </>
   );
 }
+

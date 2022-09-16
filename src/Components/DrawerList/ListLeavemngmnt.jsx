@@ -26,6 +26,12 @@ function ListLeavemngmnt() {
       {
         return(
         <List component="div" disablePadding sx={{ pl: 1 }}>
+           <ListItemButton onClick={() => navigate("/NumberOfLeaveAllot")}>
+            <ListItemIcon>
+            <HowToRegIcon />
+            </ListItemIcon>
+            <ListItemText primary="Leave Allot" />
+          </ListItemButton>
      <ListItemButton onClick={() => navigate("/Leave")}>
             <ListItemIcon>
               <NoteAltSharpIcon />
@@ -56,12 +62,7 @@ function ListLeavemngmnt() {
             </ListItemIcon>
             <ListItemText primary="Leave Rejected List" />
           </ListItemButton>
-          <ListItemButton onClick={() => navigate("/NumberOfLeaveAllot")}>
-            <ListItemIcon>
-            <HowToRegIcon />
-            </ListItemIcon>
-            <ListItemText primary="Leave Allot" />
-          </ListItemButton>
+         
      </List>
      )
       }

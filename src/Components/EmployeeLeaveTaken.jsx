@@ -1,103 +1,65 @@
 import { Box, Paper, Typography } from '@mui/material'
 import React from 'react'
-import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-const rows = [
-    {
-      id: 1,
-    
-      leavefrom: "12/09/2022",
 
-      numberofdays: "2",
-      leavetype: "Unpaid",
-
-      reason: "Fever",
-    },
-  
-    {
-      id: 2,
-    
-      leavefrom: "10/08/2022",
-
-      numberofdays: "3",
-      leavetype: "Unpaid",
-      
-      reason: "Fever",
-    },
-  
-    {
-      id: 3,
-     
-      leavefrom: "10/08/2022",
-
-      numberofdays: "6",
-      leavetype: "Unpaid",
-      reason: "Fever",
-    },
-  
-    {
-      id: 4,
-     
-      leavefrom: "10/08/2022",
-    
-      numberofdays: "3",
-      leavetype: "Unpaid",
-    
-      reason: "Fever",
-    },
-  
-    {
-      id: 5,
-    
-      leavefrom: "10/08/2022",
-    
-      numberofdays: "2",
-      leavetype: "Unpaid",
-  
-      reason: "Fever",
-    },
-    {
-      id: 6,
-     
-      leavefrom: "10/08/2022",
-   
-      numberofdays: "3",
-      leavetype: "Unpaid",
-      
-      reason: "Fever",
-    },
-  ];
 const columns = [
-    { field: "id",headerName: "Sl.No", width: 170, headerClassName: "super-app-theme--header" },
+    { field: "id",headerName: "Sl.No", width: 150, headerClassName: "super-app-theme--header", align:"center",
+    headerAlign: "center" },
 
    
     {
-      field: "leavefrom",
+      field: "leave_from",
       headerName: "Leave From",
-      width: 270,
+      width: 250,
       headerClassName: "super-app-theme--header",
+      align:"center",
+      headerAlign: "center"
     },
    
     {
-      field: "numberofdays",
+      field: "no_days",
       headerName: "Number Of Days",
-      width: 230,
+      width: 200,
       headerClassName: "super-app-theme--header",
+      align:"center",
+      headerAlign: "center"
     },
     {
-      field: "leavetype",
+      field: "leave_type",
       headerName: "Leave Type",
       width: 200,
       headerClassName: "super-app-theme--header",
+      align:"center",
+      headerAlign: "center"
     },
     {
       field: "reason",
       headerName: "Reason",
-      width: 250,
+      width: 350,
       headerClassName: "super-app-theme--header",
+      align:"center",
+      headerAlign: "center"
     },
   ];
 export default function EmployeeLeaveTaken() {
+  const params=useParams()
+  const [rows,setRows]=useState([])
+  useEffect(()=>{
+    axios.get("http://localhost:5000/request/"+params.id)
+    .then(function(response){
+      console.log(response.data)
+      var leave=response.data.leaveData
+      setRows(leave)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
     const [pageSize, setPageSize] = React.useState(5);
   return (
     <>
@@ -105,14 +67,16 @@ export default function EmployeeLeaveTaken() {
         <Typography
           variant="h4"
           align="center"
-          sx={{ color: "#1565C0", pb: "2%" }}
+          
+          sx={{ color: "#1565C0", pb: "2%",}}
         >
           Leave Taken
         </Typography>
+        <Box sx={{ width:"100%",display:'flex',justifyContent:'center' }}>
         <Box
           sx={{
             height: "40vh",
-            width: "100%",
+            width: "85%",
             "& .super-app-theme--header": {
               background: "linear-gradient(#8B8B8B,#1565C0)",
             }
@@ -135,6 +99,7 @@ export default function EmployeeLeaveTaken() {
               }
             }}
           />
+        </Box>
         </Box>
         </Paper>  
     </>

@@ -69,20 +69,7 @@ export default function Vaccancyviewform() {
  
   useEffect(()=>{
    getTableData()
-    // axios.get("http://localhost:5000/vacancy")
-    // .then(function(response){
-    //   console.log(response.data)
-    //   var row=[]
-    //   row=response.data
-    //   var newrow=row.map(({v_id:id,...rest})=>({
-    //     id,...rest
-    //   }))
-    //   setRows(newrow)
-    //   // setRows(row)
-    // })
-    // .catch(function(error){
-    //   console.log(error)
-    // })
+    
   },[])
 
   const getTableData=()=>{

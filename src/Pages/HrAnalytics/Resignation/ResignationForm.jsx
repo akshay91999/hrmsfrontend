@@ -152,7 +152,7 @@ function ResignationForm() {
 
           <MultiLineTextfield
             label="Reason"
-            name="Reason"
+            name="reason"
             value={values.reason}
             error={errors.reason}
             onChange={handleInputChange}

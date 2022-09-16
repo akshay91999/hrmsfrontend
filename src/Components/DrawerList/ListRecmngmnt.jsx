@@ -40,19 +40,19 @@ function ListRecmngmnt() {
                 <ListItemIcon>
                     <DynamicFormIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Add Vaccancy" />
+                <ListItemText primary="Add Vacancy" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/viewvaccancy")}>
                 <ListItemIcon>
                     <PreviewIcon/>
                 </ListItemIcon>
-                <ListItemText primary="View Vaccancy" />
+                <ListItemText primary="View Vacancy" />
             </ListItemButton>
             <ListItemButton onClick={() => navigate("/vacancytobefilled")}>
                 <ListItemIcon>
                 <PlaylistAddCheckIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Vacancy To Be Filled" />
+                <ListItemText primary="Vacancy List" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/vacancytobefilledrecruiters")}>
                 <ListItemIcon>

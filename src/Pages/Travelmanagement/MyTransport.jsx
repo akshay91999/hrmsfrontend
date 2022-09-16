@@ -127,10 +127,11 @@ const columns = [
 ];
 export default function MyTransport() {
   const [rows,setRows]=useState([])
+  const user=JSON.parse(localStorage.getItem('user'))
   useEffect(()=>{
-    axios.get("http://localhost:5000/travel/"+1)
+    axios.get("http://localhost:5000/travel/pending/"+user.id)
     .then(function(response){
-      console.log(response.data)
+      console.log(response)
       var trip=response.data.travel
       setRows(trip)
     })

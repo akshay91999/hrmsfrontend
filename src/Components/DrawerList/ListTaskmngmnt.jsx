@@ -27,7 +27,7 @@ function ListTaskmngmnt() {
             <ListItemIcon>
             <AssignmentIndIcon />
             </ListItemIcon>
-            <ListItemText primary="Hr task management" />
+            <ListItemText primary="Hr Task management" />
           </ListItemButton>
           <ListItemButton onClick={() => navigate("/hodtaskemployeetable")}>
             <ListItemIcon>

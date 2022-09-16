@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Divider, Typography, Box, Grid } from "@mui/material";
 import EmployeeLeaveTaken from "./EmployeeLeaveTaken";
-export default function LeaveUsedRemainInDetail() {
+import axios from "axios";
+import {useParams } from "react-router-dom";
+import { useState } from "react";
+export default function LeaveUsedRemainInDetail(props) {
+ 
+  const params=useParams()
+  const [dataleave,setDataleave]=useState([])
+  useEffect(()=>{
+    axios.get("http://localhost:5000/request/"+params.id)
+    .then(function(response){
+      console.log(params)
+      console.log(response)
+setDataleave(response.data)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "center", gap: "3%",p:"3%" }}>
@@ -43,7 +60,7 @@ export default function LeaveUsedRemainInDetail() {
                 >
                   Balance
                 </Typography>
-                <Typography sx={{ textAlign: "center" }}>12</Typography>
+                <Typography sx={{ textAlign: "center" }}>{dataleave.balancePaid}</Typography>
               </Grid>
               <Divider
                 sx={{ mt: "5%" }}
@@ -63,7 +80,7 @@ export default function LeaveUsedRemainInDetail() {
                 >
                   Used
                 </Typography>
-                <Typography sx={{ textAlign: "center" }}>08</Typography>
+                <Typography sx={{ textAlign: "center" }}>{dataleave.usedPaid}</Typography>
               </Grid>
             </Grid>
           </Box>
@@ -107,7 +124,7 @@ export default function LeaveUsedRemainInDetail() {
                 >
                   Balance
                 </Typography>
-                <Typography sx={{ textAlign: "center" }}>12</Typography>
+                <Typography sx={{ textAlign: "center" }}>{dataleave.balanceUnpaid}</Typography>
               </Grid>
               <Divider
                 sx={{ mt: "5%" }}
@@ -127,13 +144,17 @@ export default function LeaveUsedRemainInDetail() {
                 >
                   Used
                 </Typography>
-                <Typography sx={{ textAlign: "center" }}>08</Typography>
+                <Typography sx={{ textAlign: "center" }}>{dataleave.usedUnpaid}</Typography>
               </Grid>
             </Grid>
           </Box>
         </Card>
+        
       </Box>
+      <Box>
       <EmployeeLeaveTaken/>
+      </Box>
+      
     </>
   );
 }

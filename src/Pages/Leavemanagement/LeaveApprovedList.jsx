@@ -1,185 +1,69 @@
-import React from "react";
+
+import React, { useEffect, useState } from "react";
 import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import Avatar from "@mui/material/Avatar";
-const rows = [
-  {
-    id: 1220,
-    employee: {
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
-    employeename: "David",
-    // employeename: {
-    //   username: "David",
-    //   avatar:
-    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    // },
-    // VisitorName: "David",
-    department: "Development",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reason: "Fever",
-  },
-
-  {
-    id: 1221,
-    employee: {
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLe5PABjXc17cjIMOibECLM7ppDwMmiDg6Dw&usqp=CAU",
-    },
-    employeename: "Ramsan",
-    // employeename: {
-    //   username: "Ramsan",
-    //   avatar:
-    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLe5PABjXc17cjIMOibECLM7ppDwMmiDg6Dw&usqp=CAU",
-    // },
-    // VisitorName: "David",
-    department: "Marketing",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reason: "Fever",
-  },
-
-  {
-    id: 1222,
-    employee: {
-      avatar:
-        "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-    },
-    employeename: "David",
-    // employeename: {
-    //   username: "David",
-    //   avatar:
-    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-    // },
-    // VisitorName: "David",
-    department: "Advertising",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reason: "Fever",
-  },
-
-  {
-    id: 1223,
-    employee: {
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
-    employeename: "David",
-    // employeename: {
-    //   username: "David",
-    //   avatar:
-    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-    // },
-    // VisitorName: "David",
-    department: "Marketing",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reason: "Fever",
-  },
-
-  {
-    id: 1224,
-    employee: {
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
-    employeename: "aarooo",
-    // employeename: {
-    //   username: "aarooo",
-    //   avatar:
-    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-    // },
-    // VisitorName: "David",
-    department: "Marketing",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reason: "Fever",
-  },
-  {
-    id: 1225,
-    employee: {
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
-    employeename: "Daviddddd",
-    // employeename: {
-    //   username: "Daviddddd",
-    //   avatar:
-    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-    // },
-    // VisitorName: "David",
-    department: "Advertising",
-    leavetype: "Unpaid",
-    from_to: "12/05/2022-13/06/2022",
-    reason: "Fever",
-  },
-];
+import axios from "axios";
 
 const columns = [
-  { field: "id", width: 170, headerClassName: "super-app-theme--header" },
-  // {
-  //   field: "employeename", headerClassName: "super-app-theme--header",
-  //   headerName: "Employee Name",
-  //   width: 280,
-  //   renderCell: (params) => {
-  //     console.log(params);
-  //     return (
-  //       <>
-  //         <Avatar src={params.value.avatar} />&nbsp;&nbsp;&nbsp;
-  //         {params.value.username}
-  //       </>
-  //     );
-  //   },
-  // },
+  { field: "id", width: 170, headerClassName: "super-app-theme--header",align: "center",
+  headerAlign: "center",align:'center' },
+  
   {
-    field: "employee",
-    headerName: "Employee",
-    width: 170,
-    renderCell: (params) => {
-      console.log(params);
-      return (
-        <>
-          <Avatar src={params.value.avatar} />
-        </>
-      );
-    },
-    headerClassName: "super-app-theme--header",
-  },
-  {
-    field: "employeename",
+    field: "name",
     headerName: "Employee Name",
     width: 250,
-    headerClassName: "super-app-theme--header",
+    headerClassName: "super-app-theme--header",align: "center",
+    headerAlign: "center",
+    align:'center'
   },
   // { field: "VisitorName", width: 250, headerClassName: "super-app-theme--header" },
   {
-    field: "department",
+    field: "departmentname",
     headerName: "Department",
     width: 230,
-    headerClassName: "super-app-theme--header",
+    headerClassName: "super-app-theme--header",align: "center",
+    headerAlign: "center",
+    align:'center'
   },
   {
-    field: "leavetype",
+    field: "leave_type",
     headerName: "Leave Type",
     width: 170,
-    headerClassName: "super-app-theme--header",
+    headerClassName: "super-app-theme--header",align: "center",
+    headerAlign: "center",
+    align:'center'
   },
   {
     field: "from_to",
     headerName: "From-To",
     width: 240,
-    headerClassName: "super-app-theme--header",
+    headerClassName: "super-app-theme--header",align: "center",
+    headerAlign: "center",
+    align:'center'
   },
   {
     field: "reason",
     headerName: "Reason",
-    width: 150,
-    headerClassName: "super-app-theme--header",
+    width: 280,
+    headerClassName: "super-app-theme--header",align: "center",
+    headerAlign: "center",
+    align:'center'
   },
 ];
 export default function LeaveApprovedList() {
+  const [rows,setRows]=useState([])
+  useEffect(()=>{
+    axios.get("http://localhost:5000/showleave/approved ")
+    .then(function(response){
+      console.log(response.data)
+      var leave=response.data
+      setRows(leave)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
   const [pageSize, setPageSize] = React.useState(5);
   return (
     <>

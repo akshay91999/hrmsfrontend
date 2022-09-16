@@ -34,7 +34,13 @@ function ListTravelmngmnt() {
                  <ListItemIcon>
                    <NoCrashIcon />
                  </ListItemIcon>
-                 <ListItemText primary="TripApprovedList" />
+                 <ListItemText primary="Trip Approved List" />
+               </ListItemButton>
+               <ListItemButton onClick={() => navigate("/MyTransport")}>
+                 <ListItemIcon>
+                   <EventAvailableIcon />
+                 </ListItemIcon>
+                 <ListItemText primary="My Trips" />
                </ListItemButton>
            </List>
         )
@@ -63,6 +69,12 @@ function ListTravelmngmnt() {
                    <EventAvailableIcon />
                  </ListItemIcon>
                  <ListItemText primary="Book Trips" />
+               </ListItemButton>
+               <ListItemButton onClick={() => navigate("/MyTransport")}>
+                 <ListItemIcon>
+                   <EventAvailableIcon />
+                 </ListItemIcon>
+                 <ListItemText primary="My Trips" />
                </ListItemButton>
            </List>
         )

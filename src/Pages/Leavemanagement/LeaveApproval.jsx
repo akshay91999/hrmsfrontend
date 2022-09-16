@@ -1,199 +1,79 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import Avatar from "@mui/material/Avatar";
-import ApproveRejectIcon from "../../Components/ApproveRejectIcon";
+// import ApproveRejectIcon from "../../Components/ApproveRejectIconTravel";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EyeIconButtonLeaveApproval from "../../Components/Reusablecomponents/EyeIconButtonLeaveApproval";
-const rows = [
-  {
-    id: 1220,
-    employee: {
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
-    employeename: "David",
-    // employeename: {
-    //   username: "David",
-    //   avatar:
-    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    // },
-    department: "Marketing",
-    leavetype: "Unpaid",
-    leavefrom: "12/02/2022",
-    numberofdays:"3",
-    reason: "Fever",
-  },
+import axios from "axios";
+import ApproveRejectIconLeave from "../../Components/ApproveRejectIconLeave";
 
-  {
-    id: 1221,
-    employee: {
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
-    employeename: "David",
-    // employeename: {
-    //   username: "Ramsan",
-    //   avatar:
-    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLe5PABjXc17cjIMOibECLM7ppDwMmiDg6Dw&usqp=CAU",
-    // },
-    department: "Advertising",
-    leavetype: "Unpaid",
-    leavefrom: "12/02/2022",
-    numberofdays:"6",
-    reason: "Fever",
-  },
-
-  {
-    id: 1222,
-    employee: {
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
-    employeename: "David",
-    // employeename: {
-    //   username: "David",
-    //   avatar:
-    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-    // },
-    department: "Development",
-    leavetype: "Paid",
-    leavefrom: "12/02/2022",
-    numberofdays:"2",
-    reason: "Fever",
-  },
-
-  {
-    id: 1223,
-    employee: {
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
-    employeename: "David",
-    // employeename: {
-    //   username: "David",
-    //   avatar:
-    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-    // },
-    department: "Development",
-    leavetype: "Unpaid",
-    leavefrom: "12/02/2022",
-    numberofdays:"4",
-    reason: "Fever",
-  },
-
-  {
-    id: 1224,
-    employee: {
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
-    employeename: "David",
-    // employeename: {
-    //   username: "aarooo",
-    //   avatar:
-    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-    // },
-    department: "Development",
-    leavetype: "paid",
-    leavefrom: "12/02/2022",
-    numberofdays:"1",
-    reason: "Fever",
-  },
-  {
-    id: 1225,
-    employee: {
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-    },
-    employeename: "David",
-    // employeename: {
-    //   username: "Daviddddd",
-    //   avatar:
-    //     "https://assets.materialup.com/uploads/bebad102-7f40-4941-99cd-54366113003e/avatar-08.png",
-    // },
-    department: "Marketing",
-    leavetype: "unpaid",
-    leavefrom: "12/02/2022",
-    numberofdays:"2",
-    reason: "Fever",
-  },
-];
 
 const columns = [
-  { field: "id", width: 130, headerClassName: "super-app-theme--header" },
-  // {
-  //   field: "employeename", headerClassName: "super-app-theme--header",
-  //   headerName: "Employee Name",
-  //   width: 260,
-  //   renderCell: (params) => {
-  //     console.log(params);
-  //     return (
-  //       <>
-  //         <Avatar src={params.value.avatar} />&nbsp;&nbsp;&nbsp;
-  //         {params.value.username}
-  //       </>
-  //     );
-  //   },
-  // },
+  { field: "id", width: 50, headerClassName: "super-app-theme--header",align:"center",
+  headerAlign: "center" },
+ 
   {
-    field: "employee",
-    headerName: "Employee",
-    width: 140,
-    renderCell: (params) => {
-      console.log(params);
-      return (
-        <>
-          <Avatar src={params.value.avatar} />
-        </>
-      );
-    },
-    headerClassName: "super-app-theme--header",
-  },
-  {
-    field: "employeename",
+    field: "name",
     headerName: "Employee Name",
     width: 250,
-    headerClassName: "super-app-theme--header",
+    headerClassName: "super-app-theme--header", align: "center",
+    headerAlign: "center",
   },
   {
-    field: "department",
+    field: "basic_id",
+    headerName: "Basic Id",
+    hide:"true",
+    width: 250,
+    headerClassName: "super-app-theme--header", align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "departmentname",
     headerName: "Department",
-    width: 180,
-    headerClassName: "super-app-theme--header",
+    width: 160,
+    headerClassName: "super-app-theme--header", align: "center",
+    headerAlign: "center",
   },
   {
-    field: "leavetype",
+    field: "leave_type",
     headerName: "Leave Type",
     width: 150,
-    headerClassName: "super-app-theme--header",
+    headerClassName: "super-app-theme--header", align: "center",
+    headerAlign: "center",
   },
   {
-    field: "leavefrom",
+    field: "leave_from",
     headerName: "Leave From",
     width: 150,
-    headerClassName: "super-app-theme--header",
+    headerClassName: "super-app-theme--header", align: "center",
+    headerAlign: "center",
   },
   {
-    field: "numberofdays",
-    headerName: "Number Of Days",
+    field: "leave_to",
+    headerName: "Leave Upto",
     width: 150,
-    headerClassName: "super-app-theme--header",
+    headerClassName: "super-app-theme--header", align: "center",
+    headerAlign: "center",
   },
   {
     field: "reason",
     headerName: "Reason",
     width: 150,
-    headerClassName: "super-app-theme--header",
+    headerClassName: "super-app-theme--header", align: "center",
+    headerAlign: "center",
   }, {
     field: "View",
+    headerName: "View Leave used",
     width: 100,
     headerClassName: "super-app-theme--header",
-    headerAlign: 'center',
+    align: "center",
+    headerAlign: "center",
     renderCell: (params) => (
       <strong>
         {/* calling Eyeiconbutton component which contain iconbutton */}
-        <EyeIconButtonLeaveApproval/>
+        <EyeIconButtonLeaveApproval id={params.row.basic_id}/>
+        
       </strong>
     ),
   },
@@ -204,12 +84,24 @@ const columns = [
     headerAlign: "center",
     renderCell: (params) => (
       <strong>
-        <ApproveRejectIcon />
+        <ApproveRejectIconLeave id={params.id}/>
       </strong>
     ),
   },
 ];
 export default function LeaveApproval() {
+ const [rows,setRows]=useState([])
+ useEffect(()=>{
+  axios.get("http://localhost:5000/request")
+  .then(function(response){
+    console.log(response.data)
+    var leave=response.data
+    setRows(leave)
+  })
+  .catch(function(error){
+    console.log(error)
+  })
+ },[])
   const [pageSize, setPageSize] = React.useState(5);
   return (
     <>
@@ -253,5 +145,3 @@ export default function LeaveApproval() {
     </>
   );
 }
-
-

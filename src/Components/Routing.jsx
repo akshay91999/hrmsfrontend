@@ -242,9 +242,7 @@ function Routing() {
               <Route path="/myattandance" element={<MyAttancanceTable />} />
               {/* leaveused remain */}
               <Route
-                path="/LeaveUsedRemainInDetail"
-                element={<LeaveUsedRemainInDetail />}
-              />
+                path="/LeaveUsedRemainInDetail/:id" element={<LeaveUsedRemainInDetail />}/>
               {/* Routing For Leave Management */}
               <Route path="/Leave" element={<Leave />} />
               <Route path="/LeaveApproval" element={<LeaveApproval />} />

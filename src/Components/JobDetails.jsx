@@ -22,19 +22,32 @@ import axios from "axios";
 const initialFvalues = {
   position: "",
   departmentname:"",
-  usertype: "",
+  user_type: "",
   package: "",
   jobtype: "",
   doj: "",
 };
-function JobDetails() {
+function JobDetails(props) {
+  const {setJobs}=props
   const params = useParams();
-  const { values, errors, setErrors, handleInputChange } =
+  const { values,setValues, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
 
   const [depart, setDepart] = useState([]);
   const [position, setPosition] = useState([]);
+  const [job,setJob]=useState({})
   useEffect(() => {
+    axios.get("http://localhost:5000/job/"+params.basicId)
+    .then(function(response){
+      console.log(response)
+      setValues(response.data)
+      setJob(response.data)
+     
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+    
     axios
       .get("http://localhost:5000/depart")
       .then(function (response) {
@@ -82,7 +95,7 @@ function JobDetails() {
     let temp = {};
     temp.position = values.position ? "" : "This field is required";
     temp.departmentname = values.departmentname ? "" : "This field is required";
-    temp.usertype = values.usertype ? "" : "This field is required";
+    temp.user_type = values.user_type ? "" : "This field is required";
     temp.package = values.package ? "" : "This field is required";
     temp.jobtype = values.jobtype ? "" : "This field is required";
     temp.doj = values.doj ? "" : "This field is required";
@@ -103,7 +116,7 @@ function JobDetails() {
   const user = {
     ds_id: values.position,
     dp_id: values.departmentname,
-    user_type: values.usertype,
+    user_type: values.user_type,
     package: values.package,
     jobtype: values.jobtype,
     doj: values.doj,
@@ -120,6 +133,30 @@ function JobDetails() {
           console.log(response);
           if (response.data.message === "success") {
           window.alert("successfully submited");
+          setJobs(response.data.message)
+        
+          }
+          else{
+            window.alert(response.data.message)
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  };
+  const handleupdate = () => {
+    console.log(user);
+    if (validate()) {
+      axios
+        .put("http://localhost:5000/job/" + params.basicId, user, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then(function (response) {
+          console.log(response);
+          if (response.data.message === "success") {
+          window.alert("successfully updated");
+          setJobs(response.data.message)
         
           }
           else{
@@ -161,12 +198,12 @@ function JobDetails() {
           error={errors.position}
         />
         <Dropdownlist
-          name="usertype"
+          name="user_type"
           label="User Type"
-          value={values.usertype}
+          value={values.user_type}
           handleInputChange={handleInputChange}
           options={getUsertype()}
-          error={errors.usertype}
+          error={errors.user_type}
         />
         {/* <Textfield
             label="Branch"
@@ -200,7 +237,11 @@ function JobDetails() {
         />
       </Box>
       <Box sx={{ display: "flex", justifyContent: "flex-end", m: "1%" }}>
+        {Object.keys(job).length===0?
         <Btn text="Save" click={handlesubmit} />
+        :
+        <Btn text="Save" click={handleupdate} />
+        }
       </Box>
       {/* </form> */}
     </div>

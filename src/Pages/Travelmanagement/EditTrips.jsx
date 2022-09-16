@@ -23,11 +23,13 @@ const initialFvalues = {
   location: "",
 };
 export default function EditTrips() {
+
   const params = useParams();
-  const [formvalues, setFormvalues] = useState(initialFvalues);
+ const { values,setValues, errors, setErrors, handleInputChange } =
+    useForm(initialFvalues);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/travel/" + params.id)
+      .get("http://localhost:5000/travel/edit/" + params.id)
       .then(function (response) {
         console.log(response.data.travel);
         setValues(response.data.travel)
@@ -37,8 +39,7 @@ export default function EditTrips() {
       });
   }, []);
   let navigate = useNavigate();
-  const { values,setValues, errors, setErrors, handleInputChange } =
-    useForm(initialFvalues);
+  
   const validate = () => {
     let temp = {};
     temp.date = values.date ? "" : "This field is required";

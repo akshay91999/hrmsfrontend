@@ -15,6 +15,7 @@ const initialFvalues = {
 };
 export default function BookTrips() {
   const params=useParams();
+  const user=JSON.parse(localStorage.getItem('user'))
 
     let navigate=useNavigate()
   const { values, errors, setErrors, handleInputChange } =
@@ -29,7 +30,7 @@ export default function BookTrips() {
     return Object.values(temp).every((x) => x === "");
   };
 
-  const user = {
+  const data = {
     date: values.date,
     time: values.time,
     trip_for: values.trip_for,
@@ -50,7 +51,7 @@ export default function BookTrips() {
     console.log(user);
     if (validate()) {
       axios
-        .post("http://localhost:5000/travel/"+1, user, {
+        .post("http://localhost:5000/travel/"+user.id, data, {
           headers: { "Content-Type": "application/json" },
         })
         .then(function (response) {

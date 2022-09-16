@@ -23,14 +23,15 @@ const initialFvalues = {
   departmentid: "",
   leavefrom: "",
   numberofleave: "",
-  leavetype: "paidleave",
+  leavetype: "paid",
   reasonleave: "",
   departmentname: "",
 };
 function EmployeeLeaveForm() {
-  const params=useParams();
-  console.log(params)
-    // const regnum=/\-?\d*\.?\d{1,2}/
+  const params = useParams();
+  console.log(params);
+  // const regnum=/\-?\d*\.?\d{1,2}/
+  const user=JSON.parse(localStorage.getItem('user'))
 
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
@@ -44,7 +45,7 @@ function EmployeeLeaveForm() {
     setErrors({ ...temp });
     return Object.values(temp).every((x) => x === "");
   };
-  const user = {
+  const data = {
     leave_from: values.leavefrom,
     leave_to: values.leaveupto,
     leave_type: values.leavetype,
@@ -55,26 +56,22 @@ function EmployeeLeaveForm() {
     // console.log(values);
     // if (validate()) {
     //   window.alert("successfully submited");
-     
+
     // }
     console.log(user);
     if (validate()) {
       axios
-        .post("http://localhost:5000/request/2", user, {
+        .post("http://localhost:5000/request/" +user.id, data, {
           headers: { "Content-Type": "application/json" },
         })
         .then(function (response) {
           console.log(response);
 
-          // let id = response.data.data;
-          // console.log(id);
-          // if (response.data.message === "success") {
+          if (response.data.message === "success") {
             window.alert("successfully submited");
-          
-          // }
-          // else{
-          //   window.alert(response.data.message)
-          // }
+          } else {
+            window.alert(response.data.message);
+          }
         })
         .catch(function (error) {
           console.log(error);
@@ -83,7 +80,11 @@ function EmployeeLeaveForm() {
   };
   return (
     <>
-      <Typography variant="h6" align="center" gutterBottom component="div">
+      <Typography
+        variant="h4"
+        align="center"
+        sx={{ color: "#1565C0", pb: "2%" }}
+      >
         LEAVE FORM
       </Typography>
       <Box
@@ -106,7 +107,7 @@ function EmployeeLeaveForm() {
           onChange={handleInputChange}
           error={errors.leavefrom}
         />
-<Calender
+        <Calender
           text="Leave Upto"
           name="leaveupto"
           value={values.leaveupto}
@@ -132,13 +133,13 @@ function EmployeeLeaveForm() {
         >
           <FormControlLabel
             size="small"
-            value="paidleave"
+            value="paid"
             control={<Radio />}
             label="Paid Leave"
           />
           <FormControlLabel
             size="small"
-            value="unpaidleave"
+            value="unpaid"
             control={<Radio />}
             label="Unpaid Leave"
           />
@@ -183,4 +184,3 @@ function EmployeeLeaveForm() {
 }
 
 export default EmployeeLeaveForm;
-

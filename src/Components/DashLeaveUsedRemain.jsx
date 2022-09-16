@@ -3,8 +3,23 @@ import React from "react";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import IconButton from "@mui/material/IconButton";
 import {useNavigate} from 'react-router-dom'
+import { UserContext } from "../App";
+import { useEffect } from "react";
+import axios from "axios";
 export default function DashLeaveUsedRemain() {
     let navigate=useNavigate()
+    const user=JSON.parse(localStorage.getItem('user'))
+    
+    // useEffect(()=>{
+    //   axios.get("http://localhost:5000/showleave/dashboard/"+user.id)
+    //   .then(function(response){
+    //     console.log("hi")
+    //     console.log(response)
+    //   })
+    //   .catch(function(error){
+    //     console.log(error)
+    //   })
+    // },[])
   return (
     <>
        <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -26,7 +41,7 @@ export default function DashLeaveUsedRemain() {
             </Grid>
             <Grid item xs={6} lg={6} md={6} sm={6}>
             <Box sx={{ display:'flex',justifyContent:'right' }}>
-              <IconButton onClick={()=>navigate("/LeaveUsedRemaininDetail")}>
+              <IconButton onClick={()=>navigate("/LeaveUsedRemaininDetail/"+user.id)}>
                 <Typography sx={{ display: "flex",color:'#1565C0'}}>
                   View
                   <ArrowRightIcon />

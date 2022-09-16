@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box } from '@mui/material'
 import Typography from "@mui/material/Typography"
 import JobDetails from '../../Components/JobDetails'
@@ -7,6 +7,14 @@ import { useNavigate } from 'react-router-dom'
 
 function Job() {
   let navigate=useNavigate()
+  const [job,setJob]=useState(null)
+  const next=()=>{
+    if(job==="success")
+    {
+      navigate('/dashboard')
+    }
+
+  }
   return (
     <div>
        <Box sx={{m:"1%"}}>
@@ -18,12 +26,12 @@ function Job() {
           </Typography>
         </legend>
         {/* calling Academic form */}
-        <JobDetails/>
+        <JobDetails setJob={setJob}/>
        
       </fieldset>
       <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2,p:'1%' }}>
             <Btn text="Back" click={() => navigate(-1)} />
-            <Btn text="Next" click={() => {navigate('/dashboard')}} />
+            <Btn text="Next" click={next} />
       </Box>
        </Box>
     </div>

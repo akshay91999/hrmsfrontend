@@ -35,9 +35,12 @@ function DashProfile() {
         console.log(response);
         var arr = [];
         arr = response.data.uploads;
+        if(Object.keys(arr).length!==0)
+        {
         var result = arr.find((item) => item.doc_type === "photo");
         console.log(result);
         setPhoto(result.document);
+      }
       })
       .catch(function (error) {
        console.log(error);

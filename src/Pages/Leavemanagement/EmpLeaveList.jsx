@@ -1,80 +1,128 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Box } from '@mui/system';
-import { Typography } from '@mui/material';
-import LeaveCancelDialogBox from '../../Components/LeaveCancelDialogBox';
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    background:'linear-gradient(#8B8B8B,#1565C0)',
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
+import React, { useEffect, useState } from "react";
+import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
+import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
+import Avatar from "@mui/material/Avatar";
+import LeaveCancelDialogBox from "../../Components/LeaveCancelDialogBox";
+import axios from "axios";
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
+const columns = [
+  {
+    field: "id",
+    width: 100,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
   },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
+  {
+    field: "leave_from",
+    headerName: "Leave From",
+    width: 240,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
   },
-}));
+  {
+    field: "leave_to",
+    headerName: "Leave Upto",
+    width: 240,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "leave_type",
+    headerName: "Leave Type",
+    width: 170,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+  },
 
-function createData(date,status) {
-  return { date,status};
-}
-
-const rows = [
-  createData('14/03/2022', 'Approve', 'null'),
-  createData('14/03/2022', 'Approve', 'null'),
-
-  
+  {
+    field: "reason",
+    headerName: "Reason",
+    width: 260,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "Cancel Leave",
+    width: 180,
+    headerClassName: "super-app-theme--header",
+    align: "center",
+    headerAlign: "center",
+    renderCell: (params) => (
+      <strong>
+        <LeaveCancelDialogBox id={params.id}/>
+      </strong>
+    ),
+  },
 ];
-
 export default function EmpLeaveList() {
+  const [rows,setRows]=useState([])
+  const user=JSON.parse(localStorage.getItem('user'))
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/showleave/leavApplied/"+user.id)
+      .then(function (response) {
+        console.log(response.data);
+        var leave=response.data
+        setRows(leave)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+  const [pageSize, setPageSize] = React.useState(5);
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
-    <Paper elevation={4} sx={{ m: "2%", p: "2%",width:"100%" }}>
-    <Typography
+    <>
+      <Paper elevation={4} sx={{ m: "2%", p: "2%" }}>
+        <Typography
           variant="h4"
           align="center"
           sx={{ color: "#1565C0", pb: "2%" }}
         >
           Leaves Applied
         </Typography>
-    <TableContainer component={Paper}>
-      <Table sx={{ width:"100%" }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">Status</StyledTableCell>
-            <StyledTableCell align="center">Cancel Leave</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.id}>
-             
-             
-              <StyledTableCell align="center">{row.date}</StyledTableCell>
-              <StyledTableCell align="center">{row.status}</StyledTableCell>
-              <StyledTableCell align="center"><LeaveCancelDialogBox/></StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    </Paper>
-    </Box>
+      <Box sx={{ width:"100%",display:'flex',justifyContent:'center' }}>
+        <Box
+          sx={{
+            height: "50vh",
+            width: "100%",
+            "& .super-app-theme--header": {
+              background: "linear-gradient(#8B8B8B,#1565C0)",
+            },
+          }}
+        >
+          <DataGrid
+            columns={columns}
+            rows={rows}
+            components={{ Toolbar: GridToolbar }}
+            pageSize={pageSize}
+            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+            rowsPerPageOptions={[5, 10, 20]}
+            pagination
+            sx={{
+              boxShadow: 2,
+              border: 2,
+              borderColor: "primary.light",
+              "& .MuiDataGrid-cell:hover": {
+                color: "primary.main",
+              },
+            }}
+          />
+        </Box>
+        </Box>
+      </Paper>
+    </>
   );
 }
