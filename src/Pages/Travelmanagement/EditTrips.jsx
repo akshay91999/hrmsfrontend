@@ -25,14 +25,15 @@ const initialFvalues = {
 export default function EditTrips() {
 
   const params = useParams();
+  console.log(params.id)
  const { values,setValues, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/travel/edit/" + params.id)
+      .get("http://localhost:5000/travel/edit/" +params.id)
       .then(function (response) {
-        console.log(response.data.travel);
-        setValues(response.data.travel)
+        console.log(response);
+        // setValues(response)
       })
       .catch(function (error) {
         console.log(error);

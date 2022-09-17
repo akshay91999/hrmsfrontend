@@ -12,7 +12,7 @@ import SkeletonEarningCard from '../cards/StructureCard'
 // assets
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import AssignmentTwoToneIcon from '@mui/icons-material/AssignmentTwoTone';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,useParams} from 'react-router-dom'
 const CardWrapper = styled(MainCard)(({ theme }) => ({
     backgroundColor: theme.palette.primary.dark,
     color: '#fff',
@@ -54,6 +54,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const OngoingTaskCard = ({ isLoading }) => {
     const theme = useTheme();
+    const params=useParams()
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -120,7 +121,7 @@ const OngoingTaskCard = ({ isLoading }) => {
                                                 horizontal: 'right'
                                             }}
                                         >
-                                            <MenuItem  onClick={()=>{navigate('/ongoingtasktable')}}>
+                                            <MenuItem  onClick={()=>{navigate('/ongoingtasktable/'+params.id)}}>
                                                 View More
                                             </MenuItem>
                                         </Menu>

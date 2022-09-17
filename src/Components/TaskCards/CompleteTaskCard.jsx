@@ -13,7 +13,7 @@ import SkeletonEarningCard from '../cards/StructureCard';
 
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import PlaylistAddCheckTwoToneIcon from '@mui/icons-material/PlaylistAddCheckTwoTone';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,useParams} from 'react-router-dom'
 const CardWrapper = styled(MainCard)(({ theme }) => ({
     backgroundColor: theme.palette.primary.dark,
     color: '#fff',
@@ -54,7 +54,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const CompletedTaskCard = ({ isLoading }) => {
     const theme = useTheme();
-
+    const params=useParams()
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
@@ -120,7 +120,7 @@ const CompletedTaskCard = ({ isLoading }) => {
                                                 horizontal: 'right'
                                             }}
                                         >
-                                            <MenuItem onClick={()=>{navigate('/completedtasktable')}}>
+                                            <MenuItem onClick={()=>{navigate('/completedtasktable/'+params.id)}}>
                                                  View More
 
                                                

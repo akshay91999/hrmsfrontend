@@ -6,20 +6,21 @@ import {useNavigate} from 'react-router-dom'
 import { UserContext } from "../App";
 import { useEffect } from "react";
 import axios from "axios";
+import { useState } from "react";
 export default function DashLeaveUsedRemain() {
     let navigate=useNavigate()
     const user=JSON.parse(localStorage.getItem('user'))
-    
-    // useEffect(()=>{
-    //   axios.get("http://localhost:5000/showleave/dashboard/"+user.id)
-    //   .then(function(response){
-    //     console.log("hi")
-    //     console.log(response)
-    //   })
-    //   .catch(function(error){
-    //     console.log(error)
-    //   })
-    // },[])
+    const [data,setData]=useState({})
+    useEffect(()=>{
+      axios.get("http://localhost:5000/showleave/dashboard/"+user.id)
+      .then(function(response){
+        console.log(response.data)
+        setData(response.data)
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+    },[])
   return (
     <>
        <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -76,7 +77,7 @@ export default function DashLeaveUsedRemain() {
                 >
                   Total
                 </Typography>
-                <Typography sx={{ textAlign: "center" }}>12</Typography>
+                <Typography sx={{ textAlign: "center" }}>{data.total}</Typography>
                
               </Grid>
               <Divider sx={{mt:"5%"}} orientation="vertical" variant="middle" flexItem />
@@ -91,7 +92,7 @@ export default function DashLeaveUsedRemain() {
                 >
                   Used
                 </Typography>
-                <Typography sx={{ textAlign: "center" }}>08</Typography>
+                <Typography sx={{ textAlign: "center" }}>{data.used}</Typography>
               </Grid>
               <Divider sx={{mt:"5%"}} orientation="vertical" variant="middle" flexItem />
               <Grid item lg={3.8} sm={6} xs={12} md={3.8}>
@@ -105,7 +106,7 @@ export default function DashLeaveUsedRemain() {
                 >
                   Remain
                 </Typography>
-                <Typography sx={{ textAlign: "center" }}>04</Typography>
+                <Typography sx={{ textAlign: "center" }}>{data.total-data.used}</Typography>
               </Grid>
             </Grid>
           </Box>

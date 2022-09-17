@@ -2,71 +2,40 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
-import { useNavigate } from 'react-router-dom'
-import TaskIcon from '@mui/icons-material/Task';
+import { useNavigate,useParams } from 'react-router-dom'
+import Btn from '../../Components/Reusablecomponents/Btn';
+import axios from "axios";
 
-const rows = [
-  {
-    id: 1220,
-    ProjectName:"UBMS",
-    TaskName: "Documentation",
-    AssignedDate: "24-07-2022",
-    DueDate: "28-07-2022",
-    CompletedDate:"30-07-2022"
-   
-  },
-  {
-    id: 1220,
-    ProjectName:"UBMS",
-    TaskName: "Documentation",
-    AssignedDate: "24-07-2022",
-    DueDate: "28-07-2022",
-    CompletedDate:"30-07-2022"
-   
-  },
-  {
-    id: 1220,
-    ProjectName:"UBMS",
-    TaskName: "Documentation",
-    AssignedDate: "24-07-2022",
-    DueDate: "28-07-2022",
-    CompletedDate:"30-07-2022"
-   
-  },
-  {
-    id: 1220,
-    ProjectName:"UBMS",
-    TaskName: "Documentation",
-    AssignedDate: "24-07-2022",
-    DueDate: "28-07-2022",
-    CompletedDate:"30-07-2022"
-   
-  },
-  {
-    id: 1220,
-    ProjectName:"UBMS",
-    TaskName: "Documentation",
-    AssignedDate: "24-07-2022",
-    DueDate: "28-07-2022",
-    CompletedDate:"30-07-2022"
-   
-  },
-];
+
 
 const columns = [
   { field: "id", width: 100, headerClassName: "super-app-theme--header" },
-  { field: "ProjectName", width: 250, headerClassName: "super-app-theme--header" },
-  { field: "TaskName", width: 250, headerClassName: "super-app-theme--header" },
-  { field: "AssignedDate", width: 250, headerClassName: "super-app-theme--header" },
-  { field: "DueDate", width: 250, headerClassName: "super-app-theme--header" },
-  { field: "CompletedDate", width: 250, headerClassName: "super-app-theme--header" },
+  { field: "projectname", width: 250, headerClassName: "super-app-theme--header" },
+  { field: "taskname", width: 250, headerClassName: "super-app-theme--header" },
+  { field: "assigndate", width: 250, headerClassName: "super-app-theme--header" },
+  { field: "due_date", width: 250, headerClassName: "super-app-theme--header" },
+  { field: "completed_date", width: 250, headerClassName: "super-app-theme--header" },
   
  
 ];
 export default function CompletedTaskTable({click}) {
- 
+  let navigate=useNavigate()
+  const params=useParams()
 
-  const [pageSize, setPageSize] = React.useState(5);
+ const [pageSize, setPageSize] = React.useState(5);
+ const [rows,setRows]=React.useState([])
+ React.useEffect(()=>{
+  axios.get("http://localhost:5000/task/"+params.id)
+  .then(function(response){
+    console.log(response)
+    console.log(response.data) 
+    var completedtask=response.data
+    setRows(completedtask) 
+ })
+ .catch(function(error){
+  console.log(error)
+});
+},[])
 return (
   <Paper elevation={4} sx={{ m: "2%", p: "2%" }}>
     <Typography
@@ -104,6 +73,9 @@ return (
         }}
       />
     </Box>
+    <Box sx={{display:"flex",justifyContent:"flex-end",m:"5%"}}>
+        <Btn text="Back" click={()=>navigate(-1)}/>
+      </Box>
   </Paper>
 );
 }

@@ -197,7 +197,7 @@ function Routing() {
                 element={<HrTaskEmployeeTable />}
               />
               <Route
-                path="/hremployeeindividualtask"
+                path="/hremployeeindividualtask/:id"
                 element={<HrEmployeeIndividualTask />}
               />
               <Route
@@ -205,21 +205,21 @@ function Routing() {
                 element={<HodTaskEmployeeTable />}
               />
               <Route
-                path="/hodemployeeindividualtask"
+                path="/hodemployeeindividualtask/:id"
                 element={<HodEmployeeIndividualTask />}
               />
               <Route
-                path="/departmentheadtaskassign"
+                path="/departmentheadtaskassign/:basicId"
                 element={<DepartmentHeadAssignTaskForm />}
               />
               <Route path="/mytask" element={<MyTask />} />
               <Route path="/popup" element={<PopUp />} />
-              <Route path="/totaltasktable" element={<TotalTaskTable />} />
+              <Route path="/totaltasktable/:id" element={<TotalTaskTable />} />
               <Route
-                path="/completedtasktable"
+                path="/completedtasktable/:id"
                 element={<CompletedTaskTable />}
               />
-              <Route path="/ongoingtasktable" element={<OngoingTaskTable />} />
+              <Route path="/ongoingtasktable/:id" element={<OngoingTaskTable />} />
               <Route
                 path="/myassignedtasktable"
                 element={<MyAssignedTaskTable />}

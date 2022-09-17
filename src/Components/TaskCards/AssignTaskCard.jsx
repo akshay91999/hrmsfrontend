@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
@@ -53,7 +53,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const AssignTaskCard = ({ isLoading }) => {
     const theme = useTheme();
-
+    const params=useParams();
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
@@ -105,7 +105,7 @@ const AssignTaskCard = ({ isLoading }) => {
                                                 backgroundColor: theme.palette.secondary[200],
                                                 // color: theme.palette.secondary.dark
                                             }}
-                                            onClick={() =>navigate("/departmentheadtaskassign")}
+                                            onClick={() =>navigate("/departmentheadtaskassign/"+params.id)}
                                 
                                         >
                                             <AddTaskTwoToneIcon fontSize="inherit" />

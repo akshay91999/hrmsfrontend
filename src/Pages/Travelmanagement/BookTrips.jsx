@@ -10,7 +10,7 @@ import axios from "axios";
 const initialFvalues = {
   date: "",
   time:'',
-  trip_for:'pickup',
+  trip_for:"pickup",
   location:''
 };
 export default function BookTrips() {
