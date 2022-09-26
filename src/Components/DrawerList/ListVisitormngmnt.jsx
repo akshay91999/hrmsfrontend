@@ -19,7 +19,7 @@ function ListVisitormngmnt() {
       setOpen(!open);
     };
     const renderList=()=>{
-      if(user.user_type===7)
+      if(user.user_type===7||user.user_type===1)
       {
       return (
         <List component="div" disablePadding sx={{ pl: 1 }}>
@@ -44,7 +44,7 @@ function ListVisitormngmnt() {
             </List>
       )
     }
-    else if(user.user_type===1||user.user_type===2||user.user_type===3)
+    else if(user.user_type===2||user.user_type===3)
     {
       return (
         <List component="div" disablePadding sx={{ pl: 1 }}>

@@ -78,12 +78,12 @@ const rows = [
 
 const columns = [
   { field: "id", width: 100, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "employeename", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "department", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "date", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "employeename", width: 200, headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "department", width: 200, headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "date", width: 200, headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "grievance", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "solution", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "status", width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "solution", width: 200, headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "status", width: 200, headerClassName: "super-app-theme--header",headerAlign: 'center' },
 //   {
 //     field: "status",
 //     width: 100,
@@ -113,7 +113,7 @@ export default function HrGrievanceTable() {
      
       <Box
         sx={{
-          height: "50vh",
+          height: "60vh",
           width: "100%",
           "& .super-app-theme--header": {
             background: "linear-gradient(#8B8B8B,#1565C0)",
