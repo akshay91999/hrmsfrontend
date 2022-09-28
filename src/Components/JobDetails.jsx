@@ -18,6 +18,7 @@ import {
 import Dropdownlist from "./Reusablecomponents/Dropdownlist";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import Dropdownlisttitle from "./Reusablecomponents/DropdownlistTitle";
 
 const initialFvalues = {
   position: "",
@@ -37,16 +38,16 @@ function JobDetails(props) {
   const [position, setPosition] = useState([]);
   const [job,setJob]=useState({})
   useEffect(() => {
-    axios.get("http://localhost:5000/job/"+params.basicId)
-    .then(function(response){
-      console.log(response)
-      setValues(response.data)
-      setJob(response.data)
+    // axios.get("http://localhost:5000/job/"+params.basicId)
+    // .then(function(response){
+    //   console.log(response)
+    //   setValues(response.data)
+    //   setJob(response.data)
      
-    })
-    .catch(function(error){
-      console.log(error)
-    })
+    // })
+    // .catch(function(error){
+    //   console.log(error)
+    // })
     
     axios
       .get("http://localhost:5000/depart")
@@ -180,7 +181,8 @@ function JobDetails(props) {
         }}
       >
         
-
+        {console.log(depart)}
+        {console.log(position)}
         <Dropdownlist
           name="departmentname"
           label="Department Name"

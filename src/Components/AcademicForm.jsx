@@ -45,6 +45,7 @@ function AcademicForm(props) {
   const {setAcad}=props
   const params=useParams()
   const [file,selectedFile]=useState(null)
+  const [save,setSave]=useState(true)  //for disabling add button
   const { values, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
   const validate = () => {
@@ -87,6 +88,7 @@ function AcademicForm(props) {
         {
         setAcad(response.data.message)
         window.alert("successfully submited")
+        setSave(false)
       }
       else{
         window.alert(response.data.message)
@@ -103,7 +105,7 @@ function AcademicForm(props) {
   };
 
   const [add, setAdd] = useState(false);
-  const [save,setSave]=useState(true)  //for disabling add button
+  
   const [academic,setAcademic]=useState(null)
   const handlefilechange = (e) => {
     selectedFile(e.target.files[0])
@@ -116,6 +118,7 @@ function AcademicForm(props) {
       console.log(values);
       window.alert("successfully saved");
       setSave(true)
+      
     }
   };
   const removefield = () => {
