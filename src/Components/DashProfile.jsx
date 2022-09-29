@@ -47,6 +47,7 @@ function DashProfile() {
       });
   }, []);
   // const handleClickOpen = () => {
+  // const handleClickOpen = () => {
   //   setOpen(true);
   // };
   const handleClose = () => {
@@ -81,7 +82,7 @@ function DashProfile() {
           </Typography>
 
           <Typography variant="h6" sx={{ textAlign: "center" }}>
-            UI/UX Designer
+            {user.designation}
           </Typography>
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             {console.log(state)}

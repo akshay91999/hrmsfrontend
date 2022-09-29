@@ -55,7 +55,7 @@ export default function ViewEmployee() {
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                     <CardContent sx={{ flex: '1 0 auto' }}>
                     <Typography variant="body1"><b>{basics.firstname} {basics.lastname}</b></Typography>
-                            <Typography variant="body1"><b>Frontend Developer</b></Typography>
+                            <Typography variant="body1"><b>{basics.designation}</b></Typography>
                             <Typography variant="body1"><b>{basics.contactnumber} | {basics.email}</b></Typography>
                             <Typography variant="body1"><b>{basics.e_address}</b></Typography>
                             

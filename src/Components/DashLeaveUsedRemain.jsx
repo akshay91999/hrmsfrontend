@@ -14,7 +14,7 @@ export default function DashLeaveUsedRemain() {
     useEffect(()=>{
       axios.get("http://localhost:5000/showleave/dashboard/"+user.id)
       .then(function(response){
-        console.log(response.data)
+        console.log(response)
         setData(response.data)
       })
       .catch(function(error){

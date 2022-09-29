@@ -9,11 +9,7 @@ function Job() {
   let navigate=useNavigate()
   const [job,setJob]=useState(null)
   const next=()=>{
-    if(job==="success")
-    {
       navigate('/dashboard')
-    }
-
   }
   return (
     <div>
