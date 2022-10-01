@@ -27,6 +27,14 @@ const columns = [
     hide:'true'
   },
   {
+    field: "cv",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
+    hide:true
+  },
+  {
     field: "Cv",
     width: 100,
     headerClassName: "super-app-theme--header",
@@ -34,7 +42,7 @@ const columns = [
     align:'center',
     renderCell: (params) => (
       <strong> 
-        <Eyeiconbutton/>
+        <Eyeiconbutton cv={params.row.cv}/>
       </strong>
     ),
   },

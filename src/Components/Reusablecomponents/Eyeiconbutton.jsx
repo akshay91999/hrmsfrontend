@@ -1,8 +1,12 @@
 import React from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Button, Dialog, DialogActions, DialogContent, IconButton, Tooltip } from "@mui/material";
+import { useEffect } from "react";
+import axios from "axios";
 
-function Eyeiconbutton() {
+function Eyeiconbutton(props) {
+  const {cv}=props
+  console.log(cv)
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -26,7 +30,7 @@ function Eyeiconbutton() {
        
       >
         <DialogContent>
-          <img src="https://www.coolfreecv.com/images/cv_templates_with_photo.jpg" width='500px' height='600px'/>
+          <img src={"http://localhost:5000/"+cv} width='500px' height='600px' alt="image not found"/>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

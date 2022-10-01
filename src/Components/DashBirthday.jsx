@@ -17,33 +17,33 @@ function DashBirthday() {
         <ListItemAvatar>
         <Avatar
               alt="Remy Sharp"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSgQXNlVXoCtR7uE7xoOANPOLhZM3Vk22XMw&usqp=CAU"
+              src="prasoon.jpeg"
               sx={{ width: 50, height: 50 }}
             />
         </ListItemAvatar>
-        <ListItemText primary="Akshay" secondary="UI/UX Designer"/>
-        <ListItemText sx={{display:'flex',justifyContent:'right'}} primary="19 jul,2022"/>
+        <ListItemText primary="Prasoon" secondary="HR Manager"/>
+        <ListItemText sx={{display:'flex',justifyContent:'right'}} primary="06 Oct"/>
       </ListItem>
       <ListItem>
         <ListItemAvatar>
         <Avatar
               alt="Remy Sharp"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSgQXNlVXoCtR7uE7xoOANPOLhZM3Vk22XMw&usqp=CAU"
+              src="bhavi.jpeg"
               sx={{ width: 50, height: 50}}
             />
         </ListItemAvatar>
-        <ListItemText primary="Nithi" secondary="iOS Devoloper" />
-        <ListItemText sx={{display:'flex',justifyContent:'right'}} primary="20 jul,2022"/>
+        <ListItemText primary="Bhavya" secondary="Python" />
+        <ListItemText sx={{display:'flex',justifyContent:'right'}} primary="14 aug"/>
       </ListItem>
       <ListItem>
         <ListItemAvatar>
         <Avatar
               alt="Remy Sharp"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSgQXNlVXoCtR7uE7xoOANPOLhZM3Vk22XMw&usqp=CAU"
+              src="akshayimage.jpg"
               sx={{ width:50, height:50}}
             />
         </ListItemAvatar>
-        <ListItemText primary="Prasoon" secondary="Backend Devoloper" />
+        <ListItemText primary="Akshay" secondary="Super Admin" />
         <ListItemText sx={{display:'flex',justifyContent:'right'}} primary="20 jul,2022"/>
       </ListItem>
     </List>

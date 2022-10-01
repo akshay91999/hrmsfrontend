@@ -158,14 +158,6 @@ function LoginPage(props) {
           
 
           <Button onClick={handlesubmit} fullWidth variant="contained"  sx={{ background:'linear-gradient(#1565C0,#8B8B8B)', mt: 3, mb: 2 }}>Sign In</Button>
-
-          <Grid container>
-            <Grid item xs>
-              <Link to="#" variant="body2" underline="none">
-                Forgot password?
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
         </Card>
       </Container>

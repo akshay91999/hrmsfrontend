@@ -25,9 +25,9 @@ function createData(projectname, taskname, assigneddate, duedate) {
 }
 
 const rows = [
-  createData("UBS HRMS", "Invoice Design", "22-09-2022", "29-09-2022"),
-  createData("UBS HRMS", "Invoice Design", "22-09-2022", "29-09-2022"),
-  createData("UBS HRMS", "Invoice Design", "22-09-2022", "29-09-2022"),
+  createData("UBS HRMS", "UI Design", "22-09-2022", "29-09-2022"),
+  createData("UBS HRMS", "table design", "22-09-2022", "5-10-2022"),
+  createData("UBS HRMS", "Api Integration", "01-10-2022", "09-10-2022"),
 ];
 
 export default function EmployeeTaskTable() {

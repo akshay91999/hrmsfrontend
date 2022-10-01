@@ -1,13 +1,11 @@
-import { Tooltip, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { PureComponent } from "react";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer,Legend } from "recharts";
+import axios from "axios";
+import React, { PureComponent, useEffect } from "react";
+import { useState } from "react";
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer,Legend,Tooltip } from "recharts";
 
-const data = [
-  { name: "Male", value: 400 },
-  { name: "Female", value: 300 },
-  { name: "Others", value: 10 },
-];
+
 
 const COLORS = ["#82ca9d", "#AF19FF", "#FFBB28"];
 
@@ -26,6 +24,22 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 
 export default function GenderAnalysis() {
+  const [gend,setGend]=useState({})
+  useEffect(()=>{
+    axios.get("http://localhost:5000/hranalytics/gender")
+    .then(function(response){
+      console.log(response)
+      setGend(response.data)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
+  const data = [
+    { name: "Male", value: gend.male },
+    { name: "Female", value: gend.female },
+    { name: "Others", value: gend.other },
+  ];
   //   static demoUrl = 'https://codesandbox.io/s/pie-chart-with-customized-label-dlhhj';
 
   return (
@@ -41,7 +55,7 @@ export default function GenderAnalysis() {
    
     <Box sx={{ width: "100%", height: "100%",display:'flex',justifyContent:'center',direction:'column' }}>
         <ResponsiveContainer width="100%" height="100%" >
-          <PieChart width={"50%"} height={"50%"}>
+          <PieChart width={"50%"} height={"50%"} >
             <Pie
               data={data}
               color="#000000"
@@ -61,6 +75,7 @@ export default function GenderAnalysis() {
                 />
               ))}
             </Pie>
+            <Tooltip />
             <Legend/>
           </PieChart>
         </ResponsiveContainer>
