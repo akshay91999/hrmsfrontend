@@ -6,42 +6,19 @@ import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import Avatar from "@mui/material/Avatar";
 
 import axios from "axios";
+import EyeIconButtonReasonView from '../../../Components/Reusablecomponents/EyeIconButtonReasonView';
 
 const columns = [
-  { field: "id", width:100, headerClassName: "super-app-theme--header" },
-  // {
-  //   field: "employeename", headerClassName: "super-app-theme--header",
-  //   headerName: "Employee Name",
-  //   width: 280,
-  //   renderCell: (params) => {
-  //     console.log(params);
-  //     return (
-  //       <>
-  //         <Avatar src={params.value.avatar} />&nbsp;&nbsp;&nbsp;
-  //         {params.value.username}
-  //       </>
-  //     );
-  //   },
-  // },
-  // {
-  //   field: "employee",
-  //   headerName: "Employee",
-  //   width: 140,
-  //   renderCell: (params) => {
-  //     // console.log(params);
-  //     return (
-  //       <>
-  //         <Avatar src={params.value.avatar} />
-  //       </>
-  //     );
-  //   },
-  //   headerClassName: "super-app-theme--header",
-  // },
+  { field: "id", width:100, headerClassName: "super-app-theme--header", headerAlign: 'center',
+  align:'center',},
+ 
   {
-    field: "firstName",
+    field: "name",
     headerName: "Employee Name",
-    width: 250,
+    width: 150,
     headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
   },
   
   {
@@ -49,12 +26,16 @@ const columns = [
     headerName: "Contact",
     width: 170,
     headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
   },
   {
     field: "email",
     headerName: "Email",
     width: 250,
     headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
   },
   // { field: "VisitorName", width: 250, headerClassName: "super-app-theme--header" },
   {
@@ -62,21 +43,47 @@ const columns = [
     headerName: "Department",
     width: 200,
     headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
   },
   {
     field: "designation",
     headerName: "Designation",
     width: 170,
     headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
+  },
+  {
+    field: "reason",
+    headerName: "reason",
+    width: 170,
+    headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
+    hide:true,
+  },
+  {
+    field: "Reason",
+    width: 100,
+    headerClassName: "super-app-theme--header",
+    headerAlign: "center",
+    align:'center',
+    renderCell: (params) => (
+      <strong>
+        <EyeIconButtonReasonView reason={params.row.reason}/>
+      </strong>
+    ),
   },
   {
     field: "Action",
     width: 200,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
+    align:'center',
     renderCell: (params) => (
       <strong>
-        <ResignationAcceptReject/>
+        <ResignationAcceptReject id={params.id}/>
       </strong>
     ),
   },
@@ -84,6 +91,16 @@ const columns = [
 export default function LeaveApprovedList() {
   const [rows,setRows]=useState([])
   const [pageSize, setPageSize] = React.useState(5);
+  useEffect(()=>{
+    axios.get("http://localhost:5000/retirement/req")
+    .then(function(response){
+      console.log(response)
+      setRows(response.data)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
   return (
     <>
       <Paper elevation={4} sx={{ m: "2%", p: "2%" }}>

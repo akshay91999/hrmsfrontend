@@ -8,40 +8,16 @@ import Avatar from "@mui/material/Avatar";
 import axios from "axios";
 
 const columns = [
-  { field: "id", width:100, headerClassName: "super-app-theme--header" },
-  // {
-  //   field: "employeename", headerClassName: "super-app-theme--header",
-  //   headerName: "Employee Name",
-  //   width: 280,
-  //   renderCell: (params) => {
-  //     console.log(params);
-  //     return (
-  //       <>
-  //         <Avatar src={params.value.avatar} />&nbsp;&nbsp;&nbsp;
-  //         {params.value.username}
-  //       </>
-  //     );
-  //   },
-  // },
-  // {
-  //   field: "employee",
-  //   headerName: "Employee",
-  //   width: 140,
-  //   renderCell: (params) => {
-  //     // console.log(params);
-  //     return (
-  //       <>
-  //         <Avatar src={params.value.avatar} />
-  //       </>
-  //     );
-  //   },
-  //   headerClassName: "super-app-theme--header",
-  // },
+  { field: "id", width:100, headerClassName: "super-app-theme--header",headerAlign: 'center',
+  align:'center', },
+  
   {
-    field: "firstName",
+    field: "name",
     headerName: "Employee Name",
-    width: 250,
+    width: 200,
     headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
   },
   
   {
@@ -49,37 +25,65 @@ const columns = [
     headerName: "Contact",
     width: 170,
     headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
   },
   {
     field: "email",
     headerName: "Email",
     width: 250,
     headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
   },
   // { field: "VisitorName", width: 250, headerClassName: "super-app-theme--header" },
   {
     field: "departmentname",
     headerName: "Department",
-    width: 200,
+    width: 170,
     headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
   },
   {
     field: "designation",
     headerName: "Designation",
     width: 170,
     headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
   },
   {
-    field: "date",
-    headerName: "Date",
-    width: 170,
+    field: "applydate",
+    headerName: "Apply Date",
+    width: 150,
     headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
+  },
+  {
+    field: "resigndate",
+    headerName: "Resign Date",
+    width: 150,
+    headerClassName: "super-app-theme--header",
+    headerAlign: 'center',
+    align:'center',
   },
   
 ];
 export default function LeaveApprovedList() {
   const [rows,setRows]=useState([])
   const [pageSize, setPageSize] = React.useState(5);
+  useEffect(()=>{
+    axios.get("http://localhost:5000/retirement/resigned")
+    .then(function(response){
+      console.log(response)
+      setRows(response.data)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  },[])
   return (
     <>
       <Paper elevation={4} sx={{ m: "2%", p: "2%" }}>

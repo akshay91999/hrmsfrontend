@@ -15,6 +15,7 @@ import Notification from "../Notification";
 
 function AppbarSideIcon(props) {
   // const setLoggedIn=useContext(UserContext);
+  const user=JSON.parse(localStorage.getItem('user'))
   const {setLoggedIn}=props
   let navigate=useNavigate()
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -62,7 +63,8 @@ function AppbarSideIcon(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={()=>navigate("/profile")}>Profile</MenuItem>
+      {user.user_type===1?null:<MenuItem onClick={()=>navigate("/profile")}>Profile</MenuItem>}
+      
       <MenuItem onClick={logout}>Log Out</MenuItem>
     </Menu>
   );

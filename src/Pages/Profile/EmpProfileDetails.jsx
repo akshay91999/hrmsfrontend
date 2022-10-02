@@ -7,9 +7,11 @@ import Box from '@mui/material/Box';
 import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
+import { useEffect } from 'react';
+import axios from 'axios';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  
   return (
     <div
       role="tabpanel"
@@ -40,7 +42,15 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs() {
+export default function BasicTabs(props) {
+  const {basic}=props
+  // useEffect(()=>{
+  //   axios.get("http://localhost:5000/job/"+basic.basic_id)
+  //   .then(function(response){
+  //     console.log(response)
+  //   })
+  // },[])
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -66,7 +76,7 @@ export default function BasicTabs() {
             <ListItemText primary="Name" />
             </Grid>
             <Grid item xs={6}>
-              <ListItemText primary="Nevina Acantaza" />
+              <ListItemText primary={basic.firstname+" "+basic.lastname} />
               </Grid>
           </ListItem>
           <ListItem disablePadding>
@@ -74,7 +84,7 @@ export default function BasicTabs() {
             <ListItemText primary="Email" />
             </Grid>
             <Grid item xs={6}>
-              <ListItemText primary="nav@gmail.com" />
+              <ListItemText primary={basic.email} />
               </Grid>
           </ListItem>
           <ListItem disablePadding>
@@ -82,7 +92,7 @@ export default function BasicTabs() {
             <ListItemText primary="Phone" />
             </Grid>
             <Grid item xs={6}>
-              <ListItemText primary="9876543210" />
+              <ListItemText primary={basic.contactnumber} />
               </Grid>
           </ListItem>
           <ListItem disablePadding>
@@ -90,15 +100,15 @@ export default function BasicTabs() {
             <ListItemText primary="Employee Id" />
             </Grid>
             <Grid item xs={6}>
-              <ListItemText primary="9876" />
+              <ListItemText primary={basic.basic_id} />
               </Grid>
           </ListItem>
           <ListItem disablePadding>
           <Grid item xs={6}>
-            <ListItemText primary="Joining Date" />
+            <ListItemText primary="Date of Birth" />
             </Grid>
             <Grid item xs={6}>
-              <ListItemText primary="12/02/2022" />
+              <ListItemText primary={basic.dob} />
               </Grid>
           
           </ListItem>
@@ -115,7 +125,7 @@ export default function BasicTabs() {
             <ListItemText primary="Address" />
             </Grid>
             <Grid item xs={4}>
-              <ListItemText primary="Address1" />
+              <ListItemText primary={basic.e_address} />
               </Grid>
           </ListItem>
           <ListItem disablePadding>
@@ -139,7 +149,7 @@ export default function BasicTabs() {
           <ListItemText primary="Nationality" />
           </Grid>
           <Grid item xs={4}>
-            <ListItemText primary="Indian" />
+            <ListItemText primary={basic.nationality} />
             </Grid>
         </ListItem>
        

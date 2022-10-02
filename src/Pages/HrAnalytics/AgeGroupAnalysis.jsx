@@ -16,27 +16,27 @@ import {
 const data = [
   {
     name: "back end devolopement",
-    uv: 26,
+    averageage: 26,
   },
   {
     name: "web page designing",
-    uv: 25,
+    averageage: 25,
   },
   {
     name: "software testing",
-    uv: 40,
+    averageage: 40,
   },
   {
     name: "Machine Learning",
-    uv: 30,
+    averageage: 30,
   },
   {
     name: "Artificial Intelligence",
-    uv: 32,
+    averageage: 32,
   },
   {
     name: "front end devolopement",
-    uv: 29,
+    averageage: 29,
   },
 ];
 
@@ -74,12 +74,12 @@ export default function AgeGroupAnalysis() {
               }}
             >
               <XAxis dataKey="name" />
-              <YAxis domain={[0, 55]} />
+              <YAxis dataKey="averageage" domain={[0, 55]} />
               <Tooltip />
               <Legend />
               <CartesianGrid stroke="#f5f5f5" />
-              <Bar dataKey="uv" barSize={20} fill="#413ea0" />
-              <Line type="monotone" dataKey="uv" stroke="#ff7300" />
+              <Bar dataKey="averageage" barSize={20} fill="#413ea0" />
+              <Line type="monotone" dataKey="averageage" stroke="#ff7300" />
             </ComposedChart>
           </ResponsiveContainer>
         </Box>

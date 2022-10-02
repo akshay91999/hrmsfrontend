@@ -23,8 +23,10 @@ const initialFvalues = {
 };
 
 function ResignationForm() {
+ 
   const { values, setValues, errors, setErrors, handleInputChange } =
     useForm(initialFvalues);
+
     const [depart, setDepart] = useState([]);
     const [position, setPosition] = useState([]);
     useEffect(() => {
@@ -82,9 +84,33 @@ function ResignationForm() {
     setErrors({ ...temp });
     return Object.values(temp).every((x) => x === "");
   };
+  
+  let currentDate = new Date().toJSON().slice(0, 10);
+  const user={
+      applydate:currentDate,
+      e_id:values.empid,
+      reason:values.reason
+    };
+   
+   
   const handlesubmit = () => {
     if (validate()) {
-      window.alert("successfully updated");
+      axios.post("http://localhost:5000/retirement",user)
+      .then(function(response){
+        console.log(response)
+        if(response.data.message==="success")
+        {
+          window.alert("successfully updated");
+        }
+        else{
+          window.alert(response.data.message)
+        }
+        
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+     
     }
   };
 
