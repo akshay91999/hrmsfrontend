@@ -13,15 +13,15 @@ import AcceptrejectbuttonCandidate from "../../../Components/AcceptrejectbuttonC
 
 const columns = [
   { field: "id", width: 100, headerClassName: "super-app-theme--header",headerAlign: 'center',align:'center' },
-  { field: "candidatename",headerName:'Candidate Name' ,align:'center',width: 250, headerClassName: "super-app-theme--header",headerAlign: 'center' },
+  { field: "candidatename",headerName:'Candidate Name' ,align:'center',width: 200, headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "departmentname", width: 150,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "designation", width: 150,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
   { field: "email", width: 250,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center' },
-  { field: "mobile", width: 250,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center',hide:'true' },
+  { field: "mobile", width: 200,align:'center', headerClassName: "super-app-theme--header",headerAlign: 'center',hide:'true' },
  
   {
     field: "yoe",
-    width: 150,
+    width: 100,
     headerClassName: "super-app-theme--header",
     headerAlign: 'center',
     align:'center'

@@ -145,17 +145,17 @@ function ListRecmngmnt() {
                 </ListItemIcon>
                 <ListItemText primary="Candidate List" />
             </ListItemButton> */}
-        <ListItemButton onClick={() => navigate("/selectedcandidatelist")}>
+        {/* <ListItemButton onClick={() => navigate("/selectedcandidatelist")}>
                 <ListItemIcon>
                     <FormatListBulletedIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Shortlisted Candidate" />
-            </ListItemButton>
+            </ListItemButton> */}
         <ListItemButton onClick={() => navigate("/selectedlist")}>
                 <ListItemIcon>
                     <FormatListBulletedIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Shortlisted Candidate(HR)" />
+                <ListItemText primary="Shortlisted Candidate" />
             </ListItemButton>
         <ListItemButton onClick={() => navigate("/hrapprovedcandidates")}>
                 <ListItemIcon>
@@ -197,12 +197,12 @@ function ListRecmngmnt() {
         return(
         <List component="div" disablePadding sx={{ pl: 1 }}>
        
-        <ListItemButton onClick={() => navigate("/viewvaccancy")}>
+        {/* <ListItemButton onClick={() => navigate("/viewvaccancy")}>
                 <ListItemIcon>
                     <PreviewIcon/>
                 </ListItemIcon>
                 <ListItemText primary="View Vaccancy" />
-            </ListItemButton>
+            </ListItemButton> */}
            
         <ListItemButton onClick={() => navigate("/vacancytobefilledrecruiters")}>
                 <ListItemIcon>
